@@ -8,7 +8,6 @@
   - 1일 1커밋을 원칙으로 하되 너무 강제성을 부여하지 않는다.
 
 ## Favorite
-  - 개발 외의 일상의 전반적인 것을 기록한다.
   - books
   - seminar
   - leisure life

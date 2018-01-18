@@ -11,7 +11,7 @@
   - books
   - seminar
   - leisure life
-  - the others review
+  - the others review ...
 
 ## list
   - [OOP](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)

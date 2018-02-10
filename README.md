@@ -15,7 +15,16 @@
   - the others review ...
 
 ## list
-  - [OOP](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
+  - [Book Review - 책 후기](https://github.com/gwonsungjun/TIL/tree/master/Book-Review)
+  - [Computer Structure - 컴퓨터 구조](https://github.com/gwonsungjun/TIL/tree/master/ComputerStructure)
+  - [Developer Capabilities - 개발자 역량 등의 좋은글 스크랩](https://github.com/gwonsungjun/TIL/tree/master/Developer-Capabilities)
+  - [Glossary of terms - 용어 정리](https://github.com/gwonsungjun/TIL/tree/master/GlossaryOfTerms)
+  - [Linux - 리눅스](https://github.com/gwonsungjun/TIL/tree/master/Linux/Ubuntu/How-to-install)
+  - [Network - 네트워크](https://github.com/gwonsungjun/TIL/tree/master/Network)
+  - [Non-develpmetn - 개발 외적인 것들](https://github.com/gwonsungjun/TIL/tree/master/Non-development)
+  - [OOP - 객체지향](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
+  - [Organize shortcuts - 단축키 정리]
+  - [UML](https://github.com/gwonsungjun/TIL/tree/master/UML)
 
 
 ## Reference

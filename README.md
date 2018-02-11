@@ -2,6 +2,7 @@
 <h3>Today I Learned</h3>
 
 ## 작성규칙
+  - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)
   - 언어나 기술명으로 폴더를 만든다.
   - 파일명은 영어로.
   - README.md에 링크 추가하기.
@@ -31,7 +32,7 @@
 - [유림님 TIL](https://github.com/milooy/TIL#today-i-learned)
 - [규진님 TIL](https://github.com/iamkyu/TIL)
 
-## 나의 기억 저장소들 :)
+## 나의 기억 저장소들 :) 
 
 - [Blog](https://gwonsungjun.github.io/) : 회고, 약간 Deep한 내용들, 조금 긴 글 등...   
 - [TIL](https://github.com/gwonsungjun/TIL) : 개발, 공부하면서 알게된 간단하고 짧은 글, 책 후기, 용어 정리 등...

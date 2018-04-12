@@ -1,9 +1,15 @@
 # 📝 TIL
 <h3>Today I Learned</h3>
 
+- [![TIL](https://img.shields.io/badge/TIL-Github-brightgreen.svg)](https://github.com/gwonsungjun/TIL) : 개발, 공부하면서 알게된 간단하고 짧은 글, 책 후기, 용어 정리 등...
+
+- [![Blog](https://img.shields.io/badge/Blog-gwonsungjun.github.io-blue.svg)](https://gwonsungjun.github.io/) : 회고, 세미나, 약간 Deep한 내용들, 조금 긴 글 등...   
+
+- [![Email](https://img.shields.io/badge/Email-gwonsungjun-yellow.svg)](mailto:sungjunpizz@gmail.com)
+
 ## 작성규칙
   - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)
-  - 언어나 기술명으로 폴더를 만든다.
+  - 언어나 기술명 등으로 폴더를 만든다.
   - 파일명은 영어로.
   - README.md에 링크 추가하기.
   - 절대 어뷰징은 없다.
@@ -14,7 +20,6 @@
   - Software Develop
   - books
   - seminar
-  - leisure life
   - the others review ...
 
 ## list
@@ -22,11 +27,13 @@
   - [Computer Structure - 컴퓨터 구조](https://github.com/gwonsungjun/TIL/tree/master/ComputerStructure)
   - [Developer Capabilities - 개발자 역량 등의 좋은글 스크랩](https://github.com/gwonsungjun/TIL/tree/master/Developer-Capabilities)
   - [Glossary of terms - 용어 정리](https://github.com/gwonsungjun/TIL/tree/master/GlossaryOfTerms)
+  - [Intellij - 인텔리제이](https://github.com/gwonsungjun/TIL/tree/master/Intellij)
   - [Linux - 리눅스](https://github.com/gwonsungjun/TIL/tree/master/Linux/Ubuntu/How-to-install)
   - [Network - 네트워크](https://github.com/gwonsungjun/TIL/tree/master/Network)
   - [Non-develpmetn - 개발 외적인 것들](https://github.com/gwonsungjun/TIL/tree/master/Non-development)
   - [OOP - 객체지향](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
   - [Organize shortcuts - 단축키 정리](https://github.com/gwonsungjun/TIL/tree/master/Organize-Shortcuts)
+  - [MySQL](https://github.com/gwonsungjun/TIL/tree/master/RDB/MySQL)
   - [UML](https://github.com/gwonsungjun/TIL/tree/master/UML)
 
 
@@ -34,8 +41,3 @@
 - [유림님 TIL](https://github.com/milooy/TIL#today-i-learned)
 - [규진님 TIL](https://github.com/iamkyu/TIL)
 - [규빈님 TIL](https://github.com/Gyubin/TIL)
-
-## 나의 기억 저장소들 :)  
-
-- [Blog](https://gwonsungjun.github.io/) : 회고, 약간 Deep한 내용들, 조금 긴 글 등...   
-- [TIL](https://github.com/gwonsungjun/TIL) : 개발, 공부하면서 알게된 간단하고 짧은 글, 책 후기, 용어 정리 등...

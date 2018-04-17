@@ -4,7 +4,7 @@
 
 ![ASCII_lowercase](/images/asciiUppercase.PNG)
 
-- 다른 팀원들의 Eclipse에서 개발 후 커밋시 아래 그림과 같이 소문자로 표시되었다.
+- 기존에는(다른 팀원들의 Eclipse에서 개발 후 커밋시) 아래 그림과 같이 소문자로 표시되었다.
 
 ![ASCII_Uppercase](/images/asciiLowercase.PNG)
 

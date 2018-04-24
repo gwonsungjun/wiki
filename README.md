@@ -1,12 +1,6 @@
 # 📝 TIL
 <h3>Today I Learned</h3>
 
-- [![TIL](https://img.shields.io/badge/TIL-Github-brightgreen.svg)](https://github.com/gwonsungjun/TIL) : 개발, 공부하면서 알게된 간단하고 짧은 글, 책 후기, 용어 정리 등...
-
-- [![Blog](https://img.shields.io/badge/Blog-gwonsungjun.github.io-blue.svg)](https://gwonsungjun.github.io/) : 회고, 세미나, 약간 Deep한 내용들, 조금 긴 글 등...   
-
-- [![Email](https://img.shields.io/badge/Email-gwonsungjun-yellow.svg)](mailto:sungjunpizz@gmail.com)
-
 ## 작성규칙
   - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)
   - 언어나 기술명 등으로 폴더를 만든다.
@@ -23,7 +17,7 @@
   - the others review ...
 
 ## list
-  - [Book Review - 책 후기](https://github.com/gwonsungjun/TIL/tree/master/Book-Review)
+  - [Book Review - 책 Review](https://github.com/gwonsungjun/TIL/tree/master/Book-Review)
   - [Computer Structure - 컴퓨터 구조](https://github.com/gwonsungjun/TIL/tree/master/ComputerStructure)
   - [Developer Capabilities - 개발자 역량 등의 좋은글 스크랩](https://github.com/gwonsungjun/TIL/tree/master/Developer-Capabilities)
   - [Glossary of terms - 용어 정리](https://github.com/gwonsungjun/TIL/tree/master/GlossaryOfTerms)
@@ -34,6 +28,7 @@
   - [OOP - 객체지향](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
   - [Organize shortcuts - 단축키 정리](https://github.com/gwonsungjun/TIL/tree/master/Organize-Shortcuts)
   - [MySQL](https://github.com/gwonsungjun/TIL/tree/master/RDB/MySQL)
+  - [Spring](https://github.com/gwonsungjun/TIL/tree/master/Spring)
   - [UML](https://github.com/gwonsungjun/TIL/tree/master/UML)
 
 
@@ -41,3 +36,8 @@
 - [유림님 TIL](https://github.com/milooy/TIL#today-i-learned)
 - [규진님 TIL](https://github.com/iamkyu/TIL)
 - [규빈님 TIL](https://github.com/Gyubin/TIL)
+
+## Contacts
+- [![Blog](https://img.shields.io/badge/Blog-gwonsungjun.github.io-blue.svg)](https://gwonsungjun.github.io/)
+
+- [![Email](https://img.shields.io/badge/Email-gwonsungjun-yellow.svg)](mailto:sungjunpizz@gmail.com)

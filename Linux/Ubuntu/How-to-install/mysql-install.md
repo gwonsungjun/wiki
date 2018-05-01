@@ -1,5 +1,4 @@
-#Ubuntu Mysql Server Install
-===
+# Ubuntu Mysql Server Install
 
 ## 1.Mysql 서버 설치
 - &#35; apt-get update
@@ -15,7 +14,7 @@
 - &#35; dpkg --list | grep mysql
 - &#35; netstat -ntlp | grep mysqld
 
-##4.Mysql 서버 접속
+## 4.Mysql 서버 접속
 - &#35; mysql -u root -p
 
 ## Link

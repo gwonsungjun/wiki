@@ -1,7 +1,7 @@
 # Logback
 
 ## Logback log 패턴
-- **%-80(%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36}) - %msg%n**
+- **%-80(%d{HH:mm:ss.SSS} [%thread] %highlight([%-5level]) %cyan(%logger{36})) - %msg%n**
 
 Conversion Pattern | Description
 --------------------- | --------------
@@ -30,6 +30,16 @@ Conversion Pattern | Description
 - -의 유무는 좌우를 결정지음
     - -가 있으면 좌로 정렬
     - ex) 맨 위의 예시에서 %-80, (%-5level)
+
+## logback log level
+- logback에는 다섯가지의 로그 레벨 존재.
+1. error
+2. warn
+3. info
+4. debug
+5. trace
+- trace라고 선언을 하면 trace,debug,info,warn,error 모든 Level을 포함. 
+- 그리고 info로 설정된다면 info.warn,error가 포함.
 
 ## Links
 - <http://souning.tistory.com/7>

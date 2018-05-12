@@ -1,4 +1,4 @@
-# linux 명령어 정리
+# Linux 명령어 정리
 
 ## sudo 임시로 관리자 권한 얻기
 - sudo : 관리자 권한 행사
@@ -29,7 +29,37 @@ $ grep -r -i "yameno tarou" 디렉토리경로
 $ grep -r -i -E "((야메노) *(타로) | yameno +tarou)" 디렉토리 경로
 ```
 
-##
+## vim
+- 편집 : 시작 -> 노멀모드 -> i 입력 -> 끼워넣기 모드로 편집 -> esc -> :wq (저장 & 종료)
+- 검색 : 노멀모드 -> / 입력
+  - N : 검색된 곳을 순서대로
+  - Shift N : 반대 방향
+  - 정규표현식으로 검색 : / 뒤에 \v(백슬래쉬, 소문자v)
+  - EX) /\v(CP949|EUC-KR)
+- 복사 : 노멀모드 -> v - 선택모드 (화살표를 이용한 범위 지정)
+- 양크 : (yank:끌어당기다) - 클립보드에 텍스트가 복사됨
+- 붙여넣기 : Shift + p
+  - 10회 반복해서 붙여넣기 : 1, 0, Shift, p
+- 되돌리기 : u (undo)
+- 되살리기 : ctrl + r (redo)
+- ctrl + z : 실행중인 애플리케이션 일시 정지
+  - fg : 다시 실행 (foreground)
+
+## tmux 가상 단말
+- $ sudo apt-get install tmux
+- 실행 : $ tmux
+- 네트웍이 끊긴경우 ssh 재접속해서 $ tmux attach 입력
+- ctrl + b (tmux의 기능 사용) 입력한 다음
+  - d 입력 : tmux 화면에서 빠져나옴 (detach)
+  - c 입력 : create : 새로운 탭 열기
+  - p 입력 : previous : 이전 탭
+  - n 입력 : next : 다음 탭
+  - " 입력 : 화면 가로로 분할
+  - % 입력 : 화면 세로로 분할
+    - ctrl + b + 방향키 : 분할된 화면 포커스 전환
+    - exit : 분할 해제
+    - 분할키를 입력하면 그때 포커스가 있는 화면을 분할함.
+  - ctrl 누르면서 방향키 : 분할 경계선 (화면 비율) 변경
 
 ## Links
 - [만화로 배우는 리눅스 시스템 관리 1](http://book.naver.com/bookdb/book_detail.nhn?bid=10995037)

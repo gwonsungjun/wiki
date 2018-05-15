@@ -4,6 +4,7 @@
 - $ sudo apt-get update
 - java 설치유무 확인, $ java-version
 - **$ sudo apt-get install openjdk-8-jdk**
+- default-jdk 설치시 기본적으로 openjdk와 동일, $ sudo apt-get install default-jdk 
 
 ## 2.Oracle jdk 설치 ( PPA등록으로 빠른 설치하기 )
 - java 설치유무 확인, $ java-version

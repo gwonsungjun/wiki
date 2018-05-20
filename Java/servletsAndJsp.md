@@ -53,6 +53,19 @@
 - Session : 하나의 Request에만 관련된 것이 아니라 클라이언트 세션에 관련. 스레드-안전(x)
 - Request : 특정 요청에만 관련된 데이터 등. 스레드-안전(o)
 
-### links
+### 세션관리
+- 컨테이너는 클라이언트에 Response의 일부로 세션 ID를 보낸다. 그러면 클라이언트는 다음 요청부터 Request의 일부로 세션 ID를 돌려 보낸다. 세션 ID 정보를 교환하는 가장 간단하며, 일반적인 방법은 쿠키를 사용하는 것이다.
+- Response 객체에 세션 쿠키 보내기 : HttpSession session = request.getSession();
+- Request 객체로부터 세션 ID 가져오기 : HttpSession session = request.getSession();
+- 우리는 getSession() 메소드만 사용, 나머지 작업은 컨테이너가 다한다.
+- 서버와 클라이언트 간 이름/값의 쌍으로 쿠키를 굥환
+- 서버는 클라이언트로 쿠키를 보내고, 이후 클라이언트는 매번 요청에 이 값을 전송.
+
+### Httpsession 삶에 있어 주요 순간들
+- 세선의 생명과 소멸 (new = getSession(), invalidate)
+- 세션 속성의 추가, 제거, 대체 (setAttribute(), removeAttribute())
+- 분산 환경에서는 한 VM에서 세션을 비활성화(passivate)시키고, 다른 VM에서 이를 활성화한다.
+
+### Links
 - [Head First Servlet & JSP](http://book.naver.com/bookdb/book_detail.nhn?bid=5902081)
 -  [Servlet 이란 무엇인가?](http://breath91.tistory.com/entry/Servlet-이란-무엇인가)

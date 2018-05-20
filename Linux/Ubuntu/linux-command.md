@@ -61,5 +61,38 @@ $ grep -r -i -E "((야메노) *(타로) | yameno +tarou)" 디렉토리 경로
     - 분할키를 입력하면 그때 포커스가 있는 화면을 분할함.
   - ctrl 누르면서 방향키 : 분할 경계선 (화면 비율) 변경
 
+## 명령어 이력
+- 방향키 위, 아래(↕)를 이용한 이전에 실행한 명령어 이력 표시
+- $ vi ~/.bash_history
+- 명령어 검색 기능
+  - 후방 검색(현재 위치보다 오래된 방향으로 이동) : ctrl + R
+  - ctrl + R을 사용하면 검색 위치가 오래된 방향으로 이동되서 그보다 새로운 명령어 이력은 검색할 수 없게 된다.
+    - 따라서, 아래와 같이 역방향(전방검색)이 가능하도록 수정
+    - 1. vi ~/.bash_history
+    - 2. shift + G 로 마지막으로 이동해서 stty stop undef 입력
+    - 3. :wq
+    - 4. 재로그인 (bash 재실행, 새로운 설정 읽어 들임)
+  - 전방 검색(현재 위치보다 새로운 방향으로 이동) : ctrl + S
+- 이력 저장 건수 설정
+  - 1. $ vi ~/.bashrc
+  - 2. shift + G 로 마지막으로 이동
+  - 3. export HISTSIZE=10000
+  - 4. export HISTFILESIZE=10000
+  - 5. 3, 4 같은 값으로 지정하고 :wq 저장.
+  - 6. 재로그인
+- 가상 단말 여러개의 bash는 각자의 명령어 이력 복사본을 가짐
+  - 따라서, 다른 화면에서 실행한 명령어는 또 다른 화면에서 실행한 명령어를 검색할 수 없다.
+  - $ vi ~/.bashrc에 아래를 추가
+  ```
+  function share_history{
+    history -a
+    history -c
+    history -r
+  }
+  PROMPT_COMMAND='share_history'
+  shopt -u histappend
+  ```
+  - bash_history와 메모리 복사본을 자주 동기화 하라는 의미
+
 ## Links
 - [만화로 배우는 리눅스 시스템 관리 1](http://book.naver.com/bookdb/book_detail.nhn?bid=10995037)

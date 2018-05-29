@@ -14,9 +14,8 @@ FROM stock_manage;
 - SELECT 키워드 앞에 EXPLAIN을 입력.
 - 아래는 위의 쿼리 실행 결과
 ![mysqlExplain](/images/mysqlExplain.PNG)
-
 - 조인, 서브쿼리, union 등을 하게 되면 추가한 갯수 만큼 출력된다.
-- 실행 결과에 나열된 순서대로 실행된 것임.
+- 실행 결과(위의 사진)에 나열된 순서대로 실행된 것임.
 - select 구문만 가능하다.
 
 ## 3. 각 컬럼별 세부 설명
@@ -43,6 +42,7 @@ FROM stock_manage;
 | UNCACHEABLE SUBQUERY |  SUBQUERY와 기본적으로 동일하나 공급되는 모든 값에 대해 SUBQURTY를 재처리함, 외부쿼리에서 공급되는 값이 동일하더라도 캐쉬된 결과를 사용할수 없음.| 
 | DERIVED | select로 추출된 테이블 즉, from절 내부의 쿼리 |
 
+### (3) 계속...
 
 ## Links
 - [Mysql, explain - 쿼리정보 확인](http://www.dontorz.com/bbs/?mode=view&bbsid=study&ctg_cd=sql&bltn_seq=176)

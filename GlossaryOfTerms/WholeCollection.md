@@ -27,6 +27,8 @@
 
 - **FaaS (Function as a Service)** : 서버리스 아키텍처의 중심, Function 하나가 Faas 플랫폼의 하나의 유닛으로 배포
 
+- **DAPP(Decentralized Application)** - 탈중앙화된(분산) 어플리케이션 (이더리움이나 퀀텀 등의 플랫폼 위에서 작동하는 탈중앙화된 어플리케이션 또는 서비스)
+
 ### Links
 
 [HAMA 블로그](http://hamait.tistory.com/930)

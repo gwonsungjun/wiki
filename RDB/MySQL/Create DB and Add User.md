@@ -9,12 +9,12 @@
 
 ## 사용자 생성
 ```mysql
-- mysql > create user 'testuser'@'localhost' identified by 'password'; : localhost 에서만 접속 가능한 사용자 생성
-- mysql > create user 'testuser'@'%' identified by 'password'; : 외부에서 접속 가능한 사용자 생성
+mysql > create user 'testuser'@'localhost' identified by 'password'; : localhost 에서만 접속 가능한 사용자 생성
+mysql > create user 'testuser'@'%' identified by 'password'; : 외부에서 접속 가능한 사용자 생성
 ```
 
 ## 사용자에게 DB 접속권한 부여
 ```mysql
-mysql> grant all privileges on testdb.* to 'testuser'@'%' identified by 'pass';
-mysql> grant all privileges on nextdb.* to 'testuser'@'localhost';
+mysql> grant all privileges on testdb.* to 'testuser'@'%' identified by 'pass'; : IP 관계 없이 id가 testuser
+mysql> grant all privileges on nextdb.* to 'testuser'@'localhost'; : 해당 IP(localhost)에서 접속한 id가 testuser
 ```

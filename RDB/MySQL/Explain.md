@@ -71,3 +71,4 @@ FROM stock_manage;
 ## Links
 - [Mysql, explain - 쿼리정보 확인](http://www.dontorz.com/bbs/?mode=view&bbsid=study&ctg_cd=sql&bltn_seq=176)
 - [MySQL Ver. 5.1 explain 사용법](http://mysqldba.tistory.com/162)
+- [mysql explain 정보 보는방법](http://egloos.zum.com/laydios/v/1542611)

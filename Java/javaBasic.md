@@ -142,7 +142,7 @@ public interface interfaceFx{
 }
 ```
 - 사용은 클래스에서 implements 키워드 사용하여.
-- 다중 구현 가능. (=다형이 존재)
+- 다중 구현 가능. (=다형성이 존재)
 - 꼭 추상메소드 재정의
 
 ### 19. 인터페이스와 추상클래스
@@ -158,6 +158,39 @@ public interface interfaceFx{
 ### 20. 디자인 패턴
 - 개발자 선배들이 객체지향 언어의 장점들을 모아 가장 효율적으로 개발할 수 있게 만들어 놓은 틀.
 - 상속, 추상화 등이 왜 필요한지 알게됨.
-- 싱글톤 패턴(Singleton pattern)
+- 싱글톤 패턴(Singleton Pattern)
   - 어떤 클래스의 인스턴스는 오직 하나임을 보장하며, 이 인스턴스에 접근할 수 있는 전역적인 접촉점을 제공하는 패턴
--    
+- 스트레티지 패턴(Strategy Pattern)
+  - 알고리즘 군을 정의하고 각각을 캡슐화하여 교환해서 사용할 수 있도록 만든다.
+  - 스트레티지를 활용하면 알고리즘을 사용하는 클라이언트와는 독립적으로 알고리즘을 변경할 수 있다.
+  - 쉽게말하면, 어떤 객체를 만들 때 객체가 가지는 기능들이 다양하게 존재한다. 이러한 기능들을 추상화 하여 언제든지 적용할 수 있게 만드는 것. 즉 기능을 부품화 하는 것이다.
+
+### 21. String API
+- String : 객체 자료형, 하지만 뒤에 생성자(new)를 사용하지 않고 기초데이터를 만들 때 처럼 초기화 한다.
+  - ex) String string = "HelloWorld";
+- String의 주요 기능들(메소드)
+  - concat : 문자열 연결
+  - substring : 문자열 자르기
+  - length : 문자열 길이
+  - toUpperCase : 대문자로 만들기
+  - toLowerCase : 소문자로 만들기
+  - charAt : 특정위치의 글자 찾기
+  - indexOf : 특정문자열의 위치
+  - equals : 문자열 비교
+  - trim : 문자열 공백제거
+  - replace : 특정문자 변경
+  - replaceAll : 특정문자열 변경
+- String 단점 : 메모리를 과소비 한다. String 객체의 경우 처음 초기화된 데이터에 변화가 생기면 기존 것을 재활용 하기 보다는 새것을 찾는다.
+- 따라서, String 클래스의 대안으로 StringBuffer, StringBuilder 등장 (속도적인 측면에서 더욱 개선됨)
+- StringBuilder 주요 기능(메소드)
+  - StringBuilder는 new를 이용한 생성 : StringBuilder stringBuilder = new StringBuilder("abcdefg");
+  - append : 문자열 추가
+  - insert : 특정 위치에 문자열 추가
+  - delete : 문자열 삭제
+  - deleteCharAt : 특정 문자 하나 삭제
+- StringBuffer와 StringBuilder와 비슷하나 StringBuilder가 속도 면에서 좀 더 빠르다.
+
+### 22. 날짜(Calendar) API
+- Calendar calendar = Calendar.getInstance();
+  - int year = calendar.get(Calendar.YEAR);
+- System.currentTimeMillis() - 현재 시간읠 1/1,000초 단위로 표시 (속도 테스트 용도로 많이 사용)

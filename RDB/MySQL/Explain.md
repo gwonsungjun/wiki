@@ -42,7 +42,31 @@ FROM stock_manage;
 | UNCACHEABLE SUBQUERY |  SUBQUERY와 기본적으로 동일하나 공급되는 모든 값에 대해 SUBQURTY를 재처리함, 외부쿼리에서 공급되는 값이 동일하더라도 캐쉬된 결과를 사용할수 없음.| 
 | DERIVED | select로 추출된 테이블 즉, from절 내부의 쿼리 |
 
-### (3) 계속...
+### (3) table
+- 테이블 명, Alias를 사용할 경우 약칭
+
+### (4) partitions
+- 테이블의 파티션 중 어떤 파티션을 사용했는지 등의 정보를 조회
+
+### (5) type
+- 데이터를 호출한 타입. 
+
+| 속성값 | 내용 |
+|--------|------|
+| system	| 테이블에 row가 1건이라 매칭되는 row도 1건인 경우 |
+| const	 | 옵티마이저가 unique/primary key를 사용하여 매칭되는 row가 1건인 경우. (하나의 행만 매치) |
+| eq_ref | 1:1의 join 관계, unique/primary key를 사용하여 join을 처리함.  즉, 이전 테이블에서 공급받은 값으로 조인 처리시 단 하나의row만이 조인되는 테이블에 존재하는 경우 |
+| ref	| 1:n의 join 관계, join 처리시 unique/primary key를 100% 활용하지 못하거나 non-unique 인덱스가 사용됨, 단일 쿼리인 경우 where 조건절에서 non-unique 인덱스가 사용됨. 즉,  이전 테이블에서 공급받은 값으로 조인 처리시 하나 이상의row가 조인되는 테이블에 존재하는 경우 |
+| ref_or_null |	 ref와 동일하나 null 값(IS NULL)에 대한 최적화가 되어있음.|
+| fulltext	| fulltext 인덱스를 사용하여 데이터 Access (Only MyISAM) |
+| index_merge | 동일한 테이블에서 두개 이상의 인덱스가 동시에 사용됨.(fulltext 인덱스는 제외), 인덱스 병합이 최적화된 타입. 이경우, key 컬럼은 사용된 인덱스의 리스트를 나타낸다. |
+| unique_subquery | 서브쿼리에서 unique한 값이 생성되는 경우, index lookup function이 사용됨.(서브쿼리 최적화) |
+| index_subquery |  unique_subquery와 비슷하나 결과값이 unique하지 않은 경우. |
+| range	| 주어진 범위내의 row를 스캔함. 당연한 이야기지만 범위내의 row가 많으면 많을수록 성능이 저하됨. 키컬럼이 상수와 =, <>, >, >=, <, <=, IS NULL,<=>, BETWEEN 또는 IN 연산에 사용될 때 적용됨 |
+| index	| 인덱스를 사용하긴 하나 전체 인덱스 block을 스캔함. 즉 인덱스를 사용하긴 하나 all 타입과 흡사함, MYSQL은 쿼리에서 단일 인덱스의 일부분인 컬럼을 사용할때 이 조인타입을 적용함. 일반적인 경우 인덱스가 테이블보다 사이즈가 작기 때문에, ALL보다는 빠를 가능성이 높음|
+| all	|  전체 데이터 block을 스캔.(full table scan), 이전테이블과의 조인을 위해 풀스캔함.|
+
+### (6) 계속...
 
 ## Links
 - [Mysql, explain - 쿼리정보 확인](http://www.dontorz.com/bbs/?mode=view&bbsid=study&ctg_cd=sql&bltn_seq=176)

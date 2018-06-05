@@ -96,7 +96,28 @@ FROM stock_manage;
 
 ### (12) extra
 - 옵티마이저가 쿼리를 해석한 추가적인 정보를 출력함.
+- 성능 개선에 필요한 주요 정보 컬럼.
 
+| 속성값 | 내용 |
+|--------|------|
+| const row not found | 대상 테이블의 row가 0건인 경우. |
+| distinct	| distinct 쿼리를 수행하는 경우, 이미 처리한 값과 동일한 값을 가지는 row는 처리하지 않음. |
+| Full scan on NULL key	| index lookup function이 사용되는 서브쿼리에서 외부에서 제공되는 값이 null인 경우. 이때 index lookup function 이 실패하여 full table scan이 발생할 수 있다. |
+| impossible HAVING	| having 절이 항상 false인 경우. select 처리 하지 않는다.|
+| impossible WHERE	| WHERE 절이 항상 false인 경우. select 처리 하지 않는다. |
+| Impossible WHERE noticedafter reading const tables | const/system 타입의 테이블을 읽은 후 where 절이 항상 false인 경우.|
+| No tables used | from 절에 테이블이 명시되지 않음. 혹은 from dual 구문을 사용함 |
+| Not exists | left join 형태의 anti join 쿼리를 not exists 형태로 최적화 하는 경우. 조건에 맞는 결과를 찾으면 추가 join 하지 않음. |
+| range checked for eachrecord	| 조인 처리시 적절한 인덱스가 없는 상황에서, 선행 테이블에서 공급되는 값에 따라 인덱스 사용을 검토할수 있는 경우. 공급되는 각각의 row에 range/index merge를 검토함. |
+| Select tables optimizedaway | 쿼리가 Aggregate 함수만 포함하고 있는 경우.(MAX, MIN, SUM...), 옵티마이저는 인덱스 확인후 1개의 결과만을 리턴한다.|
+| unique row not found	| 쿼리결과가 만족하는 row가 없는 경우.|
+|Using filesort	| 옵티마이저가 정렬을 위해 추가적인 과정을 필요로 할 경우. (물리적인 정렬작업 수행)|
+|Using index | 전체 데이터 block을 읽지 않고 인덱스 block만으로 결과를 생성할수 있는 경우. 컬럼정보가 실제 테이블이 아닌 인덱스트리에서 추출, 쿼리에서 단일 인덱스된 컬럼들만을 사용하는 경우|
+|Using index for group-by	| 전체 데이터 block을 읽지 않고 인덱스 block만으로 group by/distinct를 처리.|
+|Using join buffer	| join 처리시 join buffer가 사용되었음을 의미. join buffer는 join 처리를 위한 index가 없을때 사용된다. 즉 인덱스를 사용하지 않은 join을 의미함.|
+| Using sort_union, Using union, Using intersect |index merge를 수행함. 두 개 이상의 인덱스를 동시에 사용.|
+|Using temporary | 쿼리를 처리하기 위해 임시 테이블을 생성함. 만일 쿼리가 컬럼을 서로 다르게 목록화 하는 GROUP BY 및 ORDER BY 구문을 가지고 있는 경우에 이런 것이 일어나게 된다.|
+|Using where | where절이 다음 조인에 사용될 row나 출력될 row의 개수를 제한하는 경우.|
 
 ## 추가
 ### (1) sql_no_cache

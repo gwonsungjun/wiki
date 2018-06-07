@@ -194,3 +194,30 @@ public interface interfaceFx{
 - Calendar calendar = Calendar.getInstance();
   - int year = calendar.get(Calendar.YEAR);
 - System.currentTimeMillis() - 현재 시간읠 1/1,000초 단위로 표시 (속도 테스트 용도로 많이 사용)
+
+### 23. Random 클래스
+- 예전에는 Math.random()을 많이 이용하였으나, 요즘은 Random 클래스를 많이 사용한다.
+- dobule d = Math.random();
+  - static
+- Random random = new Random();
+  - random.nextInt(100);
+
+### 24. Scanner 및 Sysout
+- Scanner : 키보드에서 타이핑 하는 문자열 또는 입출력 프로그래밍에서 문자열을 읽어올 때 사용
+  - Scanner scanner = new Scanner(System.in);
+  - scanner.nextLine() : 처음 개행 문자를 만나면 거기 까지만 읽고 나머지는 버림 (데이터 손실 주의)
+- System.out.println (sysout)
+
+### 25. Wrapper 클래스의 이해
+- Wrapper 클래스는 기초데이터를 객체데이터로 변환 시키는 클래스
+  - Integer integer = new Integer(10);
+  - 기초데이터에 상응하는 객체데이터가 있음
+
+### 26. Timer 클래스
+- Timer객체는 일정한 시간이 되면, TimerTask 객체가 작동된다.
+- 단, TimerTask클래스는 추상클래스이다. 따라서 TimerTask 클래스를 상속받는 클래스를 만들어서 사용 해야 한다.
+
+### 27. StringTokenizer 클래스
+- 문자열을 분할 할 때 사용하는 대표적은 클래스
+- String str = "2018/12/25";
+- StringTokenizer tokenizer = new StringTokenizer(str, "/");

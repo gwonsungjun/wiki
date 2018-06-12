@@ -41,6 +41,8 @@
     - 최악의 경우 : 빅오 표기법 (Big-O Notation)
     - 평균의 경우 : 세타 표기법 (Big-θ Notation)
 
+- **스키마(Schema)** -  데이터베이스 스키마(database schema)는 데이터베이스에서 자료의 구조, 자료의 표현 방법, 자료 간의 관계를 형식 언어로 정의한 구조이다. 데이터베이스 관리 시스템(DBMS)이 주어진 설정에 따라 데이터베이스 스키마를 생성하며, 데이터베이스 사용자가 자료를 저장, 조회, 삭제, 변경할 때 DBMS는 자신이 생성한 데이터베이스 스키마를 참조하여 명령을 수행한다.
+    - MySQL - Schema = database.
 
 ### Links
 - [HAMA 블로그](http://hamait.tistory.com/930)

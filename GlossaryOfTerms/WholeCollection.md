@@ -32,6 +32,17 @@
 
 - **META_INF** - 자바 패키징 기술인 jar의 일부. jar는 기본적으로 파일 포맷이 zip과 동일하지만 zip외에 부가적인 규약이 정해져 있고, 그 중 하나가 META-INF 디렉토리와 그 속 몇몇 파일의 포멧과 용도이다. (manifest.mf, 일종의 jar 파일의 사용 메뉴얼이나 스펙을 갖고 있다고 보면 된다.)
 
+- **시간 복잡도(Time Complexity)** - 알고리즘의 수행시간 분석결과 (cpu 사용량, 실제로는 명령어의 실행 횟수만을 고려)
+
+- **공간 복잡도(Space Complexity)** - 알고리즘의 메모리 사용량에 대한 분석결과 
+
+- **점근적 표기법에서 점근적이란?** - 가장 큰 영향을 주는 항만 계산 한다는 의미
+   - 최상의 경우 : 오메가 표기법 (Big-Ω Notation)
+    - 최악의 경우 : 빅오 표기법 (Big-O Notation)
+    - 평균의 경우 : 세타 표기법 (Big-θ Notation)
+
+
 ### Links
 - [HAMA 블로그](http://hamait.tistory.com/930)
 - [META-INF 폴더](http://digicom.tistory.com/165)
+- [시간 복잡도와 공간 복잡도](http://ledgku.tistory.com/33 )

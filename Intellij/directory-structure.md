@@ -1,4 +1,4 @@
-# 1. Intellij 디렉토리 구조
+# Intellij 디렉토리 구조
 
 Eclipse Directory Structure와 비교하여 설명
 - 용어 차이일 뿐이지 형태는 동일하다.

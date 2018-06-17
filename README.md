@@ -1,6 +1,8 @@
-# 📝 Today I Learned(TIL) and Wiki
--
-[![Blog](https://img.shields.io/badge/Blog-gwonsungjun.github.io-blue.svg)](https://gwonsungjun.github.io/) [![Email](https://img.shields.io/badge/Email-gwonsungjun-yellow.svg)](mailto:sungjunpizz@gmail.com) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
+# 📝 Today I Learned(TIL) and wiki
+
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE) [![Blog](https://img.shields.io/badge/Blog-gwonsungjun.github.io-blue.svg)](https://gwonsungjun.github.io/) [![Email](https://img.shields.io/badge/Email-gwonsungjun-yellow.svg)](mailto:sungjunpizz@gmail.com)
+- 하루 동안 학습한 내용이나 개발 관련 경험들을 간단히 기록(TIL, Today I Learned)
+- 궁극적으로는 나만의 개인 wiki 구축
 
 ## Writing Rule
   - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)
@@ -38,7 +40,7 @@
     - [자바 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/javaBasic.md)
     - [Logback](https://github.com/gwonsungjun/TIL/blob/master/Java/logback.md)
     - [Servlet & JSP 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/servletsAndJsp.md)
-  - [Linux](https://github.com/gwonsungjun/TIL/tree/master/Linux/Ubuntu/How-to-install)
+  - [Linux](https://github.com/gwonsungjun/TIL/tree/master/Linux/Ubuntu)
     - [Linux 명령어 정리](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/linux-command.md)
     - [Ubuntu jdk 설치방법](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/Jdk-install.md)
     - [Linux 용량 확인](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/capacity-check.md)

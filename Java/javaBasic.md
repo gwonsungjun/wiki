@@ -256,3 +256,68 @@ public interface interfaceFx{
 - Set : 데이터의 순서 x, 중복된 데이터 허락x
   - HashSet
 - Iterator (interface) : 반복자, 데이터를 반복적으로 검색하는데 유용한 인터페이스. 참고로 모든 자료구조형은 iterator() 메소드 지원.
+
+### 30. 입출력(I/O) 이란?
+- 입력(input) : 데이터를 읽는다.
+- 출력(output) : 데이터를 쓴다.
+- InputStream, OutputStream : 1byte 단위, 이미지 동영상 등의 데이터에 주로 사용
+- Reader, Writer : 2byte 단위, 문자열에 주로 사용
+- InputStream 사용법
+  - InputStream(추상)클래스를 이용해서 객체를 생성. 또는 다른 클래스의 메소드에서 반환되는 타입 객체를 얻는다.
+  - read() 메소드를 이용해서 데이터를 읽음
+  - read() : 1byte씩 읽음, read(byte[]) : byte[] 만큼씩 읽음 두개의 메소드를 이용할 수 있다.
+```java
+public class MainClass{
+  public static void main(String[] args){
+    try{
+      InputStream is = new FileInputStream("C:\\test.txt")
+      while(true){
+        int i = is.read();
+        if(i == -1) break;
+      }
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+    }
+  }
+}  
+```
+- OutputStream 사용법
+  - OutputStream(추상)클래스를 이용해서 객체를 생성. 또는 다른 클래스의 메소드에서 반환되는 타입 객체를 얻는다.
+  - write() 메소드를 이용해서 데이터를 읽음
+  - write(), write(byte[]), write(byte[], int, int) 세개의 메소드를 이용할 수 있다.
+```java
+public class MainClass{
+  public static void main(String[] args){
+    try{
+      OutputStream os = new FileOutputStream("C:\\test.txt")
+      String str = "오늘 날씨는 아주 좋습니다.";
+      byte[] bs = str.getBytes();
+      os.write(bs);
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+    }
+  }
+}  
+```
+- 예외 처리와 무조건 close() 실행
+  - I/O를 하면서 반듯이 해야 하는 예외처리가 있다 : IoException
+  - I/O 작업 마지막은 close()
+- DataInputStream, DataOutputStream 문자열 읽고, 쓰기.
+
+### 31. 스레드
+- 스레드란? 하나의 프로세스에서 다시 여러 가지 일을 하는 것을 뜻 함.
+- Java는 기본적으로 멀티스레드 지원
+- 스레드는 두 가지 형태로 존재
+  - (1) 객체 하나를 n개의 스레드가 공유하는 방식
+    - 데이터가 공유 되어서 같이 쓰여짐.
+  - (2) 객체 하나당 하나의 스레드가 존재하는 방식
+    - 데이터 공유 x
+- 멀티스레드 문법
+  - Runnable 인터페이스 구현
+  - Thread 클래스 상속
+- Synchronized
+  - 사전적 의미는 통합, 동시 정도의 의미
+  - java 멀티스레드에서 하나의 객체에 n개의 스레드가 진행될 경우 문제가 발생함
+  - 객체에 선언되어 있는 인스턴스 변수를 공유 하게 되어, 인스턴스 값에 영향
+  - 따라서 Synchronized 키워드를 사용
+  - Synchronized는 **먼저 수행되는 스레드의 모든 작업이 끝날 때까지 다른 스레드는 기다려야 하는 방식**

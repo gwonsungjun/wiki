@@ -321,3 +321,17 @@ public class MainClass{
   - 객체에 선언되어 있는 인스턴스 변수를 공유 하게 되어, 인스턴스 값에 영향
   - 따라서 Synchronized 키워드를 사용
   - Synchronized는 **먼저 수행되는 스레드의 모든 작업이 끝날 때까지 다른 스레드는 기다려야 하는 방식**
+
+### 32. 네트워크
+- java는 다른 언어에 비해 네트워크 기능이 뛰어난 언어
+- java.net
+  - InetAddress : 호스트의 IP주소를 비롯한 네트워크상의 정보를 얻어오는 클래스
+  - URL 클래스 : DNS를 통한 IP정보를 이용하여, URL객체를 만든 후 네트워크 접속 및 URL정보를 얻어 온다.
+  - URLConnection 클래스 : 추상클래스로 URL객체로부터 생성된다. URL클래스의 openConnection()메소드를 이용한다.
+- Socket의 이해
+  - 네트워크상에서 서로 다른 호스트 사이의 통신을 위한 수단
+  1) Server에서 ServerSocket을 만들고(요청을 받을 준비), 클라이언트의 요청을 기다림.
+  2) Client에서 Socket을 만들고, I/O Stream을 만들어 Server에 요청을 함.
+  3) Server에서 Client의 요청을 받아 (응답을 위한)Socket을 만들고, I/O Stream을 만듬
+  4) 통신함
+  5) Socket 닫음.

@@ -52,6 +52,7 @@
     - [리눅스 공인 IP 확인](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/public-ip-check.md)
     - [Ubuntu 고정 ip 설정법](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/static-ip-setting.md)
     - [unzip 사용법](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/unzip.md)
+    - [shell script 기초](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/shell-script.md)
   - [Network](https://github.com/gwonsungjun/TIL/tree/master/Network)
     - [네트워크 기초 용어 정리](https://github.com/gwonsungjun/TIL/blob/master/Network/Network-basic.md)
   - [Non-develpment - 개발 외적인 것들](https://github.com/gwonsungjun/TIL/tree/master/Non-development)

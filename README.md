@@ -38,6 +38,7 @@
     - [01. JPA 소개](https://github.com/gwonsungjun/TIL/blob/master/JPA/Java%20ORM%20standard%20JPA%20programming/1.JPA-introduction.md)
   - [JAVA](https://github.com/gwonsungjun/TIL/tree/master/Java)
     - [자바 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/javaBasic.md)
+    - [JAVA 8](https://github.com/gwonsungjun/TIL/blob/master/Java/java8.md)
     - [Logback](https://github.com/gwonsungjun/TIL/blob/master/Java/logback.md)
     - [Servlet & JSP 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/servletsAndJsp.md)
   - [Linux](https://github.com/gwonsungjun/TIL/tree/master/Linux/Ubuntu)

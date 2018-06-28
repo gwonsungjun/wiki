@@ -18,3 +18,28 @@
 - 스트림 API의 핵심은, 기존에는 한 번에 한 항목을 처리했지만 이제 자바8에서는 우리가 하려는 작업을 (데이터베이스 질의처럼) 고수준으로 추상화해서 일련의 스트림으로 만들어 처리할 수 있다는 것이다.
 - **디폴트 메서드(default method)** : 구현 클래스에서 구현하지 않아도 되는 메서드를 인터페이스가 포함할 수 있는 기능을 제공, 메서드 바디는 클래스 구현이 아니라 인터페이스의 일부로 포함된다.
   - 기존의 코드를 건드리지 않고도 원래의 인터페이스 설계를 자유롭게 확장할 수 있다.
+
+## 동작 파라미터화 코드 전달하기
+- 동작 파라미터화 (behavior parameterization)을 이용화면 자주 바뀌는 요구사항에 효과적으로 대응할 수 있다.
+- **즉, 메서드 내부적으로 다양한 동작을 수행할 수 있도록 코드를 메서드 인수로 전달한다.**
+- 결과적으로 코드 블록에 따라 메서드의 동작이 파라미터화 된다.
+
+- Comparator로 정렬하기 예제
+```java
+public interface Comparator<T> {
+  public int compare(T o1, T o2);
+}
+```
+- Comparator를 구현해서 sort 메서드의 동작을 다양화할 수 있다. 예를 들어 익명 클래스를 이용해서 무게가 적은 순으로 목록에서 사과를 정렬할 수 있다.
+```java
+inventory.sort(new Comparator<Apple>(){
+  public int compare(Apple a1, Apple a2){
+    return a1.getWeight().compareTo(a2.getWeight());
+  }
+});
+```
+- 람다표현식을 이용해 간단하게 코드 구현
+```java
+inventory.sort( (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight()));
+```
+  - `전략 디자인 패턴(strategy design pattern) : 각 알고리즘(전략이라 불리는)을 캡슐화하는 알고리즘 패밀리를 정의해둔 다음에 런타임에 알고리즘을 선택하는 기법`

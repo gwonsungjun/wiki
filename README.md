@@ -36,6 +36,7 @@
     - [Ubuntu(우분투) intellij 단축아이콘 생성](https://github.com/gwonsungjun/TIL/blob/master/Intellij/ubuntu-ShortcutIcon.md)
   - [JPA](https://github.com/gwonsungjun/TIL/tree/master/JPA/Java%20ORM%20standard%20JPA%20programming)
     - [01. JPA 소개](https://github.com/gwonsungjun/TIL/blob/master/JPA/Java%20ORM%20standard%20JPA%20programming/1.JPA-introduction.md)
+    - [02. JPA 시작](https://github.com/gwonsungjun/TIL/blob/master/JPA/Java%20ORM%20standard%20JPA%20programming/2.JPA-start.md)
   - [JAVA](https://github.com/gwonsungjun/TIL/tree/master/Java)
     - [자바 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/javaBasic.md)
     - [JAVA 8](https://github.com/gwonsungjun/TIL/blob/master/Java/java8.md)

@@ -7,7 +7,7 @@
 -  3rd Party 스토리지 엔진도 간단하게 플러그인 형식으로 설치를 할 수 있다. (INSTALL, UNINSTALL)
 - 아래의 명령으로 탑재된 스토리지 엔진 확인 가능
 
-```mysql
+```SQL
 mysql > SHOW ENGINES;
 ```
 
@@ -15,7 +15,7 @@ mysql > SHOW ENGINES;
 
 -  CREATE TABLE시, 가장 마지막 구문에 스토리지 엔진이 이름을 추가하여 설정할 수 있다.
 - ENGINE=MyISAM, ENGINE=INNODB, ...
-```mysql
+```SQL
 CREATE TABLE test (  
     `test_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     `test_name` varchar(64) NOT NULL DEFAULT '') ENGINE = INNODB;
@@ -23,11 +23,11 @@ CREATE TABLE test (
 ## Mysql 엔진 확인 명령
 
 - 전체 테이블 조회
-```mysql
+```SQL
 SELECT * FROM information_schema.TABLES;
 ```
 - 특정 테이블 조회
-```mysql
+```SQL
 SELECT ENGINE FROM information_schema.TABLES WHERE table_name='[tablename]' AND table_schema='[dbname]';
 ```
 ## 대표적인 엔진

@@ -10,17 +10,17 @@
 ## 테스트
 
 - 테스트 테이블 생성
-```sql
+```SQL
 CREATE TABLE TEST(
 seq INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-size5_fillzero INT(5) ZEROFILL, 
-size5_nozero INT(5) , 
-size9_fillzero INT(9) ZEROFILL, 
-size9_nozero INT(9) 
+size5_fillzero INT(5) ZEROFILL,
+size5_nozero INT(5) ,
+size9_fillzero INT(9) ZEROFILL,
+size9_nozero INT(9)
 );
 ```
 - insert
-```sql
+```SQL
 INSERT INTO TEST
 (size5_fillzero, size5_nozero, size9_fillzero, size9_nozero)
 VALUES (1,1,1,1);

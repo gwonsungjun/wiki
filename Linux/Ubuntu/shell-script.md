@@ -68,7 +68,7 @@
 
 ### 셸 스크립트에서 인수를 사용하는 방법
 - 셸 스크립트 내부에서는 실행시 지정한 인수 값을 $1 같은 변수로 참조할 수 있다.
-```shell
+```bash
 지정한 순서대로 값을 참조함
 $script.sh filename1 filename2
 #!/bin/bash
@@ -77,7 +77,7 @@ target=$2
 ...
 ```
 - 인수를 이름으로 참조(추상화)
-```shell
+```bash
 옵션 이름으로 값을 참조함
 $script.sh -s filename1 -t filename2
 #!/bin/bash
@@ -91,3 +91,6 @@ done
 ```
 - `s:t:` : 옵션 이름으로 사용하는 알파벳, 한 글자 뒤에 :을 붙임
 - `s)` : source라는 변수로 -s 값을 참조할 수 있도록 함
+
+## Links
+- [만화로 배우는 리눅스 시스템 관리 1](http://book.naver.com/bookdb/book_detail.nhn?bid=10995037)

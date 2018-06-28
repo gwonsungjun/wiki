@@ -17,7 +17,7 @@
 
 ## SELECT 구에서 서브쿼리 사용하기
 - SELECT 구에서 서브쿼리를 지정할 때는 스칼라 서브쿼리가 필요
-```
+```SQL
 SELECT  
   (SELECT COUNT(*) FROM sample1)AS sq1,
   (SELECT COUNT(*) FROM sample2)AS sq2;
@@ -38,7 +38,7 @@ SELECT
 - VALUES 구에서 서브쿼리 사용하기.
   - 서브쿼리는 스칼라 서브쿼리 지정.
   - 자료형도 일치해야 함.
-```
+```SQL
 INSERT INTO sample VALUES(
   (SELECT COUNT(*) FROM sample1),
   (SELECT COUNT(*) FROM sample2)
@@ -49,7 +49,7 @@ INSERT INTO sample VALUES(
   - SELECT가 반환하는 열 수와 자료형이 INSERT할 테이블과 일치하기만 하면됨. ( SELECT 반환 값이 꼭 스칼라 값일 필요x)
   - 데이터의 복사나 이동을 할 때 자주 사용하는 명령
     - 열 구성이 똑같은 테이블 사이에
-```
+```SQL
 INSERT INTO sample SELECT 1, 2;
 = INSERT INTO sample VALUES(1,2);
 ```
@@ -60,14 +60,14 @@ INSERT INTO sample SELECT 1, 2;
 - 서브쿼리가 반환하는 결과값이 있는지 조사할 수 있다.
 - 단지 반환된 행이 있는지 확인만 하므로 스칼라 값일 필요 없다.
 - 반환하는 행이 있으면 참, 없을 경우에는 거짓
-```
+```SQL
 UPDATE sample1 SET a = '있음' WHERE
   EXISTS (SLECT * FROM sample2 WHERE no2 = no);
 ```
 
 ## NOT EXISTS
 - 행이 존재하지 않는 상태가 참.
-```
+```SQL
 UPDATE sample1 SET a = '없음' WHERE
   NOT EXISTS (SLECT * FROM sample2 WHERE no2 = no);
 ```
@@ -81,10 +81,10 @@ UPDATE sample1 SET a = '없음' WHERE
 ## IN
 - 집합 안의 값이 존재하는지 조사할 수 있다.
 - `열명 IN(집합)`
-```
+```SQL
 SELECT * FROM sample WHERE no IN (3, 5);
 ```
-```
+```SQL
 SELECT * FROM sample1 WHERE no IN
   (SELECT no2 FROM sample2);
 ```
@@ -93,3 +93,6 @@ SELECT * FROM sample1 WHERE no IN
 - IN에서는 집합안에 NULL 값이 있어도 무시하지 안흔ㄴ다.
 - 다만 NULL=NULL을 제대로 계산할 수 없으므로 NULL 값은 비교할 수 없다.
 - 즉 NULL을 비교할 때는 `IS NULL`을 사용해야 한다.
+
+## Links
+- [SQL 첫걸음](https://book.naver.com/bookdb/book_detail.nhn?bid=9738902)

@@ -99,20 +99,20 @@ $ grep -r -i -E "((야메노) *(타로) | yameno +tarou)" 디렉토리 경로
   - mint : 로그인 할 사용자
   - 192.~~ : 접속할 컴퓨터 (네트워크명 또는 ip)
   - 복사할 곳: /tmp/
-```
+```bash
 $ scp ./file.ext mint@192.168.1.10:/tmp/
 ```
 - 자신의 pc 경로로 복사하는 것도 가능
-```
+```bash
 $ scp mint@192.168.1.10:/tmp/file.txt ~/
 ```
 - 와일드카드, -r(recursively) 옵션 사용
-```
+```bash
 $ scp mint@host:/tmp/*.log /tmp/
 $ scp -r mint@host:/tmp/results /tmp/
 ```
 - 서버에서 서버에 파일 복사
-```
+```bash
 $ scp mint@server:1:/data/file mint@server2:/backup/
 ```
 - 앞은 복사 원선 서버명과 서버 경로, 뒤는 복사 대상 서버명과 서버 경로

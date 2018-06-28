@@ -59,3 +59,35 @@
 - `>` : 파이프라인으로 넘어가는 것과 같은 내용이 텍스트 파일로 출력된다.
 - `>` 하나이면 이미 파일이 있으면 지우고 새로운 파일 만듬
 - `>>` 두 번 이어서쓰면 기존 파일에 추가한다.
+
+## 명령줄 인수 (명령줄 지정으로 작업 내용을 바꾸고 싶을 때)
+- 인수 : 명령어 라인 인수의 줄임말, 명령어에 대해 추가 지시를 내림
+  - `cat /var/log/apache2/access.log`
+  - 위의 명령에서 /var/log/apache2/access.log에 해당
+- cp명령의 -r같이 **생략 가능한(지정하면 행동이 변하는) 인수** 를 옵션인수, 줄여서 옵션이라고 부른다.
+
+### 셸 스크립트에서 인수를 사용하는 방법
+- 셸 스크립트 내부에서는 실행시 지정한 인수 값을 $1 같은 변수로 참조할 수 있다.
+```shell
+지정한 순서대로 값을 참조함
+$script.sh filename1 filename2
+#!/bin/bash
+source=$1
+target=$2
+...
+```
+- 인수를 이름으로 참조(추상화)
+```shell
+옵션 이름으로 값을 참조함
+$script.sh -s filename1 -t filename2
+#!/bin/bash
+while getpots s:t: OPT
+do
+  case $OPT in
+    s) source="$OPTARG" ;;
+    t) target="$OPTARG" ;;
+  esac
+done
+```
+- `s:t:` : 옵션 이름으로 사용하는 알파벳, 한 글자 뒤에 :을 붙임
+- `s)` : source라는 변수로 -s 값을 참조할 수 있도록 함

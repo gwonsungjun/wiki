@@ -87,10 +87,110 @@ do
     s) source="$OPTARG" ;;
     t) target="$OPTARG" ;;
   esac
-done
+donefl
 ```
 - `s:t:` : 옵션 이름으로 사용하는 알파벳, 한 글자 뒤에 :을 붙임
 - `s)` : source라는 변수로 -s 값을 참조할 수 있도록 함
+
+### 조건 분기
+- 단순 조건 분기
+```
+if [$a = "문자열"]
+then
+ $a 내용이
+ "문자열"과 같다면
+ 실행하는 처리
+fi
+```
+- 부정 조건으로 조건 분기
+```
+if [$a != "문자열"]
+then
+  $a 내용이
+  "문자열"과 다르면
+  실행하는 처리
+fi
+```
+- 조건에 해당하지 않을 때 처리
+```
+if [조건]
+then
+  조건을 만족하면
+  실행하는 처리
+else
+  조건을 만족하지 않으면
+  실행하는 처리
+fi
+```
+
+### 명령어 이상 종료에 대응하고 싶을 때(종료 상태)
+- $?으로 직전에 실행한 명령어 종료 상태를 참조 가능
+- $? 값은 명령어가 정상 종료하면 0, 이상 종료하면 0 이외의 값이 된다.
+- exit에 인수로 숫자를 지정하면 셸 스크립트의 종료 상태가 된다.
+- if로 종료 상태를 참조하면 명령어가 정상 종료했는지에 따라 조건 분기가 가능하다.
+```
+cp $source_access $temp_file
+if [ $? = 0 ]
+then
+  cat ~~~
+else
+  echo "파일이 존재하지 않음. 생략함"
+fi
+```
+
+### for
+- for 반복문을 사용하면 값 리스트에 따라 같은 처리를 인수를 바꿔가며 반복 실행 가능
+- 반복문에서 사용하는 값 리스트로 변수나 명령어 치환 결과도 사용 가능
+```
+#!/bin/bash
+
+files = " readmine.log kintai.log download.log noteice.log"
+for filename in $files
+do
+  ./create-report.sh $filename
+done
+```
+- 명령어 실행 결과를 그대로 값의 리스트로 만드는 예제
+```
+#!/bin/bash
+
+for filename in 'cd /var/log/apache2; ls *.log | grep -v error.log'
+do
+  ./create-report.sh $filename
+done
+```
+
+### 셸 함수 (공통 처리를 재사용)
+- 어떤 처리를 하나로 묶어서 함수로 정의 가능함
+- 정의한 함수는 같은 스크립트 안에서 원하는 곳에서 몇 번이고 호출할 수 있음
+- 함수도 인수를 사용 가능
+- 함수 실행을 중단하고 원래 처리로 돌아갈 때는 exit가 아니라 return 사용
+
+```
+#!/bin/bash
+
+main(){
+  report marketing.log mail-$(today).csv /shared/arketing/reports
+  report system.log $(today).csv /shared/system/mail-reports
+  report develop.log $(today).txt /shared/develop/retports/mail
+}
+
+report(){
+  source = $1
+  report = $2
+  outdir = $3
+  ./analyze_mai_log.sh $source $report
+  mkdir -p $outdir
+  mv /tmp/${report} ${outdir}/
+  echo "$source 처리완료"
+}
+
+today(){
+  date +%Y-%m-$d
+}
+
+main // 호출
+```
 
 ## Links
 - [만화로 배우는 리눅스 시스템 관리 1](http://book.naver.com/bookdb/book_detail.nhn?bid=10995037)

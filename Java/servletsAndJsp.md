@@ -1,9 +1,9 @@
 # Servlet & JSP 정리
 
-### web Application 등장 배경
-1. 기존 네트워크 프로그램은 소켓과 멀티 쓰레드를 이용하여 개발자가 직접 파일입출력을 다룸. 클라이언트에서 App Server에 요청 해당 데이터를 DB에서 출력 받음.
-2. 클라이언트의 데이터 수집 방법이 링크형태를 띄고 FTP 프로토콜 방식을 사용해서 데이터를 얻음.
-3. 이를 개선하고자 HTTP 프로토콜 방식의 등장.
+### Web Application 등장 배경
+- 기존 네트워크 프로그램은 소켓과 멀티 쓰레드를 이용하여 개발자가 직접 파일입출력을 다뤘다.
+- 클라이언트의 데이터 수집 방법이 링크형태를 띄고 FTP 프로토콜 방식을 사용해서 데이터를 얻었다.
+- 이를 개선하고자 HTTP 프로토콜 방식이 등장하였다.
 
 ### Web Application
 - WAS에 설치(deploy)되어 동작하는 어플리케이션.
@@ -12,15 +12,17 @@
 ### JAVA 웹 어플리케이션의 폴더 구조
 
 ![javawebappDirStr](/images/javawebappDirStr.PNG)
-- 반드시 WEB-INF 존재 해야한다.
+- 반드시 WEB-INF 폴더가 존재 해야한다. [그림참조](https://www.edwith.org/boostcourse-web/lecture/16686/)
 
 ### 서블릿이란?
 - Server+Applet으로 “Client의 요청을 처리하고 그 결과를 다시 Client에게 전송하는 Servlet Class의 구현 규칙을 지킨 자바 프로그램”.
-  - 자바프로그램이라고 정의했다면 당연히 JDK가 필요하며, 자바 API를 동작시키는 JVM이 필요하다. Servlet은 Web Application 확장이 용이하고 플랫폼에 독립적이다.
+  - 자바프로그램이라고 정의했다면 당연히 JDK가 필요하며, 자바 API를 동작시키는 JVM이 필요하다.
+  - Servlet은 Web Application 확장이 용이하고 플랫폼에 독립적이다.
   - HttpServlet 클래스를 상속받아야 한다.
 
 ### Servlet Container란?
 - 서블릿 컨테이너는 개발자가 웹서버와 통신하기 위하여 소켓을 생성하고, 특정 포트에 리스닝하고, 스트림을 생성하는 등의 복잡한 일들을 할 필요가 없게 해준다. 컨테이너는 servlet의 생성부터 소멸까지의 일련의 과정(Lifer Cycle)을 관리한다. 서블릿 컨테이너는 요청이 들어올 때마다 새로운 자바 스레드를 만든다.
+- 서블릿 컨테이너는 개발자가 웹서버와 통신하기 위하여 소켓을 생성하고, 특정 포트에 리스닝하고, 스트림을 생성하는 등의 복잡한 일들을 할 필요가 없게 해준다. 컨테이너는 servlet의 생성부터 소멸까지의 일련의 과정(Lifer Cycle)을 관리한다. 서블릿 컨테이너는 요청이 들어올 때마다 새로운 자바 스레드를 만든다. 우리가 알고 있는 대표적인 Servlet Container가 Tomcat 이다. 톰켓같은 was가 java파일을 컴파일해서 Class로 만들고 메모리에 올려 servlet객체를 만든다.
 
 ### 컨테이너가 주는 혜택
 - 컨테이너 (대표적인 예: 톰캣)는 서블릿을 실행하고 관리한다.
@@ -35,8 +37,8 @@
 - JSP 지원 등
 
 ### 컨테이너는 요청을 어떻게 다룰까?
-1. 사용자가 서블릿에 대web.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)한 링크를 클릭한다.
-2. 컨테이너는 들어온 요청이 서블릿이라는 것을 간파하곤 다음 두 객체를 생성한다.
+1. 사용자가 서블릿에 대한 링크를 클릭한다. web.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)
+2. 컨테이너는 들어온 요청이ㅁ 서블릿이라는 것을 간파하곤 다음 두 객체를 생성한다.
   (1) HttpServletRequest
   (2) HttpServletResponse
 3. 컨테이너는 사용자가 날린 URL을 분석하여 어떤 서블릿에 대한 요청인지 알아낸다(DD == web.xml 참조) 그 다음 해당 서블릿 스레드를 생성하여 Request, Response 객체를 인자로 넘긴다.
@@ -44,17 +46,17 @@
 5. doGet() 호출을 가정하고 doGet() 메소드는 동적인 페이지를 생성한 다음, 이를 Response 객체에 실어 컨테이너로 보낸다. 보내고 난 후에도 컨테이너는 Response 객체에 대한 참조(레퍼런스)를 가지고 있다는 것을 잊지 말자.
 6. 스레드 작업이 끝나면, 컨테이너는 Response 객체를 HTTP Response로 전환하여 클라이언트로 내려 보낸다. 이제 마지막으로 Request와 Response 객체를 소멸시킨다.(가비지 컬렉션)
 
-![servelt](/images/servelt1.jpg)
+![servelt](/images/servelt1.jpg)[그림참조](https://showbang.github.io/typistShow/2017/01/11/%ED%8F%B4%EB%8D%94%ED%85%8C%EC%8A%A4%ED%8A%B8/)
 
 
 ### HttpServletRequest
 - http프로토콜의 request정보를 서블릿에게 전달하기 위한 목적으로 사용
 - 헤더정보, 파라미터, 쿠키, URI, URL 등의 정보를 읽어 들이는 메소드를 가지고 있다.
-- Body의 Stream을 읽어 들이는 메소드를 가지고 있습니다.
+- Body의 Stream을 읽어 들이는 메소드를 가지고 있다.
 
 ### HttpServletResponse
-- WAS는 어떤 클라이언트가 요청을 보냈는지 알고 있고, 해당 클라이언트에게 응답을 보내기 위한 HttpServleResponse객체를 생성하여 서블릿에게 전달한다.
-- 서블릿은 해당 객체를 이용하여 content type, 응답코드, 응답 메시지등을 전송합니다.
+- WAS는 어떤 클라이언트가 요청을 보냈는지 알고 있고, 해당 클라이언트에게 응답을 보내기 위한 HttpServleResponse 객체를 생성하여 서블릿에게 전달한다.
+- 서블릿은 해당 객체를 이용하여 content type, 응답코드, 응답 메시지등을 전송한다.
 
 ### 서블릿의 생명주기
 - 컨테이너는 서블릿을 로딩한다. 그 다음 디폴트 생성자를 호출하고, init() 메소드를 실행한다.
@@ -64,21 +66,23 @@
 - 서블릿은 일생의 대부분을 클라이언트 요청에 대한 응답으로 service() 메소드를 실행하는데 보낸다.
 - 서블릿에 대한 클라이언트 요청은 별개의 스레드에서 실행된다. 서블릿 인스턴스는 하나 밖에 없음.
 
-![servletLifeCycle](/images/servletLifeCycle.png)
+![servletLifeCycle](/images/servletLifeCycle.png)[그림참조](https://showbang.github.io/typistShow/2017/01/11/%ED%8F%B4%EB%8D%94%ED%85%8C%EC%8A%A4%ED%8A%B8/)
 
 ### 정리해보면..
+```java
 - 컨테이너는 서블릿 디폴트 생성자를 실행 (생성된 서블릿 인스턴스는 새로 생성없이 계속 사용), init() 실행 (최초에 한번 실행)
-- 클라이언트 요청서블릿 컨테이너는 개발자가 웹서버와 통신하기 위하여 소켓을 생성하고, 특정 포트에 리스닝하고, 스트림을 생성하는 등의 복잡한 일들을 할 필요가 없게 해준다. 컨테이너는 servlet의 생성부터 소멸까지의 일련의 과정(Lifer Cycle)을 관리한다. 서블릿 컨테이너는 요청이 들어올 때마다 새로운 자바 스레드를 만든다. 우리가 알고 있는 대표적인 Servlet Container가 Tomcat 이다. 톰켓같은 was가 java파일을 컴파일해서 Class로 만들고 메모리에 올려 servlet객체를 만든다.
+- 클라이언트 요청
 - 컨테이너는 서블릿 스레드 생성 (요청당 하나의 스레드 생성)
 - DD 분석해서 어느 서블릿 요청인지 확인
 - 해당 서블릿의 service() 실행 -> doGet()/doPOst() 실행, 이때 request, response 인자로 넘김
 - 로직 수행
 - 응답 후 스레드 소멸
 - destroy() - 서버 다운 전 한번
+```
 
 ### 리다이렉트와 디스패치
-- 리다이렉트(Redirect) : 요청에 대한 응답을 누가할 지 선택, 요청을 완전히 다른 URL로 방향을 바꿈, 브라우저는 서버에서 정한 URL을 받아 새로운 요청을 보냄. 클라이언트에서 동작
-- 디스패치(dispatch) : 웹 애플리케이션에 있는 다른 컴포넌트에게 처리를 위임 (서블릿 -> jsp) 서버에서 동작
+- 리다이렉트(Redirect) : 요청에 대한 응답을 누가할 지 선택, 요청을 완전히 다른 URL로 방향을 바꿈, 브라우저는 서버에서 정한 URL을 받아 새로운 요청을 보냄. `클라이언트에서 동작`
+- 디스패치(dispatch) : 웹 애플리케이션에 있는 다른 컴포넌트에게 처리를 위임 (서블릿 -> jsp) `서버에서 동작`
 
 ### 세 가지 생존범위 : Context, Request, Session
 - Context : 전체 애플리케이션에서 공유. 스레드-안전(x)
@@ -86,11 +90,12 @@
 - Request : 특정 요청에만 관련된 데이터 등. 스레드-안전(o)
 
 ### 세션관리
-- 컨테이너는 클라이언트에 Response의 일부로 세션 ID를 보낸다. 그러면 클라이언트는 다음 요청부터 Request의 일부로 세션 ID를 돌려 보낸다. 세션 ID 정보를 교환하는 가장 간단하며, 일반적인 방법은 쿠키를 사용하는 것이다.
+- 컨테이너는 클라이언트에 Response의 일부로 세션 ID를 보낸다. 그러면 클라이언트는 다음 요청부터 Request의 일부로 세션 ID를 돌려 보낸다.
+  - 세션 ID 정보를 교환하는 가장 간단하며, 일반적인 방법은 쿠키를 사용하는 것이다.
 - Response 객체에 세션 쿠키 보내기 : HttpSession session = request.getSession();
 - Request 객체로부터 세션 ID 가져오기 : HttpSession session = request.getSession();
-- 우리는 getSession() 메소드만 사용, 나머지 작업은 컨테이너가 다한다.
-- 서버와 클라이언트 간 이름/값의 쌍으로 쿠키를 굥환
+  - 위의 두개 같음. 우리는 getSession() 메소드만 사용, 나머지 작업은 컨테이너가 다한다.
+- 서버와 클라이언트 간 이름/값의 쌍으로 쿠키를 교환
 - 서버는 클라이언트로 쿠키를 보내고, 이후 클라이언트는 매번 요청에 이 값을 전송.
 - Httpsession 삶에 있어 주요 순간들
   - 세선의 생명과 소멸 (new = getSession(), invalidate)
@@ -100,11 +105,11 @@
 ### JSP란
 - [Java Server Page](https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94%EC%84%9C%EB%B2%84_%ED%8E%98%EC%9D%B4%EC%A7%80) : JSP는 클라이언트의 요청으로부터 동적 컨텐츠를 생성하여 응답해주는 역할을 하기위한 기술
 - JSP는 서블릿으로 변환되어 사용된다.
-- myJsp.jsp -> myJsp_jsp.java -> myJsp_jsp.class -> myJsp_jsp servelt
+- `myJsp.jsp` -> `myJsp_jsp.java` -> `myJsp_jsp.class` -> `myJsp_jsp servelt`
 
 ### JSP의 일생
 1. jsp 파일을 작성하고 배포
-2. 컨테이너는 이 애플리케이션의 DD(web.xml) 파일을 읽는다. (클라이언트 최초 호출 전까지 아무일도 하지 않는다.)
+2. 컨테이너는 이 애플리케이션의 DD(web.xml) 파일을 읽는다. 그렇다고 .jsp 파일에 어떤 작업을 하는 것은 아니다. (클라이언트 최초 호출 전까지 .jsp 파일은 서버에 그대로 그냥 있는다.)
 3. 사용자가 .jsp를 요청하는 링크를 클릭
 4. 컨테이너는 .jsp 파일을 서블릿 파일을 만들기 위한 .java 소스 파일로 변환한다.
 5. 컨테이너는 .java 파일을 컴파일하여 .class 파일로 만든다.
@@ -113,15 +118,16 @@
 8. 요청이 들어올 때마다 컨테이너는 새로운 스레드를 만들어 jspService() 메소드를 실행한다. 서블릿과 동일하게 요청을 처리한다.
 - **JSP 파일을 서블릿으로 변환과 컴파일 작업은 해당 JSP 일생에 있어 딱 한번 일어난다.**
 
-### 배포 서술자(DD, Deployment Descriptor) - Web.xml이란?
-- 톰캣의 실행환경에 대한 정보를 담당하는 '환경설정' 파일
+## 추가)
+
+### 배포 서술자(DD, Deployment Descriptor) == Web.xml이란?
+- ``톰캣의 실행환경``에 대한 정보를 담당하는 '환경설정' 파일
 - 각종 servlet의 설정과 servlet 매핑, 필터, 인코딩 등을 담당
-- 톰캣에 있는 모든 web applicweb.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)ation의 기본설정을 정의
--  각 application이 deploy될 때 각 application의 'WEB-INF/web.xml'(웹 어플리케이션의 모든 정보가 들어있다고 간주) Deployment Descriptor에 따라서 처리
-- 각 application 마다 설정시, web.xml은 파일을 복사해서 필요한 것만 적으면 된다
-- 모든 Web application은 반드시 하나의 web.xm l파일을 가져야 함
-- 위치 : WEB-INF 폴더 아래
-- web.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)
+- 톰캣에 있는 모든 web applicweb.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)
+- 각 application이 deploy될 때 각 application의 'WEB-INF/web.xml'(웹 어플리케이션의 모든 정보가 들어있다고 간주) Deployment Descriptor에 따라서 처리
+  - 각 application 마다 설정시, web.xml은 파일을 복사해서 필요한 것만 적으면 된다
+- 모든 Web application은 반드시 하나의 web.xml 파일을 가져야 함
+- 위치 : `WEB-INF 폴더 아래`
 
 ### Servelt 웹 서버 구동 순서
 1. 웹 서버 구동에 필요한 포트 및 설정 정보를 인식.
@@ -130,7 +136,7 @@
   - `[톰캣폴더]/conf/web.xml`
 3. 모든 프로젝트에 공통으로 적용되는 라이브러리 파일을 인식. 더불어 %JAVA_HOME%lib,%JAVA_HOME%/jre/lib/ext 폴더 내의 jar 파일들도 자동으로 인식.
   - `[톰캣폴더]/common/lib`
-4. 프로젝트별 환경 정보를 인식.
+4. 프로젝트별 환경 설정 정보를 인식.
   - `[프로젝트이름]/WEB-INF/web.xml`
 5. 프로젝트별 라이브러리를 인식.
   - `[프로젝트이름]/WEB-INF/lib`
@@ -143,6 +149,7 @@
 2. 프로젝트별로 환경 설정에 사용된 메모리를 해제.
 3. 모든 프로젝트에 공통적인 환경을 설정하기 위해 사용된 메모리를 해제.
 4. 웹 서버를 구동하기 위해 열어둔 포트를 닫음.
+
 
 ### Links
 - [Head First Servlet & JSP](http://book.naver.com/bookdb/book_detail.nhn?bid=5902081)

@@ -22,3 +22,16 @@
 - `model` : 데이터 관리(입, 출력), 웹 프론트에서의  model은 DB에 직접 접근하지 않고 API 형태로 접근한다.
 - `view` : (데이터를 가지고) 화면을 관리 (모델의 data를 화면에 그림)
 - `Controller` : view <-> model, 모델과 뷰를 관리하는 역할
+
+### 폴더 구조
+- 미리 생성된 구조 받음.
+```
+- git clone https://github.com/gwonsungjun/lecture-vue.git
+- cd lecture-vue
+- git checkout -f 1-vanilla/scafolding
+- cd 1-vanilla
+- code .
+  - 코드 확인
+- cd 1-vanilla
+- liteserver 입력
+```

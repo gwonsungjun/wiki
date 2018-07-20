@@ -43,6 +43,7 @@
     - [JAVA 8](https://github.com/gwonsungjun/TIL/blob/master/Java/java8.md)
     - [Logback](https://github.com/gwonsungjun/TIL/blob/master/Java/logback.md)
     - [Servlet & JSP 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/servletsAndJsp.md)
+    - [스프링 입문을 위한 자바 객체 지향의 원리와 이해](https://github.com/gwonsungjun/TIL/blob/master/Java/Principles%20and%20understanding%20of%20Java%20object%20orientation.md)
   - [Linux](https://github.com/gwonsungjun/TIL/tree/master/Linux/Ubuntu)
     - [Linux 명령어 정리](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/linux-command.md)
     - [Ubuntu jdk 설치방법](https://github.com/gwonsungjun/TIL/blob/master/Linux/Ubuntu/Jdk-install.md)

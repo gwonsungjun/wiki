@@ -30,14 +30,14 @@
 - webapp이 시작되면 dafault servlet이 로딩되므로 해당 webapplication의 web.xml에 아래를 적용 시켜준다
 - 개발할 당시에는 보통 apache+tomcat이 아닌 tomcat만으로 구성하여 개발해서 static한 파일을 모두 dispatcher servlet이 가져간다는 문제가 있다. 따라서 아래와 같이 설정을 한다. (pattern은 사용하는 확장자에 따라.)
 
-	<servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.css</url-pattern>
-        <url-pattern>*.js</url-pattern>
-        <url-pattern>*.gif</url-pattern>
-        <url-pattern>*.png</url-pattern>
-        <url-pattern>*.zip</url-pattern>
-    </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.js</url-pattern>
+    <url-pattern>*.gif</url-pattern>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.zip</url-pattern>
+</servlet-mapping>
 
 ```
 
@@ -71,10 +71,10 @@
 - default servlet을 web application에 재정의를 하게 되면, implicit Mapping 보다 우선적으로 적용된다.
 - 만약 url-patten에 /* 로 설정을 해주게 되면 요청 받는 모든 URL을 처리한다는 의미가 된다. 즉, 정적인 컨텐츠나 jsp에 대한 호출도 dispatcher에서 처리를 하려고 한다는 의미.
 
-```
-보통 서블릿 컨테이너에는 스태틱 리소스(HTML, 자바 스크립트, CSS, 이미지 등)를 처리하는 디폴트 서블릿과 JSP를 처리하는 JSP 서블릿이 기본으로 등록되어있다. 디폴트 서블릿은 /에 매핑되어 있고 JSP는 확장자를 이용해서 *.jsp로 되어있다. 그리고 여기에 추가로 서블릿을 등록하면 URL 우선순위(매핑 조건이 긴게 우선)에 따라서 그 서블릿의 매핑에 해당하는 것은 등록된 것으로 가고 나머지는 디폴트 서블릿이나 JSP 서블릿이 담당한다. 
-- 참고 : <http://toby.epril.com/?p=1107>
-```
+
+> 보통 서블릿 컨테이너에는 스태틱 리소스(HTML, 자바 스크립트, CSS, 이미지 등)를 처리하는 디폴트 서블릿과 JSP를 처리하는 JSP 서블릿이 기본으로 등록되어있다. 디폴트 서블릿은 /에 매핑되어 있고 JSP는 확장자를 이용해서 *.jsp로 되어있다. 그리고 여기에 추가로 서블릿을 등록하면 URL 우선순위(매핑 조건이 긴게 우선)에 따라서 그 서블릿의 매핑에 해당하는 것은 등록된 것으로 가고 나머지는 디폴트 서블릿이나 JSP 서블릿이 담당한다. 
+> * 참고 : <http://toby.epril.com/?p=1107>
+
 
 
 

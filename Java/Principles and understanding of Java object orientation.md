@@ -44,7 +44,7 @@
 - 힙 : 객체의 놀이터
 ```
 
-## 아래 링크에서 해당 주제의 글 확인 !
+## 아래 링크를 참고해 보세요
 
 ## [객체 지향 4대 특성](https://github.com/gwonsungjun/TIL/blob/master/Java/The_four_principles_of_object-oriented_Java.md)
 

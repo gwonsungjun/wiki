@@ -51,3 +51,5 @@
 ## [객체 지향 설계 5원칙](https://github.com/gwonsungjun/TIL/blob/master/Java/SOLID.md)
 
 ## [디자인 패턴](https://github.com/gwonsungjun/TIL/blob/master/Java/designPattern.md)
+
+## [스프링 삼각형과 설정 정보](https://github.com/gwonsungjun/TIL/blob/master/Spring/Spring_triangle_and_configuration_information.md)

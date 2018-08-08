@@ -264,12 +264,12 @@ public void before(JoinPoint joinPoint){
     System.out.println("얼굴 인식 확인 : 문을 개방하라")
 }에 해당.
 
-### Aspect - 관점? 측면? Advisor의 집합체!
+#### Aspect - 관점? 측면? Advisor의 집합체!
 - 여러개의 Adivce와 여러 개의 Pointcut의 결합체를 의미하는 용어
 - `Aspect = Adivce들 + Pointcut들`
 - 결국 Aspect는 When + Where + Whar (언제, 어디에, 무엇을)이 된다.
 
-### Advisor - 조언자? 어디서, 언제, 무엇을!
+#### Advisor - 조언자? 어디서, 언제, 무엇을!
 - `Advisor = 한 개의 Advice + 한 개의 Pointcut`
 - 스프링에서만 사용하는 용어이고 버전이 올라가면서 이제는 쓰지말라고 권고하는 기능이기도 하다.
 - Aspect로 인해 사용할 필요가 없어졌다.

@@ -3,14 +3,15 @@
 ## 기본 개념
 - 시간 복잡도(Time Complexity) - 알고리즘의 수행시간 분석결과 (cpu 사용량, 실제로는 명령어의 실행 횟수만을 고려)
 - 공간 복잡도(Space Complexity) - 알고리즘의 메모리 사용량에 대한 분석결과
-- 점근적 표기법에서 점근적이란? - 가장 큰 영향을 주는 항만 계산 한다는 의미
-    - 최상의 경우 : 오메가 표기법 (Big-Ω Notation)
+- 점근적 표기법에서 점근적이란? - 가장 큰 영향을 주는 항만 계산 한다는 의미(상수 계수와 중요하지 않은 항목을 제거)
+    - 최상의 경우 : [빅 오메가 표기법 (Big-Ω Notation)](https://ko.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-omega-notation)
         - f(n) = Ω(g(n))이 성립하려면
         - f(x) > C * g(x)를 만족하는 상수 C가 존재해야 한다.
-    - `최악의 경우 : 빅오 표기법 (Big-O Notation)`
+    - 최악의 경우 : [빅 오 표기법 (Big-O Notation)](https://ko.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation)
+        - "실행 시간은 최대한 이만큼 커지지만 더 천천히 커질 수도 있다"는 의미
         - f(n) = O(g(n))이 성립하려면
         - f(x) <= C * g(x)를 만족하는 상수 C가 존재해야 한다.
-    - 평균의 경우 : 세타 표기법 (Big-θ Notation)
+    - 평균의 경우 : [빅 세타 표기법 (Big-θ Notation)](https://ko.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-theta-notation)
         - f(n) = θ(g(n))이 성립하려면
         - f(n) = Ω(g(n))이 참이고
         - f(n) = O(g(n))이 참이어야 한다. (둘다 참일 경우만)
@@ -93,3 +94,4 @@ public void printAllPossibleOrderdPairs(int[] arrayOfItems){
 - [빅오 표기법 - 허민석님 영상](https://www.youtube.com/watch?v=OVRLHJC95Gs)
 - [Hello Coding  그림으로 개념을 이해하는 알고리즘](https://book.naver.com/bookdb/book_detail.nhn?bid=11823284)
 - [바보코딩 알고리즘](https://www.youtube.com/watch?v=Chcl71vEkRg)
+- [칸아카데미 점근적 표기법](https://ko.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-theta-notation)

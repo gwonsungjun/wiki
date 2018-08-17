@@ -50,14 +50,14 @@
 - [address localhost is already in use](Intellij/Address-already-in-use-error.md)
 
 ### JPA
-- [01. JPA 소개](https://github.com/gwonsungjun/TIL/blob/master/JPA/Java%20ORM%20standard%20JPA%20programming/1.JPA-introduction.md)
-- [02. JPA 시작](https://github.com/gwonsungjun/TIL/blob/master/JPA/Java%20ORM%20standard%20JPA%20programming/2.JPA-start.md)
+- [01. JPA 소개](JPA/Java-ORM-standard-JPA-programming/1.JPA-introduction.md)
+- [02. JPA 시작](JPA/Java-ORM-standard-JPA-programming/2.JPA-start.md)
 
-  - [JAVA](https://github.com/gwonsungjun/TIL/tree/master/Java)
-    - [자바 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/javaBasic.md)
-    - [JAVA 8 lambda](https://github.com/gwonsungjun/TIL/blob/master/Java/java8.md)
-    - [Logback](https://github.com/gwonsungjun/TIL/blob/master/Java/logback.md)
-    - [Servlet & JSP 기초 정리](https://github.com/gwonsungjun/TIL/blob/master/Java/servletsAndJsp.md)
+### JAVA
+- [자바 기초 정리](Java/javaBasic.md)
+- [JAVA 8 lambda](Java/java8.md)
+- [Logback](Java/logback.md)
+- [Servlet & JSP 기초 정리](Java/servletsAndJsp.md)
     - [스프링 입문을 위한 자바 객체 지향의 원리와 이해](https://github.com/gwonsungjun/TIL/blob/master/Java/Principles%20and%20understanding%20of%20Java%20object%20orientation.md)
     - [객체 지향 4대 특성](https://github.com/gwonsungjun/TIL/blob/master/Java/The_four_principles_of_object-oriented_Java.md)
     - [객체 지향 설계 5원칙](https://github.com/gwonsungjun/TIL/blob/master/Java/SOLID.md)

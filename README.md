@@ -59,8 +59,6 @@
 - [Logback](Java/logback.md)
 - [Servlet & JSP 기초 정리](Java/servletsAndJsp.md)
 - [스프링 입문을 위한 자바 객체 지향의 원리와 이해](Java/Principles_and_understanding_of_Java_object_orientation.md)
-- [객체 지향 4대 특성](Java/The_four_principles_of_object-oriented_Java.md)
-- [객체 지향 설계 5원칙](Java/SOLID.md)
 - [자바 디자인 패턴](Java/designPattern.md)
   
 ### Linux
@@ -81,12 +79,19 @@
 - [네트워크 기초 용어 정리](Network/Network-basic.md)
 
 ### Non-develpment - 개발 외적인 것들
-      - [강원국.백승권의 글쓰기바이블 | 1. 누구나 쓸 수 있다.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/1-Anyone-can-write.md)
-      - [2. 두려움을 극복하자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/2-Let's-overcome-fear.md)
-      - [3. 어휘력을 키우자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/3-Increase-your-vocabulary.md)
-      - [4. 문장력을 기르자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/4-Let's-draw-a-sentence.md)
+  - [강원국.백승권의 글쓰기바이블 | 1. 누구나 쓸 수 있다.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/1-Anyone-can-write.md)
+      - [강원국.백승권의 글쓰기바이블 | 2. 두려움을 극복하자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/2-Let's-overcome-fear.md)
+      - [강원국.백승권의 글쓰기바이블 | 3. 어휘력을 키우자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/3-Increase-your-vocabulary.md)
+      - [강원국.백승권의 글쓰기바이블 | 4. 문장력을 기르자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/4-Let's-draw-a-sentence.md)
+
+
+
   - [OOP - 객체지향](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
     - [객체지향 간단 요약](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
+- [객체 지향 4대 특성](Java/The_four_principles_of_object-oriented_Java.md)
+- [객체 지향 설계 5원칙](Java/SOLID.md)
+
+
   - [Organize shortcuts - 단축키 정리](https://github.com/gwonsungjun/TIL/tree/master/Organize-Shortcuts)
     - [Ubuntu desktop 단축키 정리](https://github.com/gwonsungjun/TIL/blob/master/Organize-Shortcuts/Ubuntu-shortcuts.md)
   - [RDB/ MySQL](https://github.com/gwonsungjun/TIL/tree/master/RDB/MySQL)

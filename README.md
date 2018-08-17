@@ -79,22 +79,21 @@
 - [네트워크 기초 용어 정리](Network/Network-basic.md)
 
 ### Non-develpment - 개발 외적인 것들
-  - [강원국.백승권의 글쓰기바이블 | 1. 누구나 쓸 수 있다.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/1-Anyone-can-write.md)
-      - [강원국.백승권의 글쓰기바이블 | 2. 두려움을 극복하자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/2-Let's-overcome-fear.md)
-      - [강원국.백승권의 글쓰기바이블 | 3. 어휘력을 키우자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/3-Increase-your-vocabulary.md)
-      - [강원국.백승권의 글쓰기바이블 | 4. 문장력을 기르자.](https://github.com/gwonsungjun/TIL/blob/master/Non-development/Writing%20Bible/4-Let's-draw-a-sentence.md)
+- [강원국.백승권의 글쓰기바이블 | 1. 누구나 쓸 수 있다.](Non-development/Writing-Bible/1-Anyone-can-write.md)
+- [강원국.백승권의 글쓰기바이블 | 2. 두려움을 극복하자.](Non-development/Writing-Bible/2-Let's-overcome-fear.md)
+- [강원국.백승권의 글쓰기바이블 | 3. 어휘력을 키우자.](Non-development/Writing-Bible/3-Increase-your-vocabulary.md)
+- [강원국.백승권의 글쓰기바이블 | 4. 문장력을 기르자.](Non-development/Writing-Bible/4-Let's-draw-a-sentence.md)
 
+### OOP - 객체지향
+- [객체지향 간단 요약](OOP/Object-oriented-programming.md)
+- [객체 지향 4대 특성](OOP/The_four_principles_of_object-oriented_Java.md)
+- [객체 지향 설계 5원칙](OOP/SOLID.md)
 
+### Organize shortcuts - 단축키 정리
+- [Ubuntu desktop 단축키 정리](Organize-Shortcuts/Ubuntu-shortcuts.md)
+ 
+### RDB/ MySQL
 
-  - [OOP - 객체지향](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
-    - [객체지향 간단 요약](https://github.com/gwonsungjun/TIL/blob/master/OOP/Object-oriented-programming.md)
-- [객체 지향 4대 특성](Java/The_four_principles_of_object-oriented_Java.md)
-- [객체 지향 설계 5원칙](Java/SOLID.md)
-
-
-  - [Organize shortcuts - 단축키 정리](https://github.com/gwonsungjun/TIL/tree/master/Organize-Shortcuts)
-    - [Ubuntu desktop 단축키 정리](https://github.com/gwonsungjun/TIL/blob/master/Organize-Shortcuts/Ubuntu-shortcuts.md)
-  - [RDB/ MySQL](https://github.com/gwonsungjun/TIL/tree/master/RDB/MySQL)
     - [MySQL Database 생성 & 사용자 추가](https://github.com/gwonsungjun/TIL/blob/master/RDB/MySQL/Create%20DB%20and%20Add%20User.md)
     - [MySQL Explain, 쿼리 정보 확인](https://github.com/gwonsungjun/TIL/blob/master/RDB/MySQL/Explain.md)
     - [MySQL 스토리지 엔진(Storage Engine)](https://github.com/gwonsungjun/TIL/blob/master/RDB/MySQL/Storage-Engine.md)

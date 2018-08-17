@@ -4,24 +4,47 @@
 - 하루 동안 학습한 내용이나 개발 관련 경험들을 간단히 기록(TIL, Today I Learned)
 - 궁극적으로는 나만의 개인 wiki 구축
 
+## 사용법
+1. 해당 저장소를 로컬로 내려 받는다. `$ https://github.com/gwonsungjun/TIL.git`
+2. VIM으로 README.md 파일을 조회. `vim README.md`
+3. 찾고 싶은 키워드를 검색. `/{키워드}`
+4. 해당 라인의 파일명으로 커서를 옮긴 후 `g f`
+5. 내용을 확인 한 후에는 `<C-o>` 커맨드를 입력하면 README 로 돌아갈 수 있다.
+
 ## Writing Rule
   - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)
-  - 언어나 기술명 등으로 폴더를 만든다, 파일명은 영어로.
+  - 언어나 기술명 등으로 폴더 생성, 파일명은 영어로.
   - README.md에 링크 추가.
   - 커밋메세지에 신경 쓸 것.
   - 짧고 간결하며 핵심적인 문장을 사용한다. 필요한 설명이 있으면 관련된 정보가 포함된 외부 링크를 사용 하자.
   - 해당 문서를 다시 봤을 때, 추가적인 검색의 비용이 들지 않도록 자세히 기록한다.
 
 ## List
-  - [Book Review](https://github.com/gwonsungjun/TIL/blob/master/Book-Review/books.md)
-    - [x] [성공과 실패를 결정하는 1%의 컴퓨터 원리. 히사오 야자와. 성안당. 2004](https://github.com/gwonsungjun/TIL/blob/master/Book-Review/Development/1%25-computer-principle-that-determines-success-and-failure.md)
-    - [x] [인터랙티브 디벨로퍼(구글 엔지니어의 포트폴리오). 김종민. 한빛미디어. 2015](https://github.com/gwonsungjun/TIL/blob/master/Book-Review/Development/Interactive-Developer.md)
-    - [x] [이렇게 하면 나도 프로그램을 잘 만들 수 있다 C & JAVA 프로그래밍 입문. 김석현. 삼양애드. 2012](https://github.com/gwonsungjun/TIL/blob/master/Book-Review/Development/This-way-I-can-make-a-good-program1.md)
-    - [x] [스무살에 알았더라면 좋았을 것들. 티나 실리그. 엘로라도. 2010](https://github.com/gwonsungjun/TIL/blob/master/Book-Review/Non-Development/What-would-have-been-nice-if-I'd-known-at-age-20.md)
-  - [Computer Structure(컴퓨터 구조)](https://github.com/gwonsungjun/TIL/tree/master/ComputerStructure)
-    - [컴퓨터구조 기초 용어 정리](https://github.com/gwonsungjun/TIL/blob/master/ComputerStructure/ComputerStructureBasic.md)
-  - [Developer Capabilities - 개발자 역량 증진 자료(좋은 글 스크랩)](https://github.com/gwonsungjun/TIL/tree/master/Developer-Capabilities)
-    - [초보 웹 개발자를 위하여 - 정호영님의 글](https://github.com/gwonsungjun/TIL/blob/master/Developer-Capabilities/For-starter-web-developers.md)
+
+### Algorithm
+
+- [알고리즘 문제 해결 전략 정리](Algorithm/Algorithm_problem-solving_strategy.md)
+- [Big O Notation](Algorithm/BigO_notation.md)
+
+### BlockChain
+- [EOS 개념 및 특징](EOS/EOS_Characteristics.md)
+
+### Book Review
+
+- [x] [성공과 실패를 결정하는 1%의 컴퓨터 원리. 히사오 야자와. 성안당. 2004](Book-Review/Development/1%25-computer-principle-that-determines-success-and-failure.md)
+- [x] [인터랙티브 디벨로퍼(구글 엔지니어의 포트폴리오). 김종민. 한빛미디어. 2015](Book-Review/Development/Interactive-Developer.md)
+- [x] [이렇게 하면 나도 프로그램을 잘 만들 수 있다 C & JAVA 프로그래밍 입문. 김석현. 삼양애드. 2012](Book-Review/Development/This-way-I-can-make-a-good-program1.md)
+- [x] [스무살에 알았더라면 좋았을 것들. 티나 실리그. 엘로라도. 2010](Book-Review/Non-Development/What-would-have-been-nice-if-I'd-known-at-age-20.md)
+
+### Computer Structure(컴퓨터 구조)
+
+- [컴퓨터구조 기초 용어 정리](ComputerStructure/ComputerStructureBasic.md)
+ 
+ ### Developer Capabilities - 개발자 역량 증진 자료(좋은 글 스크랩)
+    
+- [초보 웹 개발자를 위하여 - 정호영님의 글](Developer-Capabilities/For-starter-web-developers.md)
+
+### Git
   - [Git](https://github.com/gwonsungjun/TIL/tree/master/Git/GitLab)
     - [Ubuntu Git Install](https://github.com/gwonsungjun/TIL/blob/master/Git/ubuntu-gitInstall.md)
     - [GitLab Repository URL 변경](https://github.com/gwonsungjun/TIL/blob/master/Git/GitLab/Rename-GitLab-url.md)

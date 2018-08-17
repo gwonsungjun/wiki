@@ -88,6 +88,7 @@
 - [객체지향 간단 요약](OOP/Object-oriented-programming.md)
 - [객체 지향 4대 특성](OOP/The_four_principles_of_object-oriented_Java.md)
 - [객체 지향 설계 5원칙](OOP/SOLID.md)
+- [객체지향 모델링의 이해, UML](OOP/UML-Basic.md)
 
 ### Organize shortcuts - 단축키 정리
 - [Ubuntu desktop 단축키 정리](Organize-Shortcuts/Ubuntu-shortcuts.md)
@@ -108,13 +109,12 @@
 - [Spring Transaction](Spring/SpringTransaction.md)
 - [Spring , static content 인식](Spring/Spring-static-content-recognition.md)
 
-### UML
-    - [객체지향 모델링의 이해, UML](https://github.com/gwonsungjun/TIL/blob/master/UML/UML-Basic.md)
-  - [Web](https://github.com/gwonsungjun/TIL/tree/master/Web)
-    - [Web Browser Rendering](https://github.com/gwonsungjun/TIL/blob/master/Web/browser-Rendering.md)
-    - [웹서버와 WAS](https://github.com/gwonsungjun/TIL/blob/master/Web/webServer-WAS.md)
-  - [Vue](https://github.com/gwonsungjun/TIL/tree/master/vue)
-    - [순수 자바스크립트 MVC](https://github.com/gwonsungjun/TIL/blob/master/vue/pureJSMVC.md)
+### Web
+- [Web Browser Rendering](Web/browser-Rendering.md)
+- [웹서버와 WAS](Web/webServer-WAS.md)
+  
+### Vue
+- [순수 자바스크립트 MVC](vue/pureJSMVC.md)
 
 ## Writing Rule
   - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)

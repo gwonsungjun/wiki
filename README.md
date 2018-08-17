@@ -21,6 +21,7 @@
 - [EOS 개념 및 특징](BlockChain/EOS/EOS_Characteristics.md)
 
 ### Book Review
+- [읽은 책 목록](Book-Review/books.md)
 - [x] [성공과 실패를 결정하는 1%의 컴퓨터 원리. 히사오 야자와. 성안당. 2004](Book-Review/Development/1%25-computer-principle-that-determines-success-and-failure.md)
 - [x] [인터랙티브 디벨로퍼(구글 엔지니어의 포트폴리오). 김종민. 한빛미디어. 2015](Book-Review/Development/Interactive-Developer.md)
 - [x] [이렇게 하면 나도 프로그램을 잘 만들 수 있다 C & JAVA 프로그래밍 입문. 김석현. 삼양애드. 2012](Book-Review/Development/This-way-I-can-make-a-good-program1.md)
@@ -49,10 +50,6 @@
 - [Ubuntu(우분투) intellij 단축아이콘 생성](Intellij/ubuntu-ShortcutIcon.md)
 - [address localhost is already in use](Intellij/Address-already-in-use-error.md)
 
-### JPA
-- [01. JPA 소개](JPA/Java-ORM-standard-JPA-programming/1.JPA-introduction.md)
-- [02. JPA 시작](JPA/Java-ORM-standard-JPA-programming/2.JPA-start.md)
-
 ### JAVA
 - [자바 기초 정리](Java/javaBasic.md)
 - [JAVA 8 lambda](Java/java8.md)
@@ -60,6 +57,10 @@
 - [Servlet & JSP 기초 정리](Java/servletsAndJsp.md)
 - [스프링 입문을 위한 자바 객체 지향의 원리와 이해](Java/Principles_and_understanding_of_Java_object_orientation.md)
 - [자바 디자인 패턴](Java/designPattern.md)
+
+### JPA
+- [01. JPA 소개](JPA/Java-ORM-standard-JPA-programming/1.JPA-introduction.md)
+- [02. JPA 시작](JPA/Java-ORM-standard-JPA-programming/2.JPA-start.md)
   
 ### Linux
 - [Linux 명령어 정리](Linux/Ubuntu/linux-command.md)
@@ -108,13 +109,14 @@
 ### Spring
 - [Spring Transaction](Spring/SpringTransaction.md)
 - [Spring , static content 인식](Spring/Spring-static-content-recognition.md)
+- [Spring 삼각형과 설정 정보](Spring/Spring_triangle_and_configuration_information.md)
+
+### Vue
+- [순수 자바스크립트 MVC](vue/pureJSMVC.md)
 
 ### Web
 - [Web Browser Rendering](Web/browser-Rendering.md)
 - [웹서버와 WAS](Web/webServer-WAS.md)
-  
-### Vue
-- [순수 자바스크립트 MVC](vue/pureJSMVC.md)
 
 ## Writing Rule
   - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)

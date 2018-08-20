@@ -296,3 +296,13 @@ public void before(JoinPoint joinPoint){
     - `어댑터 패턴을 적용해 같은 일을 하는 다수의 기술을 공통의 인터페이스로 제어할 수 있는 한 것을 서비스 추상화라고 한다.`
 - 어떤 OXM(객체와 xml 매핑) 기술을 쓰든 일관된 방식으로 코드를 작성할 수 있게 지원한다. 또한 하나의 OXM 기술에서 다른 OXM 기술로 변경할 때 큰 변화 없이 세부 기술을 교체해서 사용할 수 있게 해준다. 
 - 이처럼 서비스 추상화를 해주면서 그것도 일관성 있는 방식을 제공한다고 해서 이를 PSA(일관성 있는 서비스 추상화)라고 한다. 
+
+## 스프링 MVC 이용한 게시판 구축 시 참고
+
+### 스프링 MVC의 메서드 인자 자동 바인딩
+- 스프링 MVC는 form 태그에서 전송된 input 태그의 name 속성과 DTO 인스턴스의 속성 이름을 비교해 자동으로 그 값을 바인딩해 준다. (request getParameter()를 통해 받아온 후 형변환을 할 필요가 없다.)
+
+### PRG(POST-Redirect-GET) 패턴
+- POST 요청을 리디렉션(Redirect)해서 GET 요청으로 보내는 것을 의미
+- 새 글을 성공적으로 저장한 후의 뷰 힌트는 "redirect:/board/list"다. 만약 뷰 힌트가 "/board/list"라면 어떤 문제가 생길 수 있을까? 뷰 힌트가 "/board/list"인 경우 브라우저의 주소는 계속해서 http://localhost:8080/mvc/board/write로 남아있게 된다. 이때 사용자가 화면 새로 고침 버튼을 누르면 다시 POST 요청이 서버로 전송되고 같은 글이 다시 데이터베이스에 저장된다. 화면을 새로 고침할 때마다 같은 글이 데이터베이스에 저장되는 것이다.
+- http://localhost:8080/mvc/board/write에 POST 요청이 전해지고 성공적으로 작업을 마치고 뷰 힌트로 "redirect:/board/list"를 주면 브라우저 주소는 http://localhost:8080/mvc/board/list로 변경되어 새로 고침 버튼을 눌러도 서버에 부작용을 일으키지 않게 된다. 

@@ -49,7 +49,7 @@ $ docker rmi ${image_id}
 
 ## 컨테이너 생성 
 - run 명령을 사용하면 사용할 이미지가 있는지 확인하고 없다면 다운로드(pull)를 한 후 컨테이너를 생성(create)하고 시작(start)한다.
-- `docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]`
+- `docker run [OPTIONS] 이미지이름[:TAG| [COMMAND(명령어)] [ARG...(전달인자)]`
 - 아래 명령은 우분투 컨테이너가 hello를 실행하고 종료하는 명령
 
 ```shell
@@ -68,7 +68,7 @@ $ docker run -d -p 1234:6379 redis
 –name	| 컨테이너 이름 설정
 –rm	| 프로세스 종료시 컨테이너 자동 제거
 -it	| -i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
-–link	|컨테이너 연결 [컨테이너명:별칭]
+–link	|컨테이너 연결(참조할 다른 컨테이너 선언) [컨테이너명:별칭]
 
 ## 컨테이너 목록 확인
 - 옵션이 없으면 실행중인 컨테이너 목록 확인

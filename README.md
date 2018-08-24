@@ -41,7 +41,6 @@
 - [도커 이미지 만들기](/Docker/docker-image.md)
 
 ### Git
-- [Ubuntu Git Install](Git/ubuntu-gitInstall.md)
 - [GitLab Repository URL 변경](Git/GitLab/Rename-GitLab-url.md)
   
  ### Glossary of terms(용어 정리)
@@ -82,6 +81,7 @@
 - [Ubuntu 고정 ip 설정법](Linux/Ubuntu/static-ip-setting.md)
 - [unzip 사용법](Linux/Ubuntu/unzip.md)
 - [shell script 기초](Linux/Ubuntu/shell-script.md)
+- [Ubuntu Git Install](/Linux/Ubuntu/ubuntu-gitInstall.md)
 
 ### Network
 - [네트워크 기초 용어 정리](Network/Network-basic.md)

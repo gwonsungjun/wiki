@@ -36,15 +36,21 @@
 - 문자열 라인 합치기 : `Ctrl + Shift + J (Mac: Ctrl + Shift + J)`
 - 라인 단위로 옮기기
     - 구문 이동 : `Shfit + Ctrl + 위아래 화살표 (Mac :Shift + Command + 위아래)` 
-    - 라인 이동(구문에 관계없이 이동) : `Shift + Alt + 위아래 (Mac : Shift + Alt + 위아래)`
-- Element 단위로 옮기기 : `Alt+ Ctrl + Shift + 좌우 화살표 (Mac: Option + Shift + Command + 좌우)` 
+    - 라인 이동(구문에 관계없이 이동) : `Shift + Alt + 위아래 (Mac : Shift + Alt(Option) + 위아래)`
+- Element 단위로 옮기기 : `Alt+ Ctrl + Shift + 좌우 화살표 (Mac: Alt + Shift + Command + 좌우)` 
 
 ### 코드 즉시보기
 - 인자값 즉시 보기 : `Ctrl + P (Mac: Command + P)`
-- 코드 구현부 즉시 보기 : `Shift + Ctrl + I (Mac: Option + Space)`
+- 코드 구현부 즉시 보기 : `Shift + Ctrl + I (Mac: Alt + Space)`
     - 클래스, 생성자, 메소드 등에 직접 들어가지 않아도 구현을 볼 수 있다.
     - 자바뿐만 아니라  html -> js, css 호출 시 호출하는 다른 정적파일도 미리보기 가능하다.
 - Doc 즉시 보기 : `Ctrl + Q (Mac: F1)`
     - 오라클 홈페이지에 갈 필요가 없어진다.
     - js의 경우 MDN의 내용이 보여진다.
 
+### 포커스 - 에디터
+- 단어별 이동 : `Ctrl + Right/Left (Mac : Alt + Right/Left)`
+- 단어별 선택 : `Ctrl + Shift + Right/Left (Mac : Alt + Shift + Right/Left)`
+- 라인 첫/끝 이동 : `Home, End (Mac : fn + Right/Left)`
+- 라인 전체 선택 : `Shift + Home, End (Mac : fn + Shift + Right/Left)`
+- Page Up/Down : `Page Up/Down (Mac : fn + Up/Down)`

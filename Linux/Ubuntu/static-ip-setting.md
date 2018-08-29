@@ -8,6 +8,8 @@
 ![intellij_keymap_problem](/images/ipDhcp.PNG)
 - 네트환경에 맞게 아래 그림과 같이 수정을 하고 저장한다.
 ![intellij_keymap_problem](/images/ipStatic.PNG)
+- tip : address 뒤에 ip 입력후 `/24`를 입력하면 netmask와 broadcast, network가 자동 생성된다.
+    - `address 192.168.10.59/24`
 
 ## 3. 네트워크 재시작 또는 재부팅
 - systemctl restart networking.service

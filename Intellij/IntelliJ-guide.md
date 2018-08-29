@@ -54,3 +54,11 @@
 - 라인 첫/끝 이동 : `Home, End (Mac : fn + Right/Left)`
 - 라인 전체 선택 : `Shift + Home, End (Mac : fn + Shift + Right/Left)`
 - Page Up/Down : `Page Up/Down (Mac : fn + Up/Down)`
+
+### 포커스 - 특수키
+- 포커스 범위 한 단계씩 늘리기 : `Ctrl + W (Mac: Alt + Up)`
+- 포커스 범위 한 단계씩 줄이기 : `Shift + Ctrl + W (Mac: Alt + Down)`
+- 포커스 앞으로 가기(클래스의 이동까지 가능) : `Ctrl + Alt + Right (Mac: Alt + ])`
+- 포커스 뒤로 가기 : `Ctrl + Alt + Left (Mac: Alt + [)`
+- 멀티 포커스 : `Ctrl + Ctrl + Down (Mac: Alt + Alt + Down)`
+- 오류 라인으로 자동 포커스 : `F2`

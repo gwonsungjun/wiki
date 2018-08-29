@@ -127,6 +127,5 @@ $ git merge version2
 - sourceTree를 이용한 해결
     - 내 것 또는 저장소 것 선택하기
 
-
 ## Links
 - [코드스쿼드 Git 입문 강의 : 정호영님](https://www.youtube.com/watch?v=8AtHcXnJSdA&t=0s&list=PLAHa1zfLtLiPrxoBo9a1HVmauvE2Mn3xX&index=2)

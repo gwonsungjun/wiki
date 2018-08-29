@@ -64,6 +64,7 @@
 - [Servlet & JSP 기초 정리](Java/servletsAndJsp.md)
 - [스프링 입문을 위한 자바 객체 지향의 원리와 이해](Java/Principles_and_understanding_of_Java_object_orientation.md)
 - [자바 디자인 패턴](Java/designPattern.md)
+- [Java - try with resources](Java/try-with-resources.md)
 
 ### JPA
 - [01. JPA 소개](JPA/Java-ORM-standard-JPA-programming/1.JPA-introduction.md)

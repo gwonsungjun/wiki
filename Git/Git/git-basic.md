@@ -127,5 +127,18 @@ $ git merge version2
 - sourceTree를 이용한 해결
     - 내 것 또는 저장소 것 선택하기
 
+## 6. 이전 커밋으로 되돌리기(reset)
+- 소스트리의 `이 커밋까지 현재 브랜치를 초기화(Reset current branch to this commit)`버튼 
+- git reset --hard 에 해당하는 명령으로 커밋을 되돌리기 (soft, mixed는 개별적으로 알아보기)
+    - 원격 저장소에 올려져 있지 않은 이전 커밋은 사라짐
+- reset 이후 push는 force 옵션을 선택해야 함
+    - 원격저장소에 저장된 이전 커밋 사라짐
+        - 따라서 유지하려면 reset을 한 후 원격저장소의 커밋과 merge를 한 후에 push를 해주면 --force를 사용하지 않아도 된다.
+- push --force 는 소스트리에서 지원하지 않기 때문에 CLI를 이용해야 함
+
+### reset의 장.단점
+- 장점: 쉽다.
+- 단점: 커밋이 날아간다. push --force 가 필요하다.
+
 ## Links
 - [코드스쿼드 Git 입문 강의 : 정호영님](https://www.youtube.com/watch?v=8AtHcXnJSdA&t=0s&list=PLAHa1zfLtLiPrxoBo9a1HVmauvE2Mn3xX&index=2)

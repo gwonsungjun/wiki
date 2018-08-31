@@ -41,7 +41,7 @@
 - [도커 이미지 만들기](/Docker/docker-image.md)
 
 ### Git
-- [Git 기초 정리](/Git/Git/git-basic.md)
+- [Git 사용법 : 혼자서 작업하기 ](/Git/Git/git-basic.md)
 - [GitLab Repository URL 변경](Git/GitLab/Rename-GitLab-url.md)
   
  ### Glossary of terms(용어 정리)

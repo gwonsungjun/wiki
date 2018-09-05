@@ -159,7 +159,7 @@ $ git merge version2
  - 대상 커밋을 HEAD 커밋의 자식으로 새로 생성한다.
  - revert 대상 커밋은 사라지지 않는다.
  - revert 대상 커밋의 내용을 되돌린 `새로운 커밋이 생겨난다.`
- - 소스트리의 `커밋 되돌리기`
+ - 소스트리의 `커밋 되돌리기(reverse commit)`
 
 ```shell
 $ git commit (C2)
@@ -171,6 +171,24 @@ $ git revert C3 (C2와 같은 C3*가 새로 생김)
  - 장점 : 이전 커밋 기록이 다 남아 있다.
  - 단점 : 충돌 날 가능성이 매우 높다. 다소 어렵다.
 
+ ## 9. Revert를 이용해 여러 커밋 되돌리기
+- 최신부터 순서대로 revert를 반복 적용하면 된다.
+ 
+ ![git-revert](/images/git-revert.PNG)
+
+- 위 그림 설명
+    1. commit 1 -> commit 2 -> commit 3 순으로 커밋이 진행됨.
+    2. 가장 최큰 커밋(HEAD commit)인 commit 3에서 revert 진행(우클릭 -> 커밋 되돌리기) -> commit 2의 내용으로 돌아감. (여기 까지는 8번 이전 커밋으로 되돌리기에 해당)
+    3. 그 다음 이전 커밋(commit 1)으로 되돌리고 싶으면 commit2에서 (우클릭 -> 커밋 되돌리기)를 진행하면 commit 1의 내용으로 돌아간다.
+    
+- 참고로 명령어를 사용하면 훨씬 쉽다.
+
+```git
+$ git revert HEAD HEAD~1 // 명령어 사용
+```
+
+- $ git revert HEAD (가장 최근 커밋을 되돌려라.)
+- HEAD~1 : HEAD의 부모
 
 ## Links
 - [코드스쿼드 Git 입문 강의 : 정호영님](https://www.youtube.com/watch?v=8AtHcXnJSdA&t=0s&list=PLAHa1zfLtLiPrxoBo9a1HVmauvE2Mn3xX&index=2)

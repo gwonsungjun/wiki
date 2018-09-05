@@ -76,6 +76,7 @@
 - [Linux 용량 확인](Linux/Ubuntu/capacity-check.md)
 - [cron, crontab 사용법](Linux/Ubuntu/crontab.md)
 - [curl 사용법](Linux/Ubuntu/curl.md)
+- [scp 사용법](/Linux/Ubuntu/scp.md)
 - [ubuntu java 명령어, 옵션 정리](Linux/Ubuntu/java.md)
 - [Ubuntu Mysql Server Install](Linux/Ubuntu/mysql-install.md)
 - [nohup 사용법](Linux/Ubuntu/nohup.md)

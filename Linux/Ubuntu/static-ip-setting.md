@@ -17,4 +17,4 @@
 - 그때는 if-down, if-up 명령을 이용하면 적용되는 것을 볼 수 있음
 
 ## 4. Links
--[Ubuntu 16.04 | 고정 IP 설정하는 방법]( https://www.manualfactory.net/10108)
+- [Ubuntu 16.04 | 고정 IP 설정하는 방법]( https://www.manualfactory.net/10108)

@@ -85,6 +85,7 @@
 - [unzip 사용법](Linux/Ubuntu/unzip.md)
 - [shell script 기초](Linux/Ubuntu/shell-script.md)
 - [Ubuntu Git Install](/Linux/Ubuntu/ubuntu-gitInstall.md)
+- [Ubuntu Desktop 설정](/Linux/Ubuntu/ubuntu-desktop-install.md)
 
 ### Network
 - [네트워크 기초 용어 정리](Network/Network-basic.md)

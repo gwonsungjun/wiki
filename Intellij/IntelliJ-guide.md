@@ -62,3 +62,10 @@
 - 포커스 뒤로 가기 : `Ctrl + Alt + Left (Mac: Alt + [)`
 - 멀티 포커스 : `Ctrl + Ctrl + Down (Mac: Alt + Alt + Down)`
 - 오류 라인으로 자동 포커스 : `F2`
+
+### 검색 - 텍스트
+- 현재 파일에서 검색 : `Ctrl + F (Mac: Command + F)`
+- 현재 파일에서 교체 : `Ctrl + R (Mac: Command + R)` / Replace, Replace All
+- (프로젝트) 전체에서 검색 : `Ctrl + Shift + F (Mac: Command + Shift + F)`
+- 전체에서 교체 : `Ctrl + Shift + R (Mac: Command + Shift + R)`
+- 정규표현식으로 검색, 교체 : `Regex 체크`, [참조](https://jojoldu.tistory.com/160)

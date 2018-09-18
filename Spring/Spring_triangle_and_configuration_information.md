@@ -245,7 +245,7 @@ public class MyAspect{
 #### JoinPoint - 연결점? 연결 가능한 지점!
 - Pointcut은 JoinPoint의 부분 집합이다.
 - 스프링 AOP는 메서드에만 적용 가능하다.
-- Pointcut은의 후보가 되는 모든 메서드들이 JoinPoint, 즉 Aspect 적용이 가능한 지점이 된다.
+- Pointcut의 후보가 되는 모든 메서드들이 JoinPoint, 즉 Aspect 적용이 가능한 지점이 된다.
 - `Aspect 적용이 가능한 모든 지점`
 - 광의의 JoinPoint란 Aspect 적용이 가능한 모든 지점이다.
 - 협의의 JoinPoint란 호출된 객체의 메서드다.

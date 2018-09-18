@@ -46,9 +46,9 @@
 
 ## 아래 링크를 참고
 
-## [객체 지향 4대 특성](https://github.com/gwonsungjun/TIL/blob/master/Java/The_four_principles_of_object-oriented_Java.md)
+## [객체 지향 4대 특성](https://github.com/gwonsungjun/TIL/blob/master/OOP/The_four_principles_of_object-oriented_Java.md)
 
-## [객체 지향 설계 5원칙](https://github.com/gwonsungjun/TIL/blob/master/Java/SOLID.md)
+## [객체 지향 설계 5원칙](https://github.com/gwonsungjun/TIL/blob/master/OOP/SOLID.md)
 
 ## [디자인 패턴](https://github.com/gwonsungjun/TIL/blob/master/Java/designPattern.md)
 

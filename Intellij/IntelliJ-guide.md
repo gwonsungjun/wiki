@@ -79,3 +79,11 @@
     - 인텔리제이의 모든 event와 option들을 모두 찾아낼 수 있다.
 4. 최근 열었던 파일 목록 보기 : `Ctrl + E (Mac : Command + E)`
 5. 최근 수정한 파일 목록 보기 : `Ctrl + Shift + E (Mac : Command + Shift + E)`
+
+### 자동 완성
+1. 스마트 자동 완성 : `Ctrl + Shift + Space (Mac : Ctrl + Shift + Space)`
+    - 일반적인 자동 완성 : `Ctrl + Space (Mac : Ctrl + Space)`
+2. 스태틱 메소드 자동 완성 :  `Ctrl + Space 2번 (Mac : Ctrl + Space 2번)`
+3. Getter / Setter / 생성자 자동 완성 :  `Alt + Insert (Mac : Command + N)`  생성할 수 있는 모든 경우를 보여준다.(Generate)
+4. Override 메소드 자동 완성 : `Ctrl + i (Mac : Ctrl + i)`
+

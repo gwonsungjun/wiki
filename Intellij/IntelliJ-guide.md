@@ -69,3 +69,13 @@
 - (프로젝트) 전체에서 검색 : `Ctrl + Shift + F (Mac: Command + Shift + F)`
 - 전체에서 교체 : `Ctrl + Shift + R (Mac: Command + Shift + R)`
 - 정규표현식으로 검색, 교체 : `Regex 체크`, [참조](https://jojoldu.tistory.com/160)
+
+### 검색 - 기타
+1. 파일 검색 : `Ctrl + Shift + N (Mac : Command + Shift + O)`
+    - 패키지까지 포함해서 검색할 수 있다.
+    - 예를들어 sp2라는 패키지 안에 Member.java 파일을 찾고 싶다면 검색 창에 "sp2/Member" 입력
+2. 메소드 검색 : `Ctrl + Shift + Alt + N (Mac : Command + Alt + O)`
+3. `(중요)` Action 검색 : `Ctrl + Shift +A (Mac : Command + Shift + A)`
+    - 인텔리제이의 모든 event와 option들을 모두 찾아낼 수 있다.
+4. 최근 열었던 파일 목록 보기 : `Ctrl + E (Mac : Command + E)`
+5. 최근 수정한 파일 목록 보기 : `Ctrl + Shift + E (Mac : Command + Shift + E)`

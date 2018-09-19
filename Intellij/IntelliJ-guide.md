@@ -87,3 +87,14 @@
 3. Getter / Setter / 생성자 자동 완성 :  `Alt + Insert (Mac : Command + N)`  생성할 수 있는 모든 경우를 보여준다.(Generate)
 4. Override 메소드 자동 완성 : `Ctrl + i (Mac : Ctrl + i)`
 
+### Live Template
+1. Live Template 소개
+    - 반복되는 코드 또는 항상 사용해야하는 코드들을 추가 후 호출
+    - 예를들어) psvm, sout, ifn과 같은 축약어
+    - 포커스가 있는 위치에 맞춰서 나올 수 있는 모든 축약어(Live Template) 목록 : `Ctrl + J (Mac : Command + J)`
+2. Live Template 추가하기 
+    - (1) Ctrl + Shift + A -> Live Template 검색 후 선택
+    - (2) '+' 클릭 -> 1.Live Template 선택
+    - (3) Abbreviation : 축약어 입력, Description : 설명, Template text : 적용될 코드 입력
+    - (4) 에러 메시지 옆 define 클릭 -> java에서만 사용할 것이기 때문에 java 선택
+    - (5) apply -> ok

@@ -98,3 +98,9 @@
     - (3) Abbreviation : 축약어 입력, Description : 설명, Template text : 적용될 코드 입력
     - (4) 에러 메시지 옆 define 클릭 -> java에서만 사용할 것이기 때문에 java 선택
     - (5) apply -> ok
+
+### 리팩토링 - Extract(추출하기)
+1. 변수 추출하기(extract variable) : `Ctrl + Alt + V (Mac : Command + Option + V)`
+2. 파라미터 추출하기 : `Ctrl + Alt + P (Mac : Command + Option + P)`
+3. 메소드 추출하기 : `Ctrl + Alt + M (Mac : Command + Option + M)`
+4. 이너클래스 추출하기(이동하기) : 해당 이너 클래스명에 포커스를 두고 `F6`

@@ -135,3 +135,15 @@
 6. Push : `Ctrl + Shift +K (Mac : Command + Shift + K)`
     - 파일이 생성된 경우에는 커밋&푸시를 지원하지 않으므로 push는 별도로 진행해야 한다.
 7. Pull : 단축키 없음. (Ctrl(Command) + Shift + A : git pull 검색 -> pull... 선택)
+
+### GitHub 연동하기
+1. 기존 프로젝트 GitHub에 연동하기
+    - (1) Ctrl(Command) + Shift + A -> `share github` 입력 후 Share Project on GitHub 선택
+    - (2) Login
+    - (3) New repository name, Remote name(origin), Description 입력 후 Share 클릭
+    - (4) Commit Message 입력 후 Ok 입력
+    - (5) GitHub에서 확인
+2. GitHub 프로젝트 Clone 받기
+    - (1) `Check out from Version Control` -> Git 선택
+    - (2) URL 입력 (로그인하면 목록 선택 가능), Clone
+

@@ -120,5 +120,18 @@
 5. Step Into(현재 브레이크 포인트의 다음 실행할 메소드 안으로 들어감) : `F7` 
 6. Step Out(Step Into를 통해 포커스가 특정 메소드 안으로 들어왔을 때 다시 밖으로 나감) : `Shift + F8`
 7. Condition : `브레이크 포인트에서 우클릭 해당 조건 입력 후 Done.` (반복문에서 해당 조건을 가졌을 때만 브레이크하도록 설정 가능)
-8. Evaluate Expression(브레이크된 상태에서 코드 사용하기) : `Alt + F8 (Mac : Option + F8)`
+8. Evaluate Expression(브레이크 된 상태에서 코드 사용하기) : `Alt + F8 (Mac : Option + F8)`
 9. Watch(브레이크 이후의 코드 변경 확인하기) : 단축키는 없음.
+
+### Git 기본 기능 사용하기
+1. Git View On : View -> Tool Windows -> Version Control or `Alt + 9 (Mac : Command + 9)`
+2. Git Option Popup(VCS Operations) : `Alt + Back Quote (Mac : Ctrl + V)`
+3. Git History : `VCS Operations -> 4. Show History`
+4. Branch : `VCS Operations -> 7. Branches`
+5. Commit : `VCS Operations -> 1. Commit` or `Ctrl+K (Mac : Command + K)`
+    - 커밋 창에서 Reformat code와 Rearrange code를 체크하면 커밋 전에 자동으로 재정렬 후 커밋한다.
+    - Optimize imports : 사용하지 않는 import문 제거
+    - Perform code analysis : 코드 분석(Sonar, find bug 등을 이용해서)
+6. Push : `Ctrl + Shift +K (Mac : Command + Shift + K)`
+    - 파일이 생성된 경우에는 커밋&푸시를 지원하지 않으므로 push는 별도로 진행해야 한다.
+7. Pull : 단축키 없음. (Ctrl(Command) + Shift + A : git pull 검색 -> pull... 선택)

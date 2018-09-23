@@ -111,4 +111,14 @@
 3. Import 정리하기 : `Ctrl + Alt + O (Mac : Command + Option + O)`, (자동으로 사용하지 않는 Import 정리) Ctrl + Shift + A -> Optimize import on 검색 -> Auto Import: Java: Optimize imports on the ... `On`으로 변경
 4. 코드 자동 정렬하기 : `Ctrl + Alt + L (Mac : Command + Option + L)`
 
-
+### 디버깅
+- break point : 해당 line에 클릭 or Ctrl + F8
+1. Debug 모드로 실행하기 - 즉시 실행 : `윈도우/리눅스 단축키 없음 (Mac : Ctrl + Shift + D)` (현재 포커스가 있는 메서드 디버그 모드로 실행)
+2. Debug 모드로 실행하기 - 이전 실행 : `Shift + F9 (Mac : Ctrl + D)` (인텔리제이 상단 오른쪽에 남아있는 이전에 실행했던 메소드를 실행)
+3. Resume(다음 브레이크 포인트로 넘어가기) : `F9 (Mac : Command + Option + R)`
+4. Step Over(현재 브레이크 포인트의 다음 한 줄 실행) : `F8` 
+5. Step Into(현재 브레이크 포인트의 다음 실행할 메소드 안으로 들어감) : `F7` 
+6. Step Out(Step Into를 통해 포커스가 특정 메소드 안으로 들어왔을 때 다시 밖으로 나감) : `Shift + F8`
+7. Condition : `브레이크 포인트에서 우클릭 해당 조건 입력 후 Done.` (반복문에서 해당 조건을 가졌을 때만 브레이크하도록 설정 가능)
+8. Evaluate Expression(브레이크된 상태에서 코드 사용하기) : `Alt + F8 (Mac : Option + F8)`
+9. Watch(브레이크 이후의 코드 변경 확인하기) : 단축키는 없음.

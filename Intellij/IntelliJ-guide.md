@@ -147,3 +147,16 @@
     - (1) `Check out from Version Control` -> Git 선택
     - (2) URL 입력 (로그인하면 목록 선택 가능), Clone
 
+### 플러그인
+1. 플러그인 설치
+    - Ctrl(Command) + Shift + A -> plugins 검색 후 Preferences plugins를 선택
+    - Browse repositories ... 선택
+    - sort by Downloads => 어느 정도 검증된 플러그인 확인 가능
+2. 추천 플러그인
+    - .ignore
+    - presentation Assistant : 발표 시 유용
+    - BashSupport : shell file 작성을 도와줌.
+        - Terminal 사용 : `Alt + F12 (Mac : Option + F12)`
+        - terminal에서 작성된 .sh 파일 실행 가능
+    - Material Theme UI
+    - 번역 플러그인 : jojoldu 검색 후 설치 (단축키 : `Option + 1, 2, 3`)

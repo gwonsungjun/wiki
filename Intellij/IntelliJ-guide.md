@@ -104,3 +104,11 @@
 2. 파라미터 추출하기 : `Ctrl + Alt + P (Mac : Command + Option + P)`
 3. 메소드 추출하기 : `Ctrl + Alt + M (Mac : Command + Option + M)`
 4. 이너클래스 추출하기(이동하기) : 해당 이너 클래스명에 포커스를 두고 `F6`
+
+### 리팩토링 기타
+1. 이름 일괄 변경하기(클래스명, 메소드명, 변수명 등) : `Shift + F6`
+2. 타입 일괄 변경하기(메소드의 리턴타입 + 해당 메소드를 사용(선언)하는 쪽도 모두 변경됨) : `Ctrl + Shift + F6 (Mac : Command + Shift + F6)`
+3. Import 정리하기 : `Ctrl + Alt + O (Mac : Command + Option + O)`, (자동으로 사용하지 않는 Import 정리) Ctrl + Shift + A -> Optimize import on 검색 -> Auto Import: Java: Optimize imports on the ... `On`으로 변경
+4. 코드 자동 정렬하기 : `Ctrl + Alt + L (Mac : Command + Option + L)`
+
+

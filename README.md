@@ -56,6 +56,7 @@
 - [intellij lombok 사용](Intellij/lombok.md)
 - [Ubuntu(우분투) intellij 단축아이콘 생성](Intellij/ubuntu-ShortcutIcon.md)
 - [address localhost is already in use](Intellij/Address-already-in-use-error.md)
+- [Intellij GitLab 연동](Intellij/Intellij-gitlab-settings.md)
 
 ### JAVA
 - [자바 기초 정리](Java/javaBasic.md)
@@ -121,6 +122,9 @@
 - [Spring Transaction](Spring/SpringTransaction.md)
 - [Spring , static content 인식](Spring/Spring-static-content-recognition.md)
 - [Spring 삼각형과 설정 정보](Spring/Spring_triangle_and_configuration_information.md)
+
+### Spring Boot
+- [백기선의 Spring Boot](Spring/Spring-Boot/Whiteship-springboot.md)
 
 ### Vue
 - [순수 자바스크립트 MVC](Vue/pureJSMVC.md)

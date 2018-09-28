@@ -1,5 +1,5 @@
-# 백기선의 스프링 부트 (inflearn 강의)
-- 인프런 [백기선의 스프링부트]() 강의를 듣고 요약 정리
+# 백기선의 스프링 부트
+- 인프런 [백기선의 스프링부트](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/) 강의를 듣고 요약 정리
 
 # 학습 주제
 - 스프링 부트 원리
@@ -24,5 +24,27 @@
     - 메트릭스
     - 모니터링
 
-## 스프링 부트 시작하기
-- 
+## 스프링 부트 시작하기 (프로젝트 생성)
+
+### 첫 번째 방법
+1. new Project : Maven Project
+2. <https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/htmlsingle/#getting-started-maven-installation> 링크 10.1.1 Maven Installation에서 parent, dependencies, build에서 해당하는 부분 입력
+3. Application Class 하나 만들어서 아래 코드 입력 후 실행
+
+```java
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+- IntelliJ 상의 Treminal 에서 `mvn package` 입력
+- 웹 프로젝트가 아니기 때문에 jar 파일로 생성되는 것을 확인할 수 있음. `java -jar 명령을 통해 실행 가능`
+
+### 두 번째 방법
+- <https://start.spring.io> 접속
+- maven Project, java, 2.0.3, Group, Artifact Dependencies 입력 후 Generate Project
+- IDE에서 프로젝트 Open

@@ -49,6 +49,9 @@ public class Application {
 - maven Project, java, 2.0.3, Group, Artifact Dependencies 입력 후 Generate Project
 - IDE에서 프로젝트 Open
 
+### 추가
+- IntelliJ -> new Project -> Spring Initializr -> Default -> ... -> Finish
+
 ## 스프링 부트 프로젝트 구조
 - 메이븐 기본 프로젝트 구조와 동일
     - 소스 코드 (src\main\java)

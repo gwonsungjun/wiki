@@ -48,3 +48,16 @@ public class Application {
 - <https://start.spring.io> 접속
 - maven Project, java, 2.0.3, Group, Artifact Dependencies 입력 후 Generate Project
 - IDE에서 프로젝트 Open
+
+## 스프링 부트 프로젝트 구조
+- 메이븐 기본 프로젝트 구조와 동일
+    - 소스 코드 (src\main\java)
+    - 소스 리소스 (src\main\resource)
+    - 테스트 코드 (src\test\java)
+    - 테스트 리소스 (src\test\resource)
+- 메인 애플리케이션 위치 (@SpringBootApplication)
+    - 기본(default) 패키지에 만드는 것을 추천
+    - Why ? ComponentScan 때문
+    - 만약, main/java 밑에 만들게 되면 java의 전체 패키지를 Sacn! (X)
+    - 아래 그림을 예로 들면 me.sungjun(기본 패키지) 밑에 생성
+    - ![springbootStructrue](/images/springbootStructrue.PNG)

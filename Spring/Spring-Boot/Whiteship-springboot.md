@@ -126,3 +126,51 @@ public class Application {
     - ![spring-autoconfigure](/images/spring-autoconfigure.png)
     - 따라서 spring.factories를 찾고 그 안의 키값에 해당하는 모든 클래스를 보고 condition에 맞으면(@ConditionalOn, @ConditionalOnMissing ...) bean 등록
 - `정리하면 spring.factories안에 들어있는 수많은 자동 설정들이 조건에 따라 적용이돼서 수많은 빈들이 생성이되고 그랬기 때문에 WebApplication(내장 톰맷을 사용해서) 구동이 되는 것이다.`
+
+### 자동 설정 만들기 1부 : Starter와 AutoConfigure
+- xxx-Spring-Boot-AutoConfigure 모듈 : 자동 설정
+- xxx-Spring-Boot-Starter : 필요한 의존성 정의
+- 서로 다른 프로젝트 이지만 그냥 하나로 만들고 싶을 때는?
+    - xxx-Spring-Boot-Starter로 생성(자동 생성도 Starter에 넣음)
+
+#### 구현 방법
+1. 새 프로젝트 생성
+2. 의존성 추가
+
+```xml
+<dependencies>
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure-processor</artifactId>
+      <optional>true</optional>
+  </dependency>
+</dependencies>
+ 
+<dependencyManagement>
+  <dependencies>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-dependencies</artifactId>
+          <version>2.0.3.RELEASE</version>
+          <type>pom</type>
+          <scope>import</scope>
+      </dependency>
+  </dependencies>
+</dependencyManagement>
+```
+
+3. @Configuration 파일 작성
+4. src/main/resource/META-INF에 spring.factories 파일 만들기
+5. spring.factories 안에 자동 설정 파일 추가
+
+```yml
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+FQCN,\
+FQCN
+```
+
+6. mvn install

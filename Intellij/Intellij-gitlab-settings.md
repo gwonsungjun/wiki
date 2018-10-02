@@ -4,7 +4,7 @@
 2. Intellij -> Settings -> Version Control -> Git -> Path to Git executable -> TEST
 3. Git Lab Repository 생성
 4. `Ctrl+Shift+A (Mac : Command + Shift + A)` -> Enable Version Control Integration 입력 후 선택 -> Project root `Git` 선택
-5. VCS - Git - Remotes (`Alt + Back Quote (Mac : Ctrl + V)` -> remotes) -> gitlab repo url 입력
+5. VCS - Git - Remotes  -> gitlab repo url 입력
 6. `Ctrl + Alt + A` : Git Add
 7. `Ctrl + K (Mac : Command + K)` : Git commit & push
 

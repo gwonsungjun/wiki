@@ -70,6 +70,7 @@
 ### JPA
 - [01. JPA 소개](JPA/Java-ORM-standard-JPA-programming/1.JPA-introduction.md)
 - [02. JPA 시작](JPA/Java-ORM-standard-JPA-programming/2.JPA-start.md)
+- [백기선의 스프링 데이터 JPA](JPA/Whiteship-JPA.md)
   
 ### Linux
 - [Linux 명령어 정리](Linux/Ubuntu/linux-command.md)

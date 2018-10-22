@@ -184,7 +184,7 @@ spring.jpa.hibernate.ddl-auto=create (update, validate)
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 ```
 
-### JPA 프로그래밍 : 엔티티 맵핑
+### 5. JPA 프로그래밍 : 엔티티 맵핑
 - 도메인 모델을 릴레이션(테이블)에 어떻게 매핑시킬지에 대한 정보를 하이버네이트에 줘야한다.
     - (1) **Annotation**
     - (2) xml
@@ -235,3 +235,77 @@ private Date created = new Date();
 
 #### @Transient
 - 컬럼으로 맵핑하고 싶지 않은 멤버 변수
+
+### 6. JPA 프로그래밍 : Value 타입 맵핑
+
+- 엔티티 타입과 Value 타입 구분
+    - 식별자가 있어야 하는가 
+    - 독립적으로 존재해야 하는가
+    - 엔티티 타입은 고유 식별자가 존재하며 독립적으로 존재해야 한다. 반대는 종속적.
+
+- Value 타입 종류
+    - 기본 타입 (String, Date, Boolean, ...)
+    - Composite Value 타입 (기본 타입보다 조금 더 큰 단위의 Value 타입)
+    - Collection Value 타입
+        - 기본 타입의 콜렉션
+        - 컴포짓 타입의 콜렉션
+    - Composite Value 타입 맵핑
+        - @Embadable
+        - @Embadded
+        - @AttributeOverrides (매핑 정보 재정의)
+        - @AttributeOverride
+
+```java
+// Composite Value 타입
+
+@Embeddable
+public class Address {
+
+    private String street;
+
+    private String city;
+
+    private String state;
+
+    private String zipCode;
+
+}
+```
+
+```java
+    // Account Class
+
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "street", column = @Column(name = "home_street"))
+    })
+    private Address address;
+
+    // Address의 street을 home_street으로 바꿔서 쓰겠다.
+```
+
+### 7. JPA 프로그래밍 : 관계 맵핑 (1대다 맵핑)
+- 관계에는 `항상 두 엔티티`가 존재 한다.
+    - 둘 중 하나는 그 관계의 주인(owning) (주인 = 관계를 설정했을 때 그 값이 반영 됨)이고
+    - 다른 쪽은 종속된(non-owning) 쪽이다.
+    - 해당 관계의 반대쪽 레퍼런스를 가지고 있는 쪽이 주인.
+- 단방향에서의 관계의 주인은 명확하다.
+    - 관계를 정의한 쪽이 그 관계의 주인이다.
+- 단방향 @ManyToOne
+    - 기본값은 FK 생성
+- 단방향 @OneToMany
+    - 기본값은 조인 테이블 생성
+- @ManyToOne, @OneToMany가 헷갈릴때는 뒤쪽 One - 하나, Many - 여러개(콜렉션)을 보고 설정하면 된다.
+- 양방향
+    - FK 가지고 있는 쪽이 오너 따라서 기본값은 @ManyToOne 가지고 있는 쪽이 주인.
+    - 주인이 아닌쪽(@OneToMany쪽)에서 mappedBy 사용해서 관계를 맺고 있는 필드를 설정해야 한다.
+        - `@OneToMany(mapped By = "owner")`
+        - 그래야 필요없는 스키마와 중복데이터가 발생되지 않음.
+    - @OneToMany에 mappedBy를 설정하지 않고 양쪽에 @ManyToOne, @OneToMany만 설정하면 그냥 서로 바라보는 단방향이 된다.
+- 양방향
+    - @ManyToOne (이쪽이 주인)
+    - @OneToMany(mappedBy)
+    - 주인한테 관계를 설정해야 DB에 반영이 된다.
+        - 반대쪽에 관계를 설정하면 DB에 반영되지 않음.
+        - 주인한테만 관계를 설정해도 되지만 객체지향적으로 생각했을때 (서로의 레퍼런스를 가지고 있어야하므로) 두개를 묶어서 설정
+        - 두개의 묶음을 convenient method라고 부른다. (add, reomve 등 한쪽에서 더하고 지우면 다른쪽도 반영이 되야함.)

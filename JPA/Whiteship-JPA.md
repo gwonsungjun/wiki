@@ -122,3 +122,64 @@ accountRepository.save(account);
 레퍼런스를 이용해서 다른 객체로 이동 가능. 콜렉션을 순회할 수도 있음. | 하지만 그런 방식은 릴레이션에서 데이터를 조회하는데 있어서 매우 비효율적이다. 데이터베이스에 요청을 적게 할 수록 성능이 좋다. 따라서 Join을 쓴다. 하지만 너무 한번에 많이 가져오려고 해도 문제다. 그렇다고 lazy loading을 하자니 그것도 문제다(n+1 select)
 
 ### 4. JPA 프로그래밍 프로젝트 세팅
+
+##### (1)프로젝트 생성 : 의존성 따로 추가 없이 Spring boot 프로젝트 생성
+- 스프링 부트 v2.*
+- 스프링 프레임워크 v5.*
+
+##### (2) 데이터 베이스 실행
+-  PostgreSQL 도커 컨테이너 사용 
+
+```bash
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=pass -e POSTGRES_USER=sungjun -e POSTGRES_DB=springdata --name postgres_boot -d postgres
+
+docker exec -i -t postgres_boot bash
+
+su - postgres
+
+psql springdata
+( Windows : psql --username sungjun --dbname springdata)
+
+데이터베이스 조회
+\list
+
+테이블 조회
+\dt
+
+쿼리
+SELECT * FROM account;
+
+```
+
+##### (3) 스프링 부트 스타터 JPA 설정
+- JPA 프로그래밍에 필요한 의존성 추가
+    - JPA v2. *, Hibernate v5. * 
+- PostgreSQL driver 의존성 추가
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+</dependency>
+
+```
+
+##### (4) JDBC 설정
+- application.properties 
+    - datasource 설정
+- 자동 설정: HibernateJpaAutoConfiguration
+    - 컨테이너가 관리하는 EntityManager (프록시) 빈 설정
+    - PlatformTransactionManager 빈 설정
+
+```property
+spring.datasource.url=jdbc:postgresql://localhost:5432/springdata
+spring.datasource.name=sungjun
+spring.datasource.password=pass
+
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+```

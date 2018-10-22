@@ -180,6 +180,6 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/springdata
 spring.datasource.name=sungjun
 spring.datasource.password=pass
 
-spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.ddl-auto=create (update, validate)
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 ```

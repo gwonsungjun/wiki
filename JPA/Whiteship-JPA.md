@@ -123,11 +123,11 @@ accountRepository.save(account);
 
 ### 4. JPA 프로그래밍 프로젝트 세팅
 
-##### (1)프로젝트 생성 : 의존성 따로 추가 없이 Spring boot 프로젝트 생성
+#### (1)프로젝트 생성 : 의존성 따로 추가 없이 Spring boot 프로젝트 생성
 - 스프링 부트 v2.*
 - 스프링 프레임워크 v5.*
 
-##### (2) 데이터 베이스 실행
+#### (2) 데이터 베이스 실행
 -  PostgreSQL 도커 컨테이너 사용 
 
 ```bash
@@ -151,7 +151,7 @@ SELECT * FROM account;
 
 ```
 
-##### (3) 스프링 부트 스타터 JPA 설정
+#### (3) 스프링 부트 스타터 JPA 설정
 - JPA 프로그래밍에 필요한 의존성 추가
     - JPA v2. *, Hibernate v5. * 
 - PostgreSQL driver 의존성 추가
@@ -168,7 +168,7 @@ SELECT * FROM account;
 
 ```
 
-##### (4) JDBC 설정
+#### (4) JDBC 설정
 - application.properties 
     - datasource 설정
 - 자동 설정: HibernateJpaAutoConfiguration
@@ -177,9 +177,61 @@ SELECT * FROM account;
 
 ```property
 spring.datasource.url=jdbc:postgresql://localhost:5432/springdata
-spring.datasource.name=sungjun
+spring.datasource.username=sungjun
 spring.datasource.password=pass
 
 spring.jpa.hibernate.ddl-auto=create (update, validate)
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 ```
+
+### JPA 프로그래밍 : 엔티티 맵핑
+- 도메인 모델을 릴레이션(테이블)에 어떻게 매핑시킬지에 대한 정보를 하이버네이트에 줘야한다.
+    - (1) **Annotation**
+    - (2) xml
+- getter, setter 없어도 맵핑 가능함.
+
+#### @Entity
+- "엔티티"는 객체 세상에서 부르는 이름.
+- 보통 클래스와 같은 이름을 사용하기 때문에 값을 변경하지 않음.
+    - ex) @Entity (name = "users") 가능.
+- 엔티티의 이름은 JQL에서 쓰임(하이버네이트 즉, 객체 세상 안에서만)
+
+#### @Table
+- "릴레이션" 세상에서 부르는 이름.
+- @Entity의 이름이 기본값. (따라서, @Table은 생략)
+- 테이블의 이름은 SQL에서 쓰임.
+
+#### @Id
+- 엔티티의 주키를 맵핑할 때 사용.
+- 자바의 모든 primitive 타입과 그 랩퍼 타입을 사용할 수 있음
+    - Date랑 BigDecimal, BigInteger도 사용 가능.
+    - 주로 랩퍼 타입을 사용
+- 복합키를 만드는 맵핑 방법도 있지만 그건 논외로..
+
+#### @GeneratedValue
+- 주키의 생성 방법을 맵핑하는 애노테이션
+- 생성 전략과 생성기를 설정할 수 있다.
+    - 기본 전략은 AUTO : 사용하는 DB에 따라 적절한 전략 선택
+    - TABLE, SEQUENCE, IDENTITY 중 하나.
+
+#### @Column
+- 사용하지않아도 자동으로 @Column이 붙어서 테이블에 맵핑됨.
+- 추가적인 제약 사용
+    - unique = true
+    - nullable = false
+    - length
+    - columDefinition
+    - ...
+
+### @Temporal
+- @Temporal을 사용하면 DB 타입에 맞도록 매핑할 수 있다.
+- 현재 JPA 2.1까지는 Date와 Calendar만 지원.
+- 이후 LocalDateTime 등 추가될 예정.
+
+```java
+@Temporal(TemporalType.TIMESTAMP)
+private Date created = new Date();
+```
+
+### @Transient
+- 컬럼으로 맵핑하고 싶지 않은 멤버 변수

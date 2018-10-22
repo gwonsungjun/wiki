@@ -223,7 +223,7 @@ spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
     - columDefinition
     - ...
 
-### @Temporal
+#### @Temporal
 - @Temporal을 사용하면 DB 타입에 맞도록 매핑할 수 있다.
 - 현재 JPA 2.1까지는 Date와 Calendar만 지원.
 - 이후 LocalDateTime 등 추가될 예정.
@@ -233,5 +233,5 @@ spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 private Date created = new Date();
 ```
 
-### @Transient
+#### @Transient
 - 컬럼으로 맵핑하고 싶지 않은 멤버 변수

@@ -309,3 +309,30 @@ public class Address {
         - 반대쪽에 관계를 설정하면 DB에 반영되지 않음.
         - 주인한테만 관계를 설정해도 되지만 객체지향적으로 생각했을때 (서로의 레퍼런스를 가지고 있어야하므로) 두개를 묶어서 설정
         - 두개의 묶음을 convenient method라고 부른다. (add, reomve 등 한쪽에서 더하고 지우면 다른쪽도 반영이 되야함.)
+
+### 8. JPA 프로그래밍 : Cascade
+- JPA, 하이버네이트에서 가장 중요한 개념 중 하나인 `엔티티의 상태`, `상태 전이(Cascade) 옵션`.
+- Cascade : 엔티티의 `상태 변화를 전파` 시키는 옵션.
+    - 보통 `cascade = {CascadeType.ALL}` 사용
+- @OneToMany, @ManyToOne에서 Cascade 옵션을 줄 수 있다.
+- Default 아무 것도 없음 -> 전이 시키지 않음.
+- 엔티티의 상태 4가지 (성능상 장점!)
+    - Transient : JPA가 모르는 상태 
+        - new로 생성된 객체는 현재 DB에 들어갈지도 모르는 상태
+    - Persistent : JPA가 관리중인 상태 (1차 캐시, Dirty Checkcing, Write Behind, ...)
+        - 객체의 변경사항을 모니터링 하고 있다는 뜻
+        - Save를 했을때 Persistent 상태가 된다
+        - but, Save를 했다고 바로 DB에 들어가는 것이 아님, Persistent에서 관리하고 있는 객체가 이쯤 됬으면 데이터 베이스에 넣어야 겠다고 판단하면 저장함. 
+        - 따라서, save 즉시 insert 쿼리가 발생되지 않음.
+        - 1차 캐시
+            - PersistenceContext : EntityManager, Session에 인스턴스를 넣은 상태(캐시가 된 상태)
+        - Dirty Checkcing
+            - 객체의 변경사항을 계속해서 감지
+        - Write Behind
+            - 객체 상태의 변화를 데이터베이스에 최대한 늦게(가장 필요한 시점에) 반영
+    - Detached : JPA가 더이상 관리하지 않는 상태
+        - trasaction이 끝나서 밖에서 사용이 될 때(return) 
+        - reattached (다시 Persistent로 ): Session.update(), Session.merge(), Session.saveOrUpdate()
+    - Removed : JPA가 관리하긴 하지만 삭제하기로 한 상태
+
+    ![JpaCascade](/images/jpaCascade.PNG)

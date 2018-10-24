@@ -1,5 +1,6 @@
 # 백기선의 스프링 데이터 JPA
 - 인프런 [백기선의 스프링 데이터 JPA](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-jpa/) 강의를 듣고 요약 정리
+- [실습 GitHub Repository](https://github.com/gwonsungjun/springdata-jpa)
 
 # 학습 주제
 - 스프링 데이터 JPA에 대해 학습한다.
@@ -336,3 +337,91 @@ public class Address {
     - Removed : JPA가 관리하긴 하지만 삭제하기로 한 상태
 
     ![JpaCascade](/images/jpaCascade.PNG)
+
+
+### 9. JPA 프로그래밍 : Fetch (mode)
+- 연관 관계의 엔티티(정보)를 어떻게 가져올 것이냐... 지금(Eager)? 나중에(Lazy)?
+    - @OneToMany의 기본값은 Lazy
+        - 다음과 같이 설정 : `@OneToMany(mappedBy ="post", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)`
+    - @ManyToOne의 기본값은 Eager
+        - 데이터가 하나이기 때문에 Eager 합리적
+- 실습 repository에 Post, Comment Class 참조
+
+```java
+
+(Post class의 comments : @OneToMany - Lazy) 
+
+Session session2 = entityManager.unwrap(Session.class);
+Post post = session2.get(Post.class, 1L);
+System.out.println(post.getTitle());
+
+결과 : coomment제외한 post 정보만 가져온다.
+
+Hibernate: 
+select
+post0_.id as id1_2_0_,
+post0_.title as title2_2_0_ 
+from
+post post0_ 
+where
+post0_.id=?
+
+```
+
+
+```java
+
+(Post class의 comments :  @OneToMany - Eager)
+
+Session session2 = entityManager.unwrap(Session.class);
+Post post = session2.get(Post.class, 1L);
+System.out.println(post.getTitle());
+
+결과 : Left Outer Join을 통하여 Comment정보와 같이 가져온다.
+
+Hibernate: 
+    select
+        post0_.id as id1_2_0_,
+        post0_.title as title2_2_0_,
+        comments1_.post_id as post_id3_1_1_,
+        comments1_.id as id1_1_1_,
+        comments1_.id as id1_1_2_,
+        comments1_.comment as comment2_1_2_,
+        comments1_.post_id as post_id3_1_2_ 
+    from
+        post post0_ 
+    left outer join
+        comment comments1_ 
+            on post0_.id=comments1_.post_id 
+    where
+        post0_.id=?
+```
+
+```java
+
+(Comment class의 post : @ManyToOne (default : Eager))
+
+Session session2 = entityManager.unwrap(Session.class);
+Comment comment = session2.get(Comment.class, 2L);
+System.out.println(comment.getComment());
+System.out.println(comment.getPost().getTitle());
+
+결과 : (쿼리가 2개 날아가지 않음 즉, comment 조회, post 조회 X) 이미 코멘트를 조회할 때 fetch로 post에 대한 내용도 같이 가져왔기 때문에 쿼리는 하나 날아가고 둘다 출력 가능.
+
+Hibernate: 
+    select
+        comment0_.id as id1_1_0_,
+        comment0_.comment as comment2_1_0_,
+        comment0_.post_id as post_id3_1_0_,
+        post1_.id as id1_2_1_,
+        post1_.title as title2_2_1_ 
+    from
+        comment comment0_ 
+    left outer join
+        post post1_ 
+            on comment0_.post_id=post1_.id 
+    where
+        comment0_.id=?
+```
+
+- 어떻게 잘 조정하느냐에 따라 성능에 영향을 준다.

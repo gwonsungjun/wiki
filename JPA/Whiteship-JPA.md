@@ -425,3 +425,57 @@ Hibernate:
 ```
 
 - 어떻게 잘 조정하느냐에 따라 성능에 영향을 준다.
+
+
+### 10. JPA 프로그래밍 : Query
+- JPQL (HQL)
+    - Java Persistence Query Language / Hibernate Query Language
+    - `데이터베이스 테이블이 아닌, 엔티티 객체 모델 기반(기준)`으로 쿼리 작성
+    - JPA 또는 하이버네이트가 해당 쿼리를 SQL로 변환해서 실행함.
+    - DB에 독립적 JPQL(HQL) -> SQL 
+    - 단점 : 타입 세이프하지 않다 (`SELECT p FROM Post As p` 문자열 이기 때문에 얼마든지 오타가 발생할 수 있다.)
+    - [레퍼런스 참조](https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#hql)
+
+```java
+TypedQuery<Post> query = entityManager.createQuery("SELECT p FROM Post As p", Post.class);
+        List<Post> posts = query.getResultList();
+        posts.forEach(System.out::println)
+
+Post는 Entity 이름(테이블 이름 x)
+```
+
+#### ※ Hibernate 사용 시 무슨 쿼리를 발생시키는지, 내가 의도한건지 확인하는 습관 중요하다.
+
+- Criteria
+    - 타입 세이프 쿼리 (문자열이 하나도 안들어감.)
+    - [레퍼런스 참조](https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#criteria)
+
+```java
+CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+CriteriaQuery<Post> criteria = builder.createQuery(Post.class);
+Root<Post> root = criteria.from(Post.class);
+criteria.select(root);
+List<Post> posts = entityManager.createQuery(criteria).getResultList();
+posts.forEach(System.out::println)
+```
+
+- Named Query
+    - Mybatis와 유사.
+
+```java
+entityManager.createNamedQuery("all_post", Post.class);
+
+NamedQuery를 Entitiy위에 정의 필요.
+@NamedQueries ...
+```
+
+- Native Query
+    - SQL 쿼리 실행하기.
+    - [레퍼런스 참조](https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#sql)
+
+```java
+List<Post> posts = entityManager
+                .createNativeQuery("SELECT * FROM Post", Post.class)
+                .getResultList();
+```
+

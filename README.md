@@ -92,6 +92,9 @@
 ### Network
 - [네트워크 기초 용어 정리](Network/Network-basic.md)
 
+### Nginx
+- [Nginx 기초](Nginx/Nginx.md)
+
 ### Non-develpment - 개발 외적인 것들
 - [강원국.백승권의 글쓰기바이블 | 1. 누구나 쓸 수 있다.](Non-development/Writing-Bible/1-Anyone-can-write.md)
 - [강원국.백승권의 글쓰기바이블 | 2. 두려움을 극복하자.](Non-development/Writing-Bible/2-Let's-overcome-fear.md)

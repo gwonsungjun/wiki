@@ -90,7 +90,7 @@ accountRepository.save(account);
 
 ### 3. ORM : 패러다임 불일치
 - 객체를 릴레이션에 맵핑하려니 발생하는 문제들을 아래 나열
-- 패러다임 불일치의 문제(아래 나열한 문제, 즉 둘 사이 갭이 큼)들을 줄이고 호환이 가능하도록 노력하고 있는 것이 ORM. 따라서 조금 어렵고 학습 비용이 비싸다.
+- `패러다임 불일치의 문제(아래 나열한 문제, 즉 둘 사이 갭이 큼)들을 줄이고 호환이 가능하도록 노력하고 있는 것이 ORM`. 따라서 조금 어렵고 학습 비용이 비싸다.
 
 #### 밀도(Graularity) 문제
 
@@ -444,8 +444,6 @@ TypedQuery<Post> query = entityManager.createQuery("SELECT p FROM Post As p", Po
 Post는 Entity 이름(테이블 이름 x)
 ```
 
-#### ※ Hibernate 사용 시 무슨 쿼리를 발생시키는지, 내가 의도한건지 확인하는 습관 중요하다.
-
 - Criteria
     - 타입 세이프 쿼리 (문자열이 하나도 안들어감.)
     - [레퍼런스 참조](https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#criteria)
@@ -479,3 +477,71 @@ List<Post> posts = entityManager
                 .getResultList();
 ```
 
+### 11. 스프링 데이터 JPA 소개 및 원리
+
+```java
+@Repository
+@Transactional
+public class PostRepository {
+
+    @PersistenceContext
+    EntityManager entityManager;
+
+    public Post add(Post post) {
+        entityManager.persist(post);
+        return post;
+    }
+
+    public void delete(Post post) {
+        entityManager.remove(post);
+    }
+
+    public List<Post> findAll() {
+        return entityManager.createQuery("SELECT p FROM Post AS p", Post.class)
+                .getResultList();
+    }
+}
+
+```
+
+- 위의 Repository class와 같이 직접 만들어 쓸 수 있지만 매번 너무 뻔한 코드들을 작성해야 하므로 CRUD operation들을 제공해주는 JpaRepository를 상속받는 interface를 생성해서 사용한다.
+
+```java
+public interface PostRepository extends JpaRepository<Post, Long> {}
+```
+
+- JpaRepository<Entity, id> 인터페이스
+    - 매직 인터페이스
+    - @Repository가 없어도 빈으로 등록해 줌.
+    - 코드 자체가 줄어드므로 개발 생산성, 유지 보수성 ↑
+- @EnableJpaRepositories
+    - 매직의 시작은 여기서 부터
+    - 원래는 @configuration 클래스에 붙여야하나 스프링부트는 자동 설정을 해줌.
+- 매직은 어떻게 이뤄지나?
+    - @EnableJpaRepositories -> @import(JpaRepositoriesRegistrar.class)
+        - 시작은 @import(JpaRepositoriesRegistrar.class)
+    - 핵심은 ImportBeanDefinitionRegistrar 인터페이스
+        - Bean을 프로그래밍을 통해 등록할 수 있게끔 해준다.
+        - 프로그래밍을 통해서 JpaRepository를 상속받은 모든 interface를 찾아서 이 interface 타입의 빈을 만들어서 등록해줄 수 있다는 뜻.
+
+#### ※ Hibernate 사용 시 무슨 쿼리를 발생시키는지, 내가 의도한건지 확인하는 습관 중요하다. 확인 후 꼭 튜닝 필요! 튜닝하지 않을 거면 하이버베이트를 쓰면 안된다.
+- 팁
+    - logging.level.org.hibernate.SQL=debug (=spring.jpa.show-sql=true)
+    - logging.level.org.hibernate.type.descriptor.sql=trace (물음표(?)로 가려지는 값을 보여줌.)
+
+## 2부 : 스프링 데이터 JPA 활용
+
+### 1. 스프링 데이터 JPA 활용 파트 소개
+- 스프링 데이터란 하나의 프로젝트가 아닌 여러개의 프로젝트 묶음을 지칭하는 말
+- 그 중 스프링 데이터 JPA를 학습 할 예정
+
+ ![springdatajpa](/images/springdatajpa.PNG)
+
+project | description 
+---|---
+스프링 데이터 | SQL & NoSQL 저장소 지원 프로젝트의 묶음.
+스프링 데이터 Common | 여러 저장소 지원 프로젝트의 공통 기능 제공.
+스프링 데이터 REST | 저장소의 데이터를 하이퍼미디어 기반 HTTP 리소스로(REST API로) 제공하는 프로젝트.
+스프링 데이터 JPA | 스프링 데이터 Common이 제공하는 기능에 JPA 관련 기능 추가.
+
+- 스프링 데이터 Common : repository를 생성해서 Bean으로 등록하는 방법, 쿼리 메소드를 만드는 기본 메카니즘 등이 들어있다.

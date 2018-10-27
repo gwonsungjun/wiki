@@ -126,6 +126,7 @@
 - [Spring Transaction](Spring/SpringTransaction.md)
 - [Spring , static content 인식](Spring/Spring-static-content-recognition.md)
 - [Spring 삼각형과 설정 정보](Spring/Spring_triangle_and_configuration_information.md)
+- [백기선의 스프링 프레임워크 입문 강의 정리](Spring/Whiteship-spring.md)
 
 ### Spring Boot
 - [백기선의 Spring Boot](Spring/Spring-Boot/Whiteship-springboot.md)

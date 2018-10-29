@@ -545,3 +545,12 @@ project | description
 스프링 데이터 JPA | 스프링 데이터 Common이 제공하는 기능에 JPA 관련 기능 추가.
 
 - 스프링 데이터 Common : repository를 생성해서 Bean으로 등록하는 방법, 쿼리 메소드를 만드는 기본 메카니즘 등이 들어있다.
+
+### 2. 스프링 데이터 Commone : Repository
+
+![jpa_repository](/images/jpa_repository.PNG)
+
+- Repository : Marker interface, 기능을 가지진 않음.
+- CrudRepository : 기본적으로 save, saveAll, findById, existById, findAll, findAllById, count, deletById ... , 기본적인 crud operation 제공
+- PagingAndSortingRepository : findAll(Pageable pageable) 많이 사용
+- JpaRepository : 쿼리메소드 생성 가능.

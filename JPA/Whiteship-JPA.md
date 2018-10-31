@@ -546,7 +546,7 @@ project | description
 
 - 스프링 데이터 Common : repository를 생성해서 Bean으로 등록하는 방법, 쿼리 메소드를 만드는 기본 메카니즘 등이 들어있다.
 
-### 2. 스프링 데이터 Commone : Repository
+### 2. 스프링 데이터 Common : Repository
 
 ![jpa_repository](/images/jpa_repository.PNG)
 
@@ -554,3 +554,99 @@ project | description
 - CrudRepository : 기본적으로 save, saveAll, findById, existById, findAll, findAllById, count, deletById ... , 기본적인 crud operation 제공
 - PagingAndSortingRepository : findAll(Pageable pageable) 많이 사용
 - JpaRepository : 쿼리메소드 생성 가능.
+
+### 3. 스프링 데이터 Common : Repository 인터페이스 정의하기
+- Repository 인터페이스로 공개할 메소드를 직접 일일히 정의하고 싶다면
+
+- 특정 리포지토리 당
+    - @RepositoryDefinition
+        - 제공하고 싶은 기능들만 정의 (2개의 기능만 제공)
+        - 각 엔티티마다 아래의 기능들이 필요하다면 Repository를 또 정의해야함. -> 공통으로 사용할 repository 정의 가능 : @NoRepositoryBean
+
+```java
+@RepositoryDefinition(domainClass = Comment.class, idClass = Long.class) // Bean 등록
+public interface CommentRepository {
+
+    Comment save(Comment comment); // 메소드에 해당하는 기능을 구현 해줌.
+
+    List<Comment> findAll();
+    
+}
+```
+
+- 공통 인터페이스 정의
+    - @NoRepositoryBean
+    - 위의 CommentRepository에서 정의한 메소드는 지우고 아래 MyRepository를 상속받아서 사용하면 된다.
+
+```java
+@NoRepositoryBean
+public interface MyRepository<T, ID extends Serializable> extends Repository<T, ID> {
+
+    <E extends T> E save(E entity);
+
+    List<T> findAll();
+
+}
+```
+
+### 4. 스프링 데이터 Common : Null 처리하기
+
+- 스프링 데이터 2.0 부터 자바 8의 Optional 지원.
+    - `Optional<Post> findById(Long id);`
+        - `<E extends  T> Optional<E> fidById(Id id);`
+- 콜렉션은 Null을 리턴하지 않고, 비어있는 콜렉션을 리턴.
+    - 단일값은 Null을 리턴할 수 있음.
+    - 스프링 데이터 JPA의 특징이다.
+        - 스프링 데이터 JPA가 지원하는 Repository의 콜렉션들은 Null 리턴 X, 비어있는 콜렉션 리턴.
+        - 따라서 콜렉션은 Null 체크해봤자 필요가 없음! (무조건 Null이 아니기 때문에)
+- 스프링 프레임워크 5.0부터 지원하는 Null 애노테이션 지원.
+    - @NonNullApi(pakage-info.java를 통해 패키지 전역에 설정), @NonNull, @Nullable.
+    - 런타임 체크 지원 함.(런타임시 null 여부를 자동으로 체크하는 코드를 심는다고 생각)
+    - JSR 305 애노테이션을 메타 애노테이션으로 가지고 있음. 
+        - 인텔리제이에서는 아직 스프링이 지원하는 Null 애노테이션을 잘 모르는 것 같음. 따라서 명시적으로 추가하면 코딩할 때 힌트를 받을 수 있다.
+- 인텔리J 설정(을 통해 Tool 지원받기.)
+    - (1) settings에서 runtime assertion 검색 & CONFIGURE ANNOTATIONS... 선택
+        - ![springdataNull](/images/springdataNull.PNG)
+    - (2) 위는 Nullable 아래는 NotNull
+        - Nuallable에 spring Nullable 추가, Notnull에 spring NonNull 추가
+        - ![springdataNull2](/images/springdataNull2.PNG)
+    - (3) 적용을 위해 Restart
+
+### 5. 스프링 데이터 Common : 쿼리 만들기 개요
+
+#### 스프링 데이터 저장소의 메소드 이름으로 쿼리 만드는 방법
+
+- 메소드 이름을 분석해서 쿼리 만들기 (CREATE)
+     - 메소드 이름을 분석해서 스프링 데이터 JPA가 직접 쿼리를 만들어줌
+        - `List<Comment> findByTitleContains(String keyword);`
+- 미리 정의해 둔 쿼리 찾아 사용하기 (USE_DECLARED_QUERY)
+    - 메소드에 붙어있는 부가적인 정보 (annotation)를 찾아서 실행해줌.
+        - `@Query("SELECT c FROM Comment AS c")` : 기본 값 JPQL
+        - natriveQuery = true 속성을 추가하면 SQL 
+- 미리 정의한 쿼리 찾아보고 없으면 만들기 (CREATE_IF_NOT_FOUND)
+    - 위의 2개를 합친 것으로 기본값. 미리 정의한 쿼리가 있으면 먼저 사용.
+    - @EnableJpaRepositories(queryLookupStrategy = QueryLookUpStrategy.Key.CREATE_IF_NOT_FOUND)
+
+#### 쿼리를 만드는 방법
+- `리턴타입 {접두어}{도입부}By{프로퍼티 표현식}(조건식)[(And|Or){프로퍼티 표현식}(조건식)]{정렬 조건} (매개변수)`
+- 만든 쿼리가 맞는지 확인하려면 실행해보면 됨
+    - 빈을 만들떄 쿼리까지 만들기 때문에 만든 쿼리가 맞지 않다면 에러
+
+식|예
+---|---
+접두어|Find, Get, Query, Count, ...
+도입부|Distinct, First(N), Top(N)
+프로퍼티 표현식|Person.Address.ZipCode => find(Person)ByAddress_ZipCode(...)
+조건식|IgnoreCase, Between, LessThan, GreaterThan, Like, Contains, ...
+정렬 조건|OrderBy{프로퍼티}Asc|Desc
+리턴 타입|E, Optional<E>, List<E>, Page<E>, Slice<E>, Stream<E>
+매개변수|Pageable, Sort
+
+#### 쿼리 찾는 방법
+- 메소드 이름으로 쿼리를 표현하기 힘든 경우에 사용.
+- 저장소 기술에 따라 다름.
+- JPA: @Query @NamedQuery
+
+
+### 6. 스프링 데이터 Common : 쿼리 만들기 실습
+

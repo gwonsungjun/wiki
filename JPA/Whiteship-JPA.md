@@ -676,3 +676,27 @@ public interface MyRepository<T, ID extends Serializable> extends Repository<T, 
 - 스트리밍
     - Stream<User> readAllByFirstnameNotNull();
         - `try-with-resource 사용할 것. (Stream을 다 쓴다음에 close() 해야 함)`
+
+### 7. 스프링 데이터 Common : 비동기 쿼리
+- 비동기 쿼리
+    - @Async Future<User> findByFirstname(String firstname);
+        - java5에 등장
+        - `future.get();` : 결과가 나올때 까지 기다림
+        - `futrue.isDone();` : 결과가 나왔는지 확인 
+    - @Async CompletableFuture<User> findOneByFirstname(String firstname); 
+        - java8에 등장
+    - @Async ListenableFuture<User> findOneByLastname(String lastname); 
+        - 스프링에서 만든 것으로 젤 깔끔한 API
+        - 해당 메소드를 스프링 TaskExecutor에 전달해서 별도의 쓰레드에서 실행함. Reactive랑은 다른 것임
+        - `future.addCallback();`
+- @Async 사용하려면 @EnableAsync를 main class에 붙여야함. (권장 X)
+
+#### 권장하지 않는 이유
+- 테스트 코드 작성이 어려움.
+- 코드 복잡도 증가.
+- 성능상 이득이 없음. 
+    - DB 부하는 결국 같고.
+    - 메인 쓰레드 대신 백드라운드 쓰레드가 일하는 정도의 차이.
+    - 단, 백그라운드로 실행하고 결과를 받을 필요가 없는 작업이라면 @Async를 사용해서 응답 속도를 향상 시킬 수는 있다.
+- 성능 최적화는...
+    - SQL 데이터베이스에 쿼리하는 쿼리 갯수를 줄이고 필요로 하는 데이터를 필요한 만큼만 가져오는 게 최고의 성능 튜닝.

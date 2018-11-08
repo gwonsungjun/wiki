@@ -82,15 +82,13 @@ class OwnerControllerTest {
     - 생성자
 - @Autowired / @Inject를 어디에 붙일까?
     - 생성자
-        - 단일 생성자의 경우 필요 @Autowired 붙이지 않아도됨.(스프링 4.3 이후 부터)
+        - 단일 생성자의 경우 @Autowired 붙이지 않아도됨.(스프링 4.3 이후 부터)
+        - 어떤 빈이 되는 클래스에 생성자가 오로지 하나만 있고 그 생성자의 매개변수 타입이 빈으로 등록되어 있다면 그 빈을 주입해준다. Autowired/Inject가 없더라도.
     - 필드
     - Setter
         - Setter가 있다면 Setter에 붙이고 없다면 필드에 붙인다.
-- 생성자
-    - 어떤 빈이 되는 클래스에 생성자가 오로지 하나만 있고 그 생성자의 매개변수 타입이 빈으로 등록되어 있다면 그 빈을 주입해준다. Autowired/Inject가 없더라도.
 - 장점 : 테스트 하기 쉬워진다.
     - MockBean을 통하여 주입받아서 사용 가능해진다.
-
 
 ## AOP(Aspect Oriented Programming)
 

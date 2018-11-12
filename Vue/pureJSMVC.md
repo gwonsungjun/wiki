@@ -35,3 +35,13 @@
 - cd 1-vanilla
 - liteserver 입력
 ```
+
+## Vue.js (MVVM)
+
+### MVVM
+- View Model : Model과 View 사이 위치. Model로 부터 데이터를 가져오는데 그 데이터는 view에 적합한 데이터로 가공됨. view model이 변경될떄마다 자동으로 연결되어있는 view 화면에 반영.
+- 하나의 view에는 하나의 view model 매칭
+
+### vue
+- v-model : 양방향 바인딩 지원
+- v-on : 돔에서 일어나는 이벤트를 listen

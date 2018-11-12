@@ -700,3 +700,19 @@ public interface MyRepository<T, ID extends Serializable> extends Repository<T, 
     - 단, 백그라운드로 실행하고 결과를 받을 필요가 없는 작업이라면 @Async를 사용해서 응답 속도를 향상 시킬 수는 있다.
 - 성능 최적화는...
     - SQL 데이터베이스에 쿼리하는 쿼리 갯수를 줄이고 필요로 하는 데이터를 필요한 만큼만 가져오는 게 최고의 성능 튜닝.
+
+### 8. 스프링 데이터 Common : 커스텀 리포지토리 만들기
+
+- 쿼리 메소드(쿼리 생성과 쿼리 찾아쓰기)로 해결이 되지 않는 경우 직접 코딩으로 구현 가능.
+    - 기능 추가하기
+        - 커스텀 리포지토리 인터페이스 정의 (POJO, 독립 적인 interface)
+        - 인터페이스 구현 클래스 만들기 (기본 접미어는 Impl, 네이밍 컨벤션)
+        - 엔티티 리포지토리에 커스텀 리포지토리 인터페이스 추가 (extends)
+    - 기본 기능 덮어쓰기 (스프링 데이터 리포지토리 기본 기능 덮어쓰기 가능.)
+        - spring data jpa가 제공하는 기본 기능이 마음에 안들 때.
+        - 기본 기능 제공하는 메소드를 가져와서 커스텀 리포지토리(내가 만든 interface)에 재정의, 즉 붙여 넣는다. 
+            - JPA Repository와 내가 만든 interface간에 중복이 발생한다. 하지만 스프링 데이터 jpa는 항상 내가 custom하게 구현한 구현체를 우선순위 높게 준다.
+        - 구현 클래스 생성 및 엔티티 레포지토리에 커스텀 인터페이스 추가
+    - 접미어 설정하기
+        - SpringbootApplication class에 @EnableJpaRepositories(repositoryImplementationPostfix = "default") 어노테이션 설정, 기본 값은 impl
+        - 커스텀 리포지토리 ex) PostCustomRepositoryimpl -> PostCustomRepositorydafault로 사용 가능.

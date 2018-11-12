@@ -716,3 +716,54 @@ public interface MyRepository<T, ID extends Serializable> extends Repository<T, 
     - 접미어 설정하기
         - SpringbootApplication class에 @EnableJpaRepositories(repositoryImplementationPostfix = "default") 어노테이션 설정, 기본 값은 impl
         - 커스텀 리포지토리 ex) PostCustomRepositoryimpl -> PostCustomRepositorydafault로 사용 가능.
+
+### 9. 스프링 데이터 Common : 기본 리포지토리 커스터마이징
+
+-` 모든 리포지토리에 공통적으로 추가하고 싶은 기능이 있거나 덮어쓰고 싶은(오버라이딩) 기본 기능이 있다면`
+- 구현 방법
+    - (1) JpaRepository를 상속 받는 인터페이스 정의
+        - @NoRepositoryBean (중간에 사용되는 Repository는 꼭 추가 해줘야함.)
+    - (2) 기본 구현체를 상속 받는 커스텀 구현체 만들기
+    - (3) @EnableJpaRepositories에 설정
+        - repositoryBaseClass
+
+```java
+@NoRepositoryBean
+public interface MyRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
+
+    boolean contains(T entity);
+
+}
+```
+
+- SimpleJpaRepository : 스프링 데이터 JPA가 제공해주는 가장 밑단의 많은 기능을 가지고 있는 클래스
+
+```java
+public class SimpleMyRepository<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements MyRepository<T, ID> {
+
+    private EntityManager entityManager;
+
+    // 생성자 추가 꼭 필요 (SimpleMyRepository super 호출 할 때 2개의 인자 전달 해줘야 하므로)
+    public SimpleMyRepository(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
+        super(entityInformation, entityManager);
+        this.entityManager = entityManager;
+    }
+
+    @Override
+    public boolean contains(T entity) {
+        return entityManager.contains(entity); // PersistContext에 있는지 확인만
+    }
+}
+```
+
+```java
+@EnableJpaRepositories(repositoryBaseClass = SimpleMyRepository.class)
+public interface PostRepository extends MyRepository<Post, Long> {
+}
+```
+
+```java
+// 상속받아서 사용
+public interface PostRepository extends MyRepository<Post, Long> {
+}
+```

@@ -771,19 +771,19 @@ public interface PostRepository extends MyRepository<Post, Long> {
 ### 10. 스프링 데이터 Common : 도메인 이벤트
 
 - Domain Event : 도메인(Entity) 클래스의 변화를 이벤트로 발생시키고 이벤트를 리슨하는 이벤트 리스너가 도메인 클래스의 변화를 감지가능하는 즉, 이벤트 기반의 프로그래밍이 가능하도록함.
-- 도메인 관련 이벤트를 발생시키기
 
 #### 스프링 프레임워크의 이벤트 관련 기능
 - 스프링에는 이벤트 발생, 리스닝 하는 기능이 이미 내재되어 있다.
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-functionality-events
 - ApplicationContext extends ApplicationEventPublisher
     - 모든 ApplicationContext는 단순한 Bean Factory 이상
+        - application.publishEvent();
 - 이벤트 : extends ApplicationEvent
     - 이벤트를 발생시키는 클래스에 ApplicationEvent를 상속받아서 생성
 - 리스너
     - implements ApplicationListener<E extends ApplicationEvent>
         - onApplicationEvnet : override
-    - (메소드에) @EventListener
+    - (메소드에) @EventListener 
 
 #### 스프링 데이터의 도메인 이벤트 Publisher
 - 스프링 데이터에서는 이벤트 자동 Publishing 기능을 해준다.
@@ -797,4 +797,3 @@ public interface PostRepository extends MyRepository<Post, Long> {
     - 스프링 프레임워크 이벤트 관련 기능 처럼 이벤트를 직접 만들고 받을 필요 없이 save할 때 이벤트를 만들어서 넣기만 하면 된다.
     - AbstractAggregationRoot에서 registerEvent 제공 (`this.registerEvent(이벤트를 만들어서 넣음)`)
         - save할때 자동으로 aggregate(root)안에 있던 @DomainEvents를 발생시킴
-- 현재는 save() 할 때만 발생 합니다.

@@ -767,3 +767,34 @@ public interface PostRepository extends MyRepository<Post, Long> {
 public interface PostRepository extends MyRepository<Post, Long> {
 }
 ```
+
+### 10. 스프링 데이터 Common : QueryDSL 연동
+
+
+### 11. 스프링 데이터 Common : 웹 기능 1부 소개
+
+- 스프링 데이터 웹 지원 기능 설정
+    - 스프링 부트를 사용하는 경우에.. 설정할 것이 없음. (자동 설정)
+    - 스프링 부트 사용하지 않는 경우?
+    
+    ```java
+    @Configuration
+    @EnableWebMvc
+    @EnableSpringDataWebSupport
+    class WebConfiguration {}
+    ```
+    
+- 제공하는 기능
+    - 도메인 클래스 컨버터
+        - @PathVariable, @RequestParam으로 들어오는 값을 바로 도메인으로 변환을 받아서 파라매터로 받을 수 있다.
+    - @RequestHandler 메소드에서 Pageable과 Sort 매개변수 사용.
+        - pageable, sort로 바인딩.
+    - Page 관련 HATEOAS 기능 제공
+        - PagedResourcesAssembler
+            - toResource 메소드 사용
+        - PagedResoure
+    - Payload 프로젝션
+        - 요청으로 들어오는 데이터 중 일부만 바인딩 받아오기
+        - @ProjectedPayload, @XBRead, @JsonPath
+    - 요청 쿼리 매개변수를 QueryDSLdml Predicate로 받아오기
+        - ?firstname=Mr&lastname=White => Predicate

@@ -799,6 +799,89 @@ public interface PostRepository extends MyRepository<Post, Long> {
         - save할때 자동으로 aggregate(root)안에 있던 @DomainEvents를 발생시킴
 
 ### 11. 스프링 데이터 Common : QueryDSL 연동
+- findByFirstNameIngoreCaseAndLastNameStartsWithIgnoreCase(String firstName, String lastName) 
+    - 조건이 많아질 수록 이러한 메소드를 계속 만들어야하는데 복잡하다.
+    - 이 정도 되면 그냥 한글로 주석을 달아 두시는게...
+
+#### 여러 쿼리 메소드는 대부분 두 가지 중 하나.
+
+- Optional<T> findOne(**Predicate**): 이런 저런 조건으로 무언가 하나를 찾는다.
+- List<T>|Page<T>|.. findAll(**Predicate**): 이런 저런 조건으로 무언가 여러개를 찾는다.
+- [QuerydslPredicateExecutor 인터페이스](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/querydsl/QuerydslPredicateExecutor.html)
+    - Spring data에서 제공
+
+#### QueryDSL
+
+- http://www.querydsl.com/
+- 타입 세이프한 쿼리 만들 수 있게 도와주는 라이브러리(자바 코드로 조건문 표현 가능)
+- JPA, SQL, MongoDB, JDO, Lucene, Collections 지원
+    - JPA에 독립적
+- QueryDSL JPA 연동 가이드
+
+#### 스프링 데이터 JPA + QueryDSL
+- 인터페이스: QuerydslPredicateExecutor<T>
+- 구현체: QuerydslPredicateExecutor<T>
+
+#### 연동 방법 : 기본 리포지토리 커스터마이징 안 했을 때. (쉬움)
+
+- 의존성 추가
+```xml
+<dependency>
+    <groupId>com.querydsl</groupId>
+    <artifactId>querydsl-apt</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.querydsl</groupId>
+    <artifactId>querydsl-jpa</artifactId>
+</dependency>
+```
+```xml
+<plugin>
+    <groupId>com.mysema.maven</groupId>
+    <artifactId>apt-maven-plugin</artifactId>
+    <version>1.1.3</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>process</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>target/generated-sources/java</outputDirectory>
+                </processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+- 의존성을 추가하고 Maven Lifecycle - compile을 실행하면 generated-sources/java 해당 엔티티의 쿼리 랭귀지를 만들어준다.
+- 소스에서 예를들어 Account 엔티티이면 QAccount라고 입력했을때 정상적으로 동작해야함
+    - 제대로 되지않으면 Project Structure에 Module에 가서 target의 generated-sources 밑의 java 디렉토리가 Sources 디렉토리로 설정되어 있어야한다.
+
+```java
+# QuerydslPredicateExecutor 상속
+
+public interface AccountRepository extends JpaRepository<Account, Long>, QuerydslPredicateExecutor<Account> {
+}
+```
+
+```java
+@Test
+public void crud() {
+    QAccount account = QAccount.account;
+    Predicate predicate = account
+                            .firstName.containsIgnoreCase("keesun")
+                            .and(account.lastName.startsWith("baik"))
+
+    Optional<Account> ont = accountRepository.findOne(predicate);
+    assertThat(one).isEmpty();
+}
+```
+
+#### 연동 방법 : 기본 리포지토리 커스타마이징 했을 때.
+- 기본 연동 방법은 위와 같고
+- 우리가 만든 커스텀 리포지토리에서 SimpleJpaRepository 대신 `QuerydslJpaRepository`를 상속 받도록 한다.
+    - QuerydslJpaRepository가 SimpleJpaRepository를 상속 받아서 QuerydslPredicateExecutor Interface가 제공하는 기능을 추가로 다 구현해놨다.
+    - SimpleJpaRepository를 사용하면 QuerydslPredicateExecutor를 구현한 내용이 아무것도 없으므로 에러가 난다.
 
 
 ### 12. 스프링 데이터 Common : 웹 기능 1부 소개

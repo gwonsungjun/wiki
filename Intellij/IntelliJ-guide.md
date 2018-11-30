@@ -41,7 +41,7 @@
 
 ### 코드 즉시보기
 - 인자값 즉시 보기 : `Ctrl + P (Mac: Command + P)`
-- 코드 구현부 즉시 보기 : `Shift + Ctrl + I (Mac: Alt + Space)`
+- 코드 구현부 즉시 보기 : `Shift + Ctrl + I (Mac: Alt + Space, Coomand + Y)`
     - 클래스, 생성자, 메소드 등에 직접 들어가지 않아도 구현을 볼 수 있다.
     - 자바뿐만 아니라  html -> js, css 호출 시 호출하는 다른 정적파일도 미리보기 가능하다.
 - Doc 즉시 보기 : `Ctrl + Q (Mac: F1)`

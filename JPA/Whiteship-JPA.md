@@ -847,7 +847,7 @@ public interface PostRepository extends MyRepository<Post, Long> {
             </goals>
             <configuration>
                 <outputDirectory>target/generated-sources/java</outputDirectory>
-                </processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
             </configuration>
         </execution>
     </executions>

@@ -60,7 +60,7 @@
 
 ### JAVA
 - [자바 기초 정리](Java/javaBasic.md)
-- [JAVA 8 lambda](Java/java8.md)
+- [JAVA 8 lambda](Java/java8_lambda.md)
 - [Logback](Java/logback.md)
 - [Servlet & JSP 기초 정리](Java/servletsAndJsp.md)
 - [스프링 입문을 위한 자바 객체 지향의 원리와 이해](Java/Principles_and_understanding_of_Java_object_orientation.md)

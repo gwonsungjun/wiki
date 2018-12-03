@@ -129,7 +129,7 @@ $ git merge version2
 
 ## 6. 이전 커밋으로 되돌리기(reset)
 - 소스트리의 `이 커밋까지 현재 브랜치를 초기화(Reset current branch to this commit)`버튼 
-- `git reset --hard` 에 해당하는 명령으로 커밋을 되돌리기 (soft, mixed는 개별적으로 알아보기)
+- `git reset --hard [commit hash 값]` 에 해당하는 명령으로 커밋을 되돌리기 (soft, mixed는 개별적으로 알아보기)
     - 원격 저장소에 올려져 있지 않은 이전 커밋은 사라짐
 - reset 이후 push는 force 옵션을 선택해야 함
     - 원격저장소에 저장된 이전 커밋 사라짐

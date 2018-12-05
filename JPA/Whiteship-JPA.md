@@ -975,3 +975,106 @@ public void getPosts() throws Exception {
             .andExpect(status().isOk());
 }
 ```
+
+### 15. 스프링 데이터 Common : 웹 기능 4부 - HATEOAS
+- Page를 PagedResource로 변환하기
+    - 일단 HATEOAS 의존성 추가 (starter-hateoas)
+    
+    ```xml
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-hateoas</artifactId>
+    </dependency>
+    ```
+    
+    - 핸들러 매개변수로 PagedResourcesAssembler
+        - 예) PagedResourcesAssembler<Post> assembler - 엔티티 타입의 Resource를 만들어 준다.
+    
+    ```java
+    @GetMapping("/posts")
+    public PagedResources<Resource<Post>> getPosts(Pageable pageable, PagedResourcesAssembler<Post> assembler) {
+        return assembler.toResource(posts.findAll(pageable));
+    }
+    ```
+    
+- 리소스로 변환하기 전
+
+```json
+{  
+   "content":[  
+...
+      {  
+         "id":111,
+         "title":"jpa",
+         "created":null
+      }
+   ],
+   "pageable":{  
+      "sort":{  
+         "sorted":true,
+         "unsorted":false
+      },
+      "offset":20,
+      "pageSize":10,
+      "pageNumber":2,
+      "unpaged":false,
+      "paged":true
+   },
+   "totalElements":200,
+   "totalPages":20,
+   "last":false,
+   "size":10,
+   "number":2,
+   "first":false,
+   "numberOfElements":10,
+   "sort":{  
+      "sorted":true,
+      "unsorted":false
+   }
+}
+```
+
+- 리소스로 변환한 뒤
+
+```json
+{  
+   "_embedded":{  
+      "postList":[  
+         {  
+            "id":140,
+            "title":"jpa",
+            "created":null
+         },
+...
+         {  
+            "id":109,
+            "title":"jpa",
+            "created":null
+         }
+      ]
+   },
+   "_links":{  
+      "first":{  
+         "href":"http://localhost/posts?page=0&size=10&sort=created,desc&sort=title,asc"
+      },
+      "prev":{  
+         "href":"http://localhost/posts?page=1&size=10&sort=created,desc&sort=title,asc"
+      },
+      "self":{  
+         "href":"http://localhost/posts?page=2&size=10&sort=created,desc&sort=title,asc"
+      },
+      "next":{  
+         "href":"http://localhost/posts?page=3&size=10&sort=created,desc&sort=title,asc"
+      },
+      "last":{  
+         "href":"http://localhost/posts?page=19&size=10&sort=created,desc&sort=title,asc"
+      }
+   },
+   "page":{  
+      "size":10,
+      "totalElements":200,
+      "totalPages":20,
+      "number":2
+   }
+}
+```

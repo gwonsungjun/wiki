@@ -884,7 +884,7 @@ public void crud() {
     - SimpleJpaRepository를 사용하면 QuerydslPredicateExecutor를 구현한 내용이 아무것도 없으므로 에러가 난다.
 
 
-### 12. 스프링 데이터 Common : 웹 기능 1부 소개
+### 12. 스프링 데이터 Common : 웹 기능 1부 - 소개
 
 - 스프링 데이터 웹 지원 기능 설정
     - 스프링 부트를 사용하는 경우에.. 설정할 것이 없음. (자동 설정)
@@ -911,3 +911,67 @@ public void crud() {
         - @ProjectedPayload, @XBRead, @JsonPath
     - 요청 쿼리 매개변수를 QueryDSLdml Predicate로 받아오기
         - ?firstname=Mr&lastname=White => Predicate
+        
+### 13. 스프링 데이터 Common : 웹 기능 2부 - DomainClassConverter
+
+- 스프링 Converter
+  - <https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/convert/converter/Converter.html>
+  - 어떠한 하나의 타입을 다른 타입으로 변환하는 인터페이스
+  - spirng data common : DomainClassconverter
+    - Long -> Entity
+- Formatter도 들어 본 것 같은데...
+    - 미묘하게 다르다.
+    - 차이는 Formatter는 문자열 기반
+    - 무조건 시작은 문자열 String
+    - String을 어떻게 다른 타입으로 변환 할 것인가. (어떤 타입을 받았을 때 어떠한 문자열로 프린팅 할 것인가.)
+- 밑의 예시 중 위의 getAPost method를 아래 처럼 사용 가능
+    - Converting 시 Repository를 사용해서 id를 가지고 findById를 한다.
+    - 따라서 위의 postRepository.findById가 자동으로 일어남.
+    - @PathVariable("id") : 명시적으로 선언 필요
+  
+```java
+// 스프링 MVC의 데이터 바인더가 id를 Long 타입으로 변환 시켜줌(원래는 문자열로 들어온다.)
+@GetMapping("/posts/{id}")
+public String getAPost(@PathVariable Long id) {
+  Optional<Post> byId = postRepository.findById(id);
+  Post post = byId.get();
+  return post.getTitle();
+}
+```  
+
+```java
+// DomainClassConverter 동작.
+@GetMapping("/posts/{id}")
+public String getAPost(@PathVariable(“id”) Post post) {
+  return post.getTitle();
+}
+```
+
+### 14. 스프링 데이터 Common : 웹 기능 3부 - Pageable과 Sort 매개변수
+
+- 스프링 MVC HandlerMethodArgumentResolver
+    - 스프링 MVC 핸들러 메소드의 매개변수로 받을 수 있는 객체를 확장하고 싶을 때 사용하는 인터페이스
+    - <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/method/support/HandlerMethodArgumentResolver.html>
+
+- 페이징과 정렬 관련 매개변수
+    - page: 0부터 시작.
+    - size: 기본값 20.
+    - sort: property,property(,ASC|DESC)
+    - 예) sort=created,desc&sort=title (asc가 기본값)
+
+```java
+@Test
+public void getPosts() throws Exception {
+    Post post = new Post();
+    post.setTitle("jpa");
+    postRepository.save(post);
+
+    mockMvc.perform(get("/posts/")
+            .param("page", ":0")
+            .param("size", "10")
+            .param("sort", "created,desc")
+            .param("sort", "title"))
+            .andDo(print())
+            .andExpect(status().isOk());
+}
+```

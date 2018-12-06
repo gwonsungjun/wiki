@@ -1078,3 +1078,83 @@ public void getPosts() throws Exception {
    }
 }
 ```
+
+### 16. 스프링 데이터 Common : 정리
+
+#### 지금까지 살펴본 내용
+- 스프링 데이터 Repository
+- 쿼리 메소드
+    - 메소드 이름 보고 만들기
+    - 메소드 이름 보고 찾기
+- Repository 정의하기
+    - 내가 쓰고 싶은 메소드만 골라서 만들기
+    - Null 처리
+- 쿼리 메소드 정의하는 방법
+- 리포지토리 커스터마이징
+    - 리포지토리 하나 커스터마이징
+    - 모든 리포지토리의 베이스 커스터마이징
+- 도메인 이벤트 Publish
+- 스프링 데이터 확장 기능
+    - QueryDSL 연동
+    - 웹 지원
+
+### 17. 스프링 데이터 JPA 1. JpaRepository
+
+- @EnableJpaRepositories
+    - 스프링 부트 사용할 때는 사용하지 않아도 자동 설정 됨.
+    - 스프링 부트 사용하지 않을 때는 @Configuration과 같이 사용.
+- @Repository 애노테이션을 붙여야 하나 말아야 하나...
+    - 안붙여도 된다.
+    - 이미 붙어 있다. 또 붙인다고 별일이 생기는건 아니지만 중복일 뿐이다.
+        - 실제 구현체인 SimpleRepository에 이미 @Repository가 붙어 있다.
+- 스프링 @Repository 어노테이션을 붙이면 빈으로 등록된다는 장점이 있지만
+    - 이 외에 SQLExcpetion 또는 JPA 관련 예외를 스프링의 DataAccessException으로 변환 해준다. (SQLException은 상세하지 못함.)
+    - Spring Framework의 기능.
+
+### 18. 스프링 데이터 JPA 2. 엔티티 저장하기
+
+- JpaRepository의 save()는 단순히 새 엔티티를 추가하는 메소드가 아니다.
+    - Transient 상태의 객체라면 EntityManager.persist()
+        - Transient ? 새로 만들어진 객체여서 하이버네이트나 DB 둘다 아무도 모른다.
+    - Detached 상태의 객체라면 EntityManager.merge()
+        - Detached ? 한번이라도 DB에 persistent가 되었던 상태. 즉 이 객체는 아이디가 있다.
+- Transient인지 Detached 인지 어떻게 판단 하는가?
+    - 엔티티의 @Id 프로퍼티를 찾는다. 해당 프로퍼티가 null이면 Transient 상태로 판단하고 id가 null이 아니면 Detached 상태로 판단한다.
+    - 엔티티가 Persistable 인터페이스를 구현하고 있다면 isNew() 메소드에 위임한다.
+    - JpaRepositoryFactory를 상속받는 클래스를 만들고 getEntityInfomration()을 오버라이딩해서 자신이 원하는 판단 로직을 구현할 수도 있다.
+- EntityManager.persist()
+    - <https://docs.oracle.com/javaee/6/api/javax/persistence/EntityManager.html#persist(java.lang.Object)>
+    - Persist() 메소드에 넘긴 그 엔티티 객체를 Persistent 상태로 변경한다.
+    
+    ![persist](/images/jpa-persist.PNG)
+    
+- EntityManager.merge()
+    - <https://docs.oracle.com/javaee/6/api/javax/persistence/EntityManager.html#merge(java.lang.Object)>
+    - Merge() 메소드에 넘긴 그 엔티티의 **복사본**을 만들고, 그 복사본을 다시 Persistent 상태로 변경하고 그 복사본을 반환한다.
+
+    ![merge](/images/jpa-merge.PNG)
+
+#### Best Practice
+- save 명령 후 항상 리턴을 받고 리턴받은 인스턴스를 사용하라. **습관적으로.**
+    - 파라미터에 전달한 인스턴스를 사용하지마라.
+- Persist 상태의 객체를 사용해야 객체 상태의 변화를 추적하므로 업데이트가(반영) 된다.
+    
+```java
+@Test
+public void crud() {
+    Post post = new Post();
+    post.setTitle("jpa");
+    Post savedPost = postRepository.save(post); // persist
+
+    Post postUpdate = new Post();
+    postUpdate.setId(post.getId());
+    postUpdate.setTitle("hibernate");
+    Post updatedPost = postRepository.save(postUpdate); // merge
+    
+    postUpdate.setTitle("whiteship"); // X, 반영 안됨.
+    updatedPost.setTitle("whiteship"); // O, 내가 명시적으로 Update를 하라고 안알려줘도 알아서 감지 후 반영 
+  
+    List<Post> all = postRepository.findAll();
+    assertThat(all.size()).isEqualTo(1);
+}
+```

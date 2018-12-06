@@ -1126,13 +1126,13 @@ public void getPosts() throws Exception {
     - <https://docs.oracle.com/javaee/6/api/javax/persistence/EntityManager.html#persist(java.lang.Object)>
     - Persist() 메소드에 넘긴 그 엔티티 객체를 Persistent 상태로 변경한다.
     
-    ![persist](/images/jpa-persist.PNG)
+    ![persist](/images/jpa-persist.png)
     
 - EntityManager.merge()
     - <https://docs.oracle.com/javaee/6/api/javax/persistence/EntityManager.html#merge(java.lang.Object)>
     - Merge() 메소드에 넘긴 그 엔티티의 **복사본**을 만들고, 그 복사본을 다시 Persistent 상태로 변경하고 그 복사본을 반환한다.
 
-    ![merge](/images/jpa-merge.PNG)
+    ![merge](/images/jpa-merge.png)
 
 #### Best Practice
 - save 명령 후 항상 리턴을 받고 리턴받은 인스턴스를 사용하라. **습관적으로.**

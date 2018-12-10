@@ -1158,3 +1158,32 @@ public void crud() {
     assertThat(all.size()).isEqualTo(1);
 }
 ```
+
+### 19. 스프링 데이터 JPA 3. JPA 쿼리 메소드
+
+#### 쿼리 생성하기
+
+- <https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation>
+- And, Or
+- Is, Equals
+- LessThan, LessThanEqual, GreaterThan, GreaterThanEqual
+- After, Before
+- IsNull, IsNotNull, NotNull
+- Like, NotLike
+- StartingWith, EndingWith, Containing
+- OrderBy
+- Not, In, NotIn
+- True, False
+- IgnoreCase
+
+#### 쿼리 찾아쓰기
+
+- 엔티티에 정의한 쿼리 찾아 사용하기 JPA Named 쿼리
+    - @NamedQuery
+        - `@NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post AS p WHERE p.title = ?1")`
+        - 단점: 도메인 엔티티 클래스가 지저분 해진다.
+    - @NamedNativeQuery
+- 리포지토리 메소드에 정의한 쿼리 사용하기 (조금 더 선호)
+    - @Query
+        - `@Query(value = "SELECT p FROM Post AS p WHERE p.title = ?1")`
+    - @Query(nativeQuery=true)

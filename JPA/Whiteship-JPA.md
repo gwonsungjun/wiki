@@ -1187,3 +1187,10 @@ public void crud() {
     - @Query
         - `@Query(value = "SELECT p FROM Post AS p WHERE p.title = ?1")`
     - @Query(nativeQuery=true)
+
+### 20. 스프링 데이터 JPA 4. 쿼리 메소드 Sort
+- 이전과 마찬가지로 Pageable이나 Sort를 매개변수로 사용할 수 있는데, @Query와 같이 사용할 때 제약 사항이 하나 있다.
+- Order by 절에서 함수를 호출하는 경우에는 Sort를 사용하지 못한다. 그 경우에는 JpaSort.unsafe()를 사용 해야 한다.
+    - Sort는 그 안에서 사용한 **프로퍼티** 또는 **alias**가 엔티티에 없는 경우에는 예외가 발생한다.
+    - JpaSort.unsafe()를 사용하면 함수 호출을 할 수 있다.
+        - `JpaSort.unsafe(“LENGTH(firstname)”);`

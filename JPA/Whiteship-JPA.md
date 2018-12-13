@@ -1194,3 +1194,56 @@ public void crud() {
     - Sort는 그 안에서 사용한 **프로퍼티** 또는 **alias**가 엔티티에 없는 경우에는 예외가 발생한다.
     - JpaSort.unsafe()를 사용하면 함수 호출을 할 수 있다.
         - `JpaSort.unsafe(“LENGTH(firstname)”);`
+
+### 21. 스프링 데이터 JPA 5. Named Parameter와 SpEL
+
+#### Named Parameter
+- @Query에서 참조하는 매개변수를 ?1, ?2 이렇게 채번으로 참조하는게 아니라 이름으로 :title 이렇게 참조하는 방법은 다음과 같다.
+    
+    ```java
+    @Query("SELECT p FROM Post AS p WHERE p.title = :title")
+    List<Post> findByTitle(@Param("title") String title, Sort sort);
+    ```
+
+#### SpEL
+- 스프링 표현 언어
+- <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#expressions>
+- @Query에서 엔티티 이름을 #{#entityName} 으로 표현할 수 있다.
+
+    ```java
+    @Query("SELECT p FROM #{#entityName} AS p WHERE p.title = :title")
+    List<Post> findByTitle(@Param("title") String title, Sort sort);
+    ```
+    
+### 22. 스프링 데이터 JPA 6. Update 쿼리 메소드
+
+#### Update 쿼리 메소드
+- PersistenceContext가 객체의 상태를 관리하다가 객체의 상태가 변화가 일어났고 데이터베이스에 Sync해야 겠다고 판단되는 시점에 flush.
+    - 객체 상태 변화를 데이터베이스에 동기화 (이때 Update 쿼리가 자동으로 만들어져 실행 됨.)
+    - 따라서 직접 만들어서 쓸 이유가 없긴하다.
+    
+    ```java
+    @Test
+    public void updateTitle() {
+        Post post = new Post();
+        post.setTitle("Spring");
+        Post savedPost = postRepository.save(post);
+
+        savedPost.setTitle("hibernate"); 
+        // find 하기 전에 DB에 Sync를 해야한다는 것을 알고 있으므로 Update 쿼리 수행.
+
+        List<Post> all = postRepository.findAll();
+        assertThat(all.get(0).getTitle()).isEqualTo("hibernate");
+    }
+    ```
+
+#### Update 또는 Delete 쿼리 직접 정의하기
+- @Modifying @Query
+- 추천하진 않는다.
+ - 직접 만든 Update 메소드를 실행하고나도 하나의 트랜잭션이 끝나지 않았으면 PersistenceContext는 Update 되기 이전의 값을 참조하고 있음. 따라서 clearAutomatically, flushAutomatically 사용.
+ 
+    ```java
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("UPDATE Post p SET p.title = ?2 WHERE p.id = ?1")
+    int updateTitle(Long id, String title);
+    ```

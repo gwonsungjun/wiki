@@ -1247,3 +1247,61 @@ public void crud() {
     @Query("UPDATE Post p SET p.title = ?2 WHERE p.id = ?1")
     int updateTitle(Long id, String title);
     ```
+    
+### 23. 스프링 데이터 JPA 7. EntityGraph
+- EntityGrapth : Fetch 모드를 조금 더 유연하게 설정할 수 있는 기능을 제공.
+    - 쿼리 메소드 마다 연관 관계의 Fetch 모드를 설정 할 수 있다.
+
+- @NamedEntityGraph
+    - @Entity에서 재사용할 여러 엔티티 그룹을 정의할 때 사용.
+    - `@NamedEntityGraph(name = "Comment.post", attributeNodes = @NamedAttributeNode("post"))`
+- @EntityGraph
+    - @NamedEntityGraph에 정의되어 있는 엔티티 그룹을 사용 함.
+    
+    ```java
+    //@EntityGraph(value= "Comment.post")
+    @EntityGraph(attributePaths= "post")
+    Optional<Comment> getById(Long id);
+    ```
+    - 그래프 타입 설정 가능
+        - (기본값) FETCH: 설정한 엔티티 애트리뷰트는 EAGER 패치 나머지는 LAZY 패치.
+        - LOAD: 설정한 엔티티 애트리뷰트는 EAGER 패치 나머지는 기본 패치 전략 따름.
+        
+    ```java
+    @Test
+    public void getComment() {
+    // 테스트를 해보면 getById의 경우 EAGER(기본값)가 적용되어 post와 left outer join되어 조회되고
+    // findById의 경우 Comment Entity에 post를 LAZY로 설정해놨기 때문에 Comment만 조회된다.(기본 전략을 따름)
+        
+        commentRepository.getById(1l);
+        System.out.println("====================");
+        commentRepository.findById(1L);
+    }
+    ```
+
+- 각각의 메서드 마다 다른 Fetching 전략으로 데이터를 가져올 수 있도록 만들 수 있다.
+
+
+--- 
+작성 중.
+~~### 24. 스프링 데이터 JPA 8. Projection
+
+- 엔티티의 일부 데이터만 가져오기. (속성들이 너무 많거나, 일부분만 관심이 있을때 select 할 수 있도록)
+    - `select c.id, c.comment From Comment c;`
+인터페이스 기반 프로젝션
+Nested 프로젝션 가능.
+Closed 프로젝션
+쿼리를 최적화 할 수 있다. 가져오려는 애트리뷰트가 뭔지 알고 있으니까.
+Java 8의 디폴트 메소드를 사용해서 연산을 할 수 있다.
+Open 프로젝션 (다 가져온 다음에 조합해서 내가 보고 싶은 것만 본다.)
+@Value(SpEL)을 사용해서 연산을 할 수 있다. 스프링 빈의 메소드도 호출 가능.
+쿼리 최적화를 할 수 없다. SpEL을 엔티티 대상으로 사용하기 때문에.
+
+클래스 기반 프로젝션 (클래스 기반도 Closed, Open 프로젝션 다 있음)
+DTO
+롬복 @Value로 코드 줄일 수 있음
+
+다이나믹 프로젝션
+프로젝션 용 메소드 하나만 정의하고 실제 프로젝션 타입은 타입 인자로 전달하기.
+
+<T> List<T> findByPost_Id(Long id, Class<T> type);~~

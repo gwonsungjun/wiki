@@ -1317,19 +1317,19 @@ public void crud() {
     ```java
     // (target = comment 즉 comment를 전부 가져올 수 밖에 없다. 한정 짓지 못함)
     @Value("#{target.up + ' ' + target.down}")
-        String getVotes();
+    String getVotes();
     ```
 
 #### 클래스 기반 프로젝션 (클래스 기반도 Closed, Open 프로젝션 가능)
 
 - DTO
 - 롬복 @Value로 코드 줄일 수 있음
-- 인터페이스 기반보다 조금 더 장황하기 때문에 따라서 인퍼테이스 기반을 더 선호
+- 인터페이스 기반보다 조금 더 장황하기 때문에 인퍼테이스 기반 프로젝션을 더 선호
 
 #### 다이나믹 프로젝션
 - 프로젝션 용 메소드 하나만 정의하고 실제 프로젝션 타입은 타입 인자로 전달하기.
     - 인터페이스(클래스) 기반 프로젝션을 여러개 정의해서 사용할 떄 유용하다.
-- `<T> List<T> findByPost_Id(Long id, Class<T> type);~~
+- `<T> List<T> findByPost_Id(Long id, Class<T> type);~~`
 
 
 ### 25. 스프링 데이터 JPA 9. Specifications

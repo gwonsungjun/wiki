@@ -1332,3 +1332,56 @@ public void crud() {
 - `<T> List<T> findByPost_Id(Long id, Class<T> type);~~
 
 
+### 25. 스프링 데이터 JPA 9. Specifications
+- 에릭 에반스의 책 DDD에서 언급하는 Specification 개념을 차용 한 것으로 QueryDSL의 Predicate와 비슷하다.
+
+- 설정 하는 방법
+    - <https://docs.jboss.org/hibernate/stable/jpamodelgen/reference/en-US/html_single/>
+    - 의존성 설정
+    
+    ```xml
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+    </dependency>
+    ```
+ 
+    - 플러그인 설정
+    
+    ```xml
+    <plugin>
+        <groupId>org.bsc.maven</groupId>
+        <artifactId>maven-processor-plugin</artifactId>
+        <version>2.0.5</version>
+        <executions>
+            <execution>
+                <id>process</id>
+                <goals>
+                    <goal>process</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                    <processors>
+                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                    </processors>
+                </configuration>
+            </execution>
+        </executions>
+        <dependencies>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+        </dependencies>
+    </plugin>
+    ```
+        
+    - IDE에 애노테이션 처리기 설정
+        - settings -> Annotation Processors -> Enable annotation processing 체크 -> Annotation Processors `org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor` 등록
+    - 코딩 시작
+    
+    ```java
+    public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment> {
+    }
+    ```

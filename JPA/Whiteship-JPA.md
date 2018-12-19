@@ -1385,3 +1385,17 @@ public void crud() {
     public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment> {
     }
     ```
+### 26. 스프링 데이터 JPA 10. 트랜잭션
+- 스프링 데이터 JPA가 제공하는 Repository의 모든 메소드에는 기본적으로 @Transaction이 적용되어 있다.
+- SimpleJpaRepository(실제 우리가 사용하게될 repository의 구현제에) 보면 이미 @Transactional이 적용되어 있다.
+
+#### 스프링 @Transactional
+- 클래스, 인터페이스, 메소드에 사용할 수 있으며, 메소드에 가장 가까운 애노테이션이 우선 순위가 높다.
+- <https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html> (반드시 읽어볼 것)
+- 기본적으로 RuntimeException, Error가 발생하면 Rollback, Checked exception이 나면 Rollback 하지 않는다.
+    - rollbackFor, noRollbackFor 등을 사용해서 기본값을 변경할 수 있다.
+
+#### JPA 구현체로 Hibernate를 사용할 때 트랜잭션을 readOnly를 사용하면 좋은 점
+- Flush 모드를 NEVER로 설정하여, Dirty checking을 하지 않도록 한다.
+- 데이터를 많이 가져오는 경우에 Dirty checking을 꺼주면 성능에 많은 도움이 된다.
+

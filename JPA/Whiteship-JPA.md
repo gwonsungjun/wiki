@@ -1437,6 +1437,6 @@ private Account updatedBy;
 ### 마무리!
 - 강의 수강 및 정리 완료. 맛을 봤으니 이제 JPA를 깊게 공부하자.
 
-![inflearnSpringDataJPA](./images/inflearnSpringDataJPA.png)
+![inflearnSpringDataJPA](/images/inflearnSpringDataJPA.png)
 
 

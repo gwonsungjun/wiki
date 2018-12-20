@@ -1399,3 +1399,44 @@ public void crud() {
 - Flush 모드를 NEVER로 설정하여, Dirty checking을 하지 않도록 한다.
 - 데이터를 많이 가져오는 경우에 Dirty checking을 꺼주면 성능에 많은 도움이 된다.
 
+### 27. 스프링 데이터 JPA 11. Auditing
+- 엔티티의 변경 시점에 언제, 누가 변경했는지에 대한 정보를 기록하는 기능.
+
+- 스프링 데이터 JPA의 Auditing
+    
+```java
+@CreatedDate
+private Date created;
+
+@LastModifiedDate
+private Date updated;
+
+@CreatedBy
+@ManyToOne
+private Account createdBy;
+
+@LastModifiedBy
+@ManyToOne
+private Account updatedBy;
+ ```
+
+- 아쉽지만 이 기능은 스프링 부트가 자동 설정 해주지 않는다.
+1. 메인 애플리케이션 위에 @EnableJpaAuditing 추가 : `@EnableJpaAuditing`
+2. 엔티티 클래스 위에 @EntityListeners(AuditingEntityListener.class) 추가
+3. AuditorAware 구현체 만들기 : `public class AccountAuditAware implements AuditorAware<Account>`
+4. @EnableJpaAuditing에 AuditorAware 빈 이름 설정하기. : `@EnableJpaAuditing(auditorAwareRef = "accountAuditAware")`
+
+#### JPA의 라이프 사이클 이벤트 (Audit 말고 조금더 General 한 방법)
+- <https://docs.jboss.org/hibernate/orm/4.0/hem/en-US/html/listeners.html>
+- 어떤 엔티티에 변화가 일어났을때 특정 Callback을 실행할 수 있는 이벤트를 발생시켜준다.
+- @PrePersist
+    - 엔티티가 저장되기 전에 호출됨.
+- @PreUpdate
+- ...
+
+### 마무리!
+- 강의 수강 및 정리 완료. 맛을 봤으니 이제 JPA를 깊게 공부하자.
+
+![inflearnSpringDataJPA](./images/inflearnSpringDataJPA.png)
+
+

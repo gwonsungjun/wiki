@@ -67,7 +67,7 @@ public class Application {
 
 ## 스프링 부트 원리
 
-### 의존성 관리 이해
+### (1) 의존성 관리 이해
 - `spring-boot-starter-parent`의 parent는 `spring-boot-dependencies`
 - spring-boot-dependencies는 `최상위` pom : `버전` 들이 나열되어 있음
 -  따라서  spring-boot-dependencies pom안에 정의되있는 것을 하나라도 쓰게 되면 직접 버전을 명시하지 않아도 사용 가능. (부모로부터 상속받은 버전을 사용하고 싶지 않으면 직접 명시 가능. 즉, 오버라이딩 가능)
@@ -76,7 +76,7 @@ public class Application {
 - dependency management 기능이 왜 좋을까?
     - 우리가 직접 관리해야할 의존성이 줄어든다 = 해야 할 일이 줄어든다.
 
-### 의존성 관리 응용
+### (2) 의존성 관리 응용
 
 #### 버전 관리 해주는 의존성 추가
 - 아래 spring-boot-starter-data-jpa 추가
@@ -110,24 +110,27 @@ public class Application {
 </properties>
 ```
 
-### 자동설정의 이해 (@EnableAutoConfiguration)
+### (3) 자동설정의 이해 (@EnableAutoConfiguration)
 - @EnableAutoConfiguration은 @SpringBootApplication안에 숨어있다.
 - @SpringBootApplication은 크게 @SpringBootConfiguration, @EnableAutoConfiguration, @ComponentScan 세 가지로 구성되어 있다.
-- 사실상 @Configuration, @ComponentSacn만 가지고도 Application을 실행시킬 수는 있다. But. WebApplication 즉, WebServer로 동작하지 않는다.
+- 사실상 @Configuration, @ComponentSacn만 가지고도 Application을 실행시킬 수는 있다. But. missing ServletWebServerFactory bean.
+    - WebApplication이 아닌 애플리케이션 타입을 설정하고 실행은 가능함.
 - 빈은 사실 두 단계로 나눠서 읽힌다.
-    - 1단계 : @ComponentSacn
+    - 1단계 : @ComponentScann
     - 2단계 : @EnableAutoConfiguration
     -  ComponentSacn으로 빈을 다 등록 한 뒤 EnableAutoConfiguration으로 추가적인 빈들을 읽어 들임.
-- `@ComponentSacn`
+- `@ComponentScan`
     - @Component라는 애노테이션을 가진 클래스들을 스캔해서 빈으로 등록
     - @Component이 붙은 자기 클래스부터 시작해서 하위 패키지 까지 해당 애너테이션 (@Configuration @Repository @Service @Controller @RestController)이 붙어있는 클래스들을 빈으로 등록 
 - `@EnableAutoConfiguration`
     - spring-boot-autoconfigure 프로젝트안에 META-INF 아래 spring.factories라는 파일이 있다.
     - ![spring-autoconfigure](/images/spring-autoconfigure.png)
-    - 따라서 spring.factories를 찾고 그 안의 키값에 해당하는 모든 클래스를 보고 condition에 맞으면(@ConditionalOn, @ConditionalOnMissing ...) bean 등록
-- `정리하면 spring.factories안에 들어있는 수많은 자동 설정들이 조건에 따라 적용이돼서 수많은 빈들이 생성이되고 그랬기 때문에 WebApplication(내장 톰맷을 사용해서) 구동이 되는 것이다.`
+    - spring.factories 안의 목록들은 전부 @Configuration Annotation이 설정되어있음 : 자바 설정 파
+    - spring.factories를 찾고 그 안의 키값에 해당하는 모든 클래스를 보고 condition(조건)에 맞으면(@ConditionalOn, @ConditionalOnMissing ...) bean 등록
+- `정리하면 spring.factories안에 들어있는 수많은 자동 설정들이 조건에 따라 적용이돼서 수많은 빈들이 생성이되고 그랬기 때문에 WebApplication(내장 톰을 사용해서)이 구동 되는 것이다.`
 
-### 자동 설정 만들기 1부 : Starter와 AutoConfigure
+### (4) 자동 설정 만들기 1부 : Starter와 AutoConfigure
+
 - xxx-Spring-Boot-AutoConfigure 모듈 : 자동 설정
 - xxx-Spring-Boot-Starter : 필요한 의존성 정의
 - 서로 다른 프로젝트 이지만 그냥 하나로 만들고 싶을 때는?

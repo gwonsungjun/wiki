@@ -49,7 +49,7 @@ public class Application {
 - maven Project, java, 2.0.3, Group, Artifact Dependencies 입력 후 Generate Project
 - IDE에서 프로젝트 Open
 
-### 추가
+### 세 번째 방법
 - IntelliJ -> new Project -> Spring Initializr -> Default -> ... -> Finish
 
 ## 스프링 부트 프로젝트 구조
@@ -89,7 +89,7 @@ public class Application {
 ```
 
 #### 버전 관리 안해주는 의존성 추가
-- <https://mvnrepository.com/>에 modelmapper 입력 후 Dependency 추가
+- <https://mvnrepository.com/>에서 검색한 modelmapper Dependency 추가
 
 ```xml
 <dependency>
@@ -125,7 +125,7 @@ public class Application {
 - `@EnableAutoConfiguration`
     - spring-boot-autoconfigure 프로젝트안에 META-INF 아래 spring.factories라는 파일이 있다.
     - ![spring-autoconfigure](/images/spring-autoconfigure.png)
-    - spring.factories 안의 목록들은 전부 @Configuration Annotation이 설정되어있음 : 자바 설정 파
+    - spring.factories 안의 목록들은 전부 @Configuration Annotation이 설정되어있음
     - spring.factories를 찾고 그 안의 키값에 해당하는 모든 클래스를 보고 condition(조건)에 맞으면(@ConditionalOn, @ConditionalOnMissing ...) bean 등록
 - `정리하면 spring.factories안에 들어있는 수많은 자동 설정들이 조건에 따라 적용이돼서 수많은 빈들이 생성이되고 그랬기 때문에 WebApplication(내장 톰을 사용해서)이 구동 되는 것이다.`
 

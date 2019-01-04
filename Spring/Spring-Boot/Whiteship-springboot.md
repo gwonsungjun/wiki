@@ -137,7 +137,7 @@ public class Application {
     - xxx-Spring-Boot-Starter로 생성(자동 생성도 Starter에 넣음)
 
 #### 구현 방법
-1. 새 프로젝트 생성
+1. 새 프로젝트 생성 (Maven Project)
 2. 의존성 추가
 
 ```xml

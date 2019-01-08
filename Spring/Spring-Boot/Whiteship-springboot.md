@@ -172,8 +172,38 @@ public class Application {
 
 ```yml
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-FQCN,\
-FQCN
+ me.sungjun.HolomanConfiguration
 ```
 
-6. mvn install
+6. mvn install 
+- 빌드해서 생성된 jar 파일을 다른 메이븐 프로젝트에서도 가져다 쓸 수 있도록 로컬 메이븐 저장소에 설치한다.
+
+7. 이전 프로젝트로 가서 dependency 추가 후 확인
+
+```xml
+<dependency>
+    <groupId>me.sungjun</groupId>
+    <artifactId>jun-spring-boot-starter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+8. 덮어쓰기 문제가 발생한다. AutoConfiguration으로 설정한 클래스 파일을 @Bean으로 재정의 하지 못 한다.
+
+### (5) 자동 설정 만들기 2부 : Starter와 AutoConfigure
+
+- 덮어쓰기 방지하기
+    - @ConditionalOnMissingBean : 해당 Bean이 없을 때만 사용하라. : componentsacn할때 Bean이 있으니깐 AutoConfiguration할때는 해당 Bean을 등록하지 않는다.
+    - starter project configuration 클래스 Bean에 등록한다.
+- 빈 재정의 수고 덜기 (굳이 Bean 설정하지 않고 application.properties 설정만)
+    - @ConfigurationProperties(“holoman”)
+    - @EnableConfigurationProperties(HolomanProperties)
+    - 프로퍼티 키값 자동 완성
+    
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+```

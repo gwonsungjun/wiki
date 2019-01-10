@@ -256,8 +256,8 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
         - application.properties 추가 : `server.port=7070`
     - 랜덤 포트
         - application.properties 추가 : `server.port=0`
-    - Discover the HTTP Port at Runtime : ApplicationListener<ServletWebServerInitializedEvent>
-        - 웹 서버가 생성되면 이벤트 리스너(ApplicationListener가 호출됨
+    - Discover the HTTP Port at Runtime : `ApplicationListener<ServletWebServerInitializedEvent>`
+        - 웹 서버가 생성되면 이벤트 리스너(ApplicationListener)가 호출됨
 
 - <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-web-servers.html>
 

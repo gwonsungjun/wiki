@@ -223,3 +223,61 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
         - TomcatServletWebServerFactoryCustomizer (서버 커스터마이징)
     - DispatcherServletAutoConfiguration : Dispatcher 서블릿을 만들어서 등록. (둘로 나눠져 있는 이유는 서블릿 컨테이너는 pom.xml 설정에 따라 달라질 수 있지만 서블릿은 변하지 않으므로)
         - 서블릿 만들고 등록
+        
+### (7) 내장 웹 서버 응용 1부 : 컨테이너와 포트
+
+- 기본적으로 서블릿 기반 web mvc 개발 시 톰캣을 사용하게 된다.(spring-boot-starter-web 자동 설정)
+
+- 다른 서블릿 컨테이너로 변경
+    - 의존성 설정
+    
+    ```xml
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-web</artifactId>
+    	<exclusions>
+    		<!-- Exclude the Tomcat dependency -->
+    		<exclusion>
+    			<groupId>org.springframework.boot</groupId>
+    			<artifactId>spring-boot-starter-tomcat</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency>
+    <!-- Use Jetty instead -->
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+    ```
+    
+    - 웹 서버 사용 하지 않기 (의존성이 있다 하더라도 무시하고 none web application으로 실행하고 끝난다.)
+        - application.properties 추가 : `spring.main.web-application-type=none`
+    - 포트
+        - application.properties 추가 : `server.port=7070`
+    - 랜덤 포트
+        - application.properties 추가 : `server.port=0`
+    - Discover the HTTP Port at Runtime : ApplicationListener<ServletWebServerInitializedEvent>
+        - 웹 서버가 생성되면 이벤트 리스너(ApplicationListener가 호출됨
+
+- <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-web-servers.html>
+
+### (8) 내장 웹 서버 응용 2부 : HTTPS와 HTTP2 적용하는 방법
+
+- https://opentutorials.org/course/228/4894
+
+
+#### HTTPS 설정하기
+- 키스토어 만들기
+    - <https://gist.github.com/keesun/f93f0b83d7232137283450e08a53c4fd\>
+    - keystore.p12 file 생성됨
+- appplication.properties에 위 gist의 내용을 입력하고 start
+- springboot는 기본적으로 HTTP connector 하나만 등록됨. 따라서 해당 connector에 ssl 적용됨.
+- ` curl -I -k --http2 https://localhost:8080/hello` -> HTTP/1.1 200
+
+#### HTTPS 설정하면 HTTP는 못쓰네?
+- HTTP 커넥터는 코딩으로 설정하기
+- <https://github.com/spring-projects/spring-boot/tree/v2.0.3.RELEASE/spring-boot-samples/spring-boot-sample-tomcat-multi-connectors>
+
+#### HTTP2 설정
+- server.http2.enable
+- 사용하는 서블릿 컨테이너 마다 다름.

@@ -263,21 +263,44 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 
 ### (8) 내장 웹 서버 응용 2부 : HTTPS와 HTTP2 적용하는 방법
 
-- https://opentutorials.org/course/228/4894
+- <https://opentutorials.org/course/228/4894>
 
 
 #### HTTPS 설정하기
 - 키스토어 만들기
-    - <https://gist.github.com/keesun/f93f0b83d7232137283450e08a53c4fd\>
+    - <https://gist.github.com/keesun/f93f0b83d7232137283450e08a53c4fd>
     - keystore.p12 file 생성됨
 - appplication.properties에 위 gist의 내용을 입력하고 start
 - springboot는 기본적으로 HTTP connector 하나만 등록됨. 따라서 해당 connector에 ssl 적용됨.
 - ` curl -I -k --http2 https://localhost:8080/hello` -> HTTP/1.1 200
 
 #### HTTPS 설정하면 HTTP는 못쓰네?
-- HTTP 커넥터는 코딩으로 설정하기
+- HTTP 커넥터는 (하나이기 때문에) 코딩으로 설정하기
 - <https://github.com/spring-projects/spring-boot/tree/v2.0.3.RELEASE/spring-boot-samples/spring-boot-sample-tomcat-multi-connectors>
+
+```java
+public ServletWebServerFactory serverFactory() {
+    TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+    tomcat.addAdditionalTomcatConnectors(createStandardConnector());
+    return tomcat;
+}
+
+private Connector createStandardConnector() {
+    Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+    connector.setPort(8080);
+    return connector;
+}
+```
 
 #### HTTP2 설정
 - server.http2.enable
 - 사용하는 서블릿 컨테이너 마다 다름.
+    - 언더토우는 server.http2.enable=true 설정만 해주면 된다.
+    - Tomcat 8.5는 시스템 설정을 해야되므로 사용하지말고 Tomcat 9.0.x, JDK9 사용시 따로 설정이 필요없다.
+- HTTP2는 HTTPS가 기본 따라서 SSL 적용이 필수다.
+
+
+### (9) 톰캣 HTTP2
+- JDK9와 Tomcat 9+ 추천
+- 그 이하는 아래 링크 참고
+    - <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-web-servers.html#howto-configure-http2-tomcat>

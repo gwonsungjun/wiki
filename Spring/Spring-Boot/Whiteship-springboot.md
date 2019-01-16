@@ -327,3 +327,110 @@ private Connector createStandardConnector() {
 - MANIFEST.MF : jar 파일 unzip, META-INF 밑에 존재. 모든 JAR 파일의 시작점은 MANIFEST 밑의 Main-class (자바 스펙)
     - 스프링부트는 Main-Class를 JarLauncher를 사용하도록 패키징했음
   
+## 스프링 부트 활용
+
+### (1) 스프링 부트 활용 소
+
+| 스프링 부트 핵심 기능 | 각종 기술 연동 |
+| --- | --- |
+| - SpringApplication | - 스프링 웹 MVC |
+| - 외부 설정 | - 스프링 데이터 |
+| - 프로파일 | - 스프링 시큐리티 |
+| - 로깅 | - REST API 클라이언트 |
+| - 테스트 | - 다루지 않은 내용들 |
+| - Spring-Dev-Tools | |
+
+### (2) SpringApplication 1부
+- <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-spring-application.html#boot-features-spring-application>
+- `SpringApplication.run(Application.class, args)`를 사용하면 커스터마이징 하기 어려우므로 인스턴스를 만들어서 run을 하는 방법으로 사용한다.
+    - `SpringApplication app = new SpringApplication(Application.class); app.run(args);`
+- 기본 로그 레벨 INFO
+    - 뒤에 로깅 수업때 자세히 살펴볼 예정.
+    - Run/Debug Configuration > VM options : -Ddebug 입력 또는 Program arguments : --debug 입력하면 로그 레벨 디버그로 설정됨.
+- FailureAnalyzer
+    - 애플리케이션 에러 메시지를 조금 더 이쁘게 출력해주는 기능
+- 배너
+    - banner.txt | gif | jpg | png
+    - banner.txt의 위치를 resources 밑이 아닌 다른 위치에 놓고 싶으면
+        - (application.properties에) spring.banner.location classpath 설정.
+    - ${spring-boot.version} 등의 변수를 사용할 수 있음. (레퍼런스 참조)
+    - 배너 끄는 방법 `app.setBannerMode(Banner.Mode.OFF);` 
+    - Banner 클래스 구현하고 SpringApplication.setBanner()로 설정 가능. (txt 파일과 동시에 존재한다면 txt 파일이 더 우선순위가 높음.)
+    
+    ```java
+    app.setBanner(new Banner() {
+        @Override
+        public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
+            out.println("===============");
+            out.println("Sungjun");
+            out.println("===============");
+        }
+    });
+    ```
+    
+- SpringApplicationBuilder로 빌더 패턴 사용 가능
+
+```java
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        new SpringApplicationBuilder()
+                .sources(Application.class)
+                .run(args);
+    }
+}
+```
+
+### (3) SpringApplication 2부
+- <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-spring-application.html#boot-features-application-events-and-listeners>
+- ApplicationEvent 등록
+    - ApplicationContext를 만들기 전에 사용하는 리스너는 @Bean으로 등록할 수 없다. (아래 ApplicationStartingEvent )
+    
+    ```java
+    public class SampleListener implements ApplicationListener<ApplicationStartingEvent> {
+        @Override
+        public void onApplicationEvent(ApplicationStartingEvent applicationStartingEvent) {
+            System.out.println("==============");
+            System.out.println("Application is starting");
+            System.out.println("==============");
+        }
+    }
+    ```
+    - `SpringApplication.addListeners(SampleListener());`
+- WebApplicationType 설정
+    - `app.setWebapplicationType(webApplicationType.NONE)`
+    - 기본적으로 Spring MVC가 존재하면 Servelt, 서블릿이 없고 WebFlux가 존재하면 REACTIVE로 돈다.
+    - 서블릿 있냐 없냐를 체크하는게 첫번째 조건. 둘다 존재하면 서블릿으로 실행됨. 따라서 둘다 존재하는 상황에서 리액티브를 사용하고 싶으면 webApplicationType.REACTIVE로 설정해야 함.
+- 애플리케이션 아규먼트 사용하기
+    - ApplicationArguments를 빈으로 등록해 주니까 가져다 쓰면 됨.
+    - Configuration의 Program arguments에 해당 : -- 옵션
+    - VM options는(-D로 시작) JVM 옵션
+        - JVM 옵션은 애플리케이션 아규먼트가 아니다.
+        
+    ```java
+    @Component
+    public class SampleListener {
+    
+        public SampleListener(ApplicationArguments arguments){
+            System.out.println("foo: " +  arguments.containsOption("foo"));
+            System.out.println("bar: " + arguments.containsOption("bar"));
+        }
+    }
+    ```
+
+- 애플리케이션 실행한 뒤 뭔가 실행하고 싶을  때
+    - ApplicationRunner (추천) 또는 CommandLineRunner
+    
+    ```java
+    @Component
+    public class SampleListener implements ApplicationRunner{
+    
+        @Override
+        public void run(ApplicationArguments args) throws Exception {
+            System.out.println("foo: " + args.containsOption("foo"));
+        }
+    }
+    ```
+    
+    - 순서 지정 가능 @Order (@Order(1), @Order(2), ... 1이 먼저)

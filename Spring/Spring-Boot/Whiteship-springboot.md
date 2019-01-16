@@ -329,7 +329,7 @@ private Connector createStandardConnector() {
   
 ## 스프링 부트 활용
 
-### (1) 스프링 부트 활용 소
+### (1) 스프링 부트 활용 소개
 
 | 스프링 부트 핵심 기능 | 각종 기술 연동 |
 | --- | --- |
@@ -397,7 +397,7 @@ public class Application {
         }
     }
     ```
-    - `SpringApplication.addListeners(SampleListener());`
+    - `SpringApplication.addListeners(SampleListener());` 필요함.
 - WebApplicationType 설정
     - `app.setWebapplicationType(webApplicationType.NONE)`
     - 기본적으로 Spring MVC가 존재하면 Servelt, 서블릿이 없고 WebFlux가 존재하면 REACTIVE로 돈다.

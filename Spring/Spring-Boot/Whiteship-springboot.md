@@ -116,7 +116,7 @@ public class Application {
 - 사실상 @Configuration, @ComponentSacn만 가지고도 Application을 실행시킬 수는 있다. But. missing ServletWebServerFactory bean.
     - WebApplication이 아닌 애플리케이션 타입을 설정하고 실행은 가능함.
 - 빈은 사실 두 단계로 나눠서 읽힌다.
-    - 1단계 : @ComponentScann
+    - 1단계 : @ComponentScan
     - 2단계 : @EnableAutoConfiguration
     -  ComponentSacn으로 빈을 다 등록 한 뒤 EnableAutoConfiguration으로 추가적인 빈들을 읽어 들임.
 - `@ComponentScan`

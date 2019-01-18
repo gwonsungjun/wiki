@@ -297,7 +297,7 @@ private Connector createStandardConnector() {
 - 사용하는 서블릿 컨테이너 마다 다름.
     - 언더토우는 server.http2.enable=true 설정만 해주면 된다.
     - Tomcat 8.5는 시스템 설정을 해야되므로 사용하지말고 Tomcat 9.0.x, JDK9 사용시 따로 설정이 필요없다.
-- HTTP2는 HTTPS가 기본 따라서 SSL 적용이 필수다.
+- HTTP2는 HTTPS가 기본이다. 따라서 SSL 적용이 필수다.
 
 
 ### (9) 톰캣 HTTP2
@@ -434,3 +434,135 @@ public class Application {
     ```
     
     - 순서 지정 가능 @Order (@Order(1), @Order(2), ... 1이 먼저)
+    
+### (4) 외부 설정 1부
+
+- <https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config>
+
+#### 사용할 수 있는 외부 설정
+- properties
+- YAML
+- 환경 변수
+- 커맨드 라인 아규먼트
+
+#### 프로퍼티 우선 순위 (오버라이딩 가능)
+
+1. 유저 홈 디렉토리에 있는 spring-boot-dev-tools.properties
+2. 테스트에 있는 @TestPropertySource
+    - `@TestPropertySource(properties = "sungjun.name=sungjun2")`
+3. @SpringBootTest 애노테이션의 properties 애트리뷰트
+    - `@SpringBootTest(properties = "sungjun.name=sungjun2")`
+    - 참고) test/resource application.properties는 main/resource의 application.properties를 오버라이딩 하기때문에 test properties에 없는 값을 쓰게되면 에러 발생함.
+    - 따라서, 파일명이 다른 test.properties를 생성해서 테스트에서 필요한 값을 넣고 location 설정을 통해 읽어들이도록 한다. (`@TestPropertySource(locations = "classpath:/test.properties")`)
+4. 커맨드 라인 아규먼트
+    - `java -jar target/springinit-0.0.1-SNAPSHOT.jar --sungjun.name=sungjun`
+5. SPRING_APPLICATION_JSON (환경 변수 또는 시스템 프로티) 에 들어있는 프로퍼티
+6. ServletConfig 파라미터
+7. ServletContext 파라미터
+8. java:comp/env JNDI 애트리뷰트
+9. System.getProperties() 자바 시스템 프로퍼티
+10. OS 환경 변수
+11. RandomValuePropertySource
+12. JAR 밖에 있는 특정 프로파일용 application properties
+13. JAR 안에 있는 특정 프로파일용 application properties
+14. JAR 밖에 있는 application properties
+15. JAR 안에 있는 application properties
+    - `src/main/resources/application.properties`는 여기에 해당.
+16. @PropertySource
+17. 기본 프로퍼티 (SpringApplication.setDefaultProperties)
+
+
+#### application.properties 자체의 우선 순위 (높은게 낮은걸 덮어 쓴다.)
+- application.properties 동일한 이름의 파일을 여러군데 놓을 수 있다.
+
+1. file:./config/
+2. file:./ (프로젝트 루트 밑에 위치)
+3. classpath:/config/
+4. classpath:/ (src/main/resource 밑에 위치)
+
+#### application.properties 값 설정하기
+- application.properties 랜덤값 설정하기
+    - ${random.*}
+- application.properties 플레이스 홀더
+    - name = keesun
+    - fullName = ${name} baik
+    
+### (5) 외부 설정 2부 (1)
+
+#### 타입-세이프 프로퍼티 @ConfigurationProperties
+- 같은 Key로 시작하는 외부 설정이 있는 경우 묶어서 하나의 Bean으로 등록하는 방법. (여러 프로퍼티를 묶어서 읽어올 수 있음)
+- 빈으로 등록해서 다른 빈에 주입할 수 있음
+    - @EnableConfigurationProperties
+    - @Component
+    - @Bean
+    - `@EnableConfigurationProperties는 자동으로 등록되어 있으므로 @ConfigurationProperties class에 @Component 어노테이션만 등록해주면 된다.`
+- 아래와 같이 사용
+    
+```properties
+- application.properties
+sungjun.name = sungjun
+sungjun.age=${random.int(0, 100)}
+sungjun.fullNmae = ${sungjun.name} gwon
+```
+
+```java
+@Component
+@ConfigurationProperties("sungjun")
+public class SungjunProperties {
+
+    private String name;
+
+    private int age;
+
+    private String fullName;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+}
+```
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-configuration-processor</artifactId>
+	<optional>true</optional>
+</dependency>
+```
+
+```java
+@Component
+public class SampleRunner implements ApplicationRunner {
+
+    @Autowired
+    SungjunProperties sungjunProperties;
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        System.out.println("==========");
+        System.out.println(sungjunProperties.getName());
+        System.out.println(sungjunProperties.getAge());
+        System.out.println("==========");
+    }
+}
+```

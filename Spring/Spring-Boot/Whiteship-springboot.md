@@ -193,14 +193,15 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 ### (5) 자동 설정 만들기 2부 : Starter와 AutoConfigure
 
 - 덮어쓰기 방지하기
-    - @ConditionalOnMissingBean : 해당 Bean이 없을 때만 사용하라. : componentsacn할때 Bean이 있으니깐 AutoConfiguration할때는 해당 Bean을 등록하지 않는다.
-    - starter project configuration 클래스 Bean에 등록한다.
+    - @ConditionalOnMissingBean : 해당 Bean이 없을 때만 사용하라. : Componentscan할때 Bean이 있으니깐 AutoConfiguration할때는 해당 Bean을 등록하지 않는다.
+    - @ConditionalOnMissingBean은 starter project configuration 클래스 Bean에 등록한다.
 - 빈 재정의 수고 덜기 (굳이 Bean 설정하지 않고 application.properties 설정만)
     - @ConfigurationProperties(“holoman”)
     - @EnableConfigurationProperties(HolomanProperties)
     - 프로퍼티 키값 자동 완성
     
 ```xml
+자동 완성을 위해
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-configuration-processor</artifactId>

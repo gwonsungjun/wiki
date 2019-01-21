@@ -492,17 +492,19 @@ public class Application {
 
 #### 타입-세이프 프로퍼티 @ConfigurationProperties
 - 같은 Key로 시작하는 외부 설정이 있는 경우 묶어서 하나의 Bean으로 등록하는 방법. (여러 프로퍼티를 묶어서 읽어올 수 있음)
+- 타입-세이프? @Vault("${keesun.name}")와 같이 문자열로 사용하면 오타 등의 이유로 에러가 나는것으로 부터 안전하다. getName(), getAge()등을 사용할 수 있으므로.
 - 빈으로 등록해서 다른 빈에 주입할 수 있음
     - @EnableConfigurationProperties
-    - @Component
+    - **@Component**
     - @Bean
+        - 대부분 아래 예시처럼 @Component 방식을 사용. @Bean을 사용하는 경우는 거의 없다.
     - `@EnableConfigurationProperties는 자동으로 등록되어 있으므로 @ConfigurationProperties class에 @Component 어노테이션만 등록해주면 된다.`
 - 아래와 같이 사용
     
 ```properties
 - application.properties
 sungjun.name = sungjun
-sungjun.age=${random.int(0, 100)}
+sungjun.age=${random.int(0,100)}
 sungjun.fullNmae = ${sungjun.name} gwon
 ```
 
@@ -567,3 +569,33 @@ public class SampleRunner implements ApplicationRunner {
     }
 }
 ```
+
+- 융통성 있는 바인딩
+    - context-path (케밥)
+    - context_path (언드스코어)
+    - contextPath (캐멀)
+    - CONTEXTPATH
+    - `sungjun.fullName = ${sungjun.name} gwon`, `sungjun.full_name = ${sungjun.name} gwon` 등 케밥, 언드, 캐멀 등 융통성있게 사용 가능.
+- 프로퍼티 타입 컨버전
+    - properties에 입력된 값은 문자열이지만(sungjun.age = 100) @ConfigurationProperties 클래스에서 int로 자동 변환됨. 
+    - @DurationUnit (스프링부트가 제공하는 시간 정보와 관련된 특수한 컨버전 타입)
+- 프로퍼티 값 검증
+    - @Validated
+    - JSR-303 구현체(hibernate)(@NotNull, …)
+    
+    ```java
+    @Component
+    @ConfigurationProperties("sungjun")
+    @Validated
+    public class SungjunProperties {
+    
+        @NotEmpty
+        private String name;
+        
+        ...
+    ```
+    
+- 메타 정보 생성
+- @Value
+    - SpEL 을 사용할 수 있지만…
+    - 위에 있는 기능들은 전부 사용 못한다.

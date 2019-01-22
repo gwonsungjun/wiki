@@ -492,7 +492,7 @@ public class Application {
 
 #### 타입-세이프 프로퍼티 @ConfigurationProperties
 - 같은 Key로 시작하는 외부 설정이 있는 경우 묶어서 하나의 Bean으로 등록하는 방법. (여러 프로퍼티를 묶어서 읽어올 수 있음)
-- 타입-세이프? @Vault("${keesun.name}")와 같이 문자열로 사용하면 오타 등의 이유로 에러가 나는것으로 부터 안전하다. getName(), getAge()등을 사용할 수 있으므로.
+- 타입-세이프? @Value("${keesun.name}")와 같이 문자열로 사용하면 오타 등의 이유로 에러가 나는것으로 부터 안전하다. getName(), getAge()등을 사용할 수 있으므로.
 - 빈으로 등록해서 다른 빈에 주입할 수 있음
     - @EnableConfigurationProperties
     - **@Component**
@@ -626,8 +626,8 @@ public class SampleRunner implements ApplicationRunner {
 - 프로파일용 프로퍼티
     - application-{profile}.properties
         - application-prod.properties, application-prod.properties 생성 가능.
-        - 프로파일용 프로퍼티가 기본 application.properties 보다 우선순위가 높기때문에 오버라이딩. 
-        - `java -jar target/springboot2-0.0.1-SNAPSHOT.jar --spring.profiles.active=test`
+        - 프로파일용 프로퍼티가 기본 application.properties 보다 우선순위가 높기때문에 오버라이딩됨. 
+        - 실행 시 `java -jar target/springboot2-0.0.1-SNAPSHOT.jar --spring.profiles.active=test`
         
 ### (7) 로깅 1부: 스프링 부트 기본 로거 설정
 
@@ -636,8 +636,8 @@ public class SampleRunner implements ApplicationRunner {
     - JUL, Log4J2, Logback(SLF4j 구현체)
 - 스프링 5에 로거 관련 변경 사항
     - <https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/overview.html#overview-logging>
-    - Spring-JCL
-    - Commons Logging -> SLF4j or Log4j2
+    - Spring-JCL (Jakarta Commons Logging)
+        - Commons Logging -> SLF4j or Log4j2
     - pom.xml에 exclusion 안해도 됨.
     - 결국 스프링부트 실행시 찍히는 로그는 Logback을 사용한 것임. (Commons Logging -> SLF4j -> Logback 호출)
 - 스프링 부트 로깅

@@ -488,7 +488,7 @@ public class Application {
     - name = keesun
     - fullName = ${name} baik
     
-### (5) 외부 설정 2부 (1)
+### (5) 외부 설정 2부
 
 #### 타입-세이프 프로퍼티 @ConfigurationProperties
 - 같은 Key로 시작하는 외부 설정이 있는 경우 묶어서 하나의 Bean으로 등록하는 방법. (여러 프로퍼티를 묶어서 읽어올 수 있음)
@@ -599,3 +599,51 @@ public class SampleRunner implements ApplicationRunner {
 - @Value
     - SpEL 을 사용할 수 있지만…
     - 위에 있는 기능들은 전부 사용 못한다.
+    
+### (6) 프로파일
+- @Profile 애노테이션은 어디에?
+    - @Configuration
+    - @Component
+    
+    ```java
+    @Profile("prod")
+    @Configuration
+    public class BaseConfiguration {
+    
+        @Bean
+        public String hello() {
+            return "hello";
+        }
+    }    
+    ```
+    
+- 어떤 프로파일을 활성화 할 것인가?
+    - spring.profiles.active
+    - `spring.profiles.active=prod`
+- 어떤 프로파일을 추가할 것인가?
+    - spring.profiles.include
+    - 추가할 프로파일 설정.
+- 프로파일용 프로퍼티
+    - application-{profile}.properties
+        - application-prod.properties, application-prod.properties 생성 가능.
+        - 프로파일용 프로퍼티가 기본 application.properties 보다 우선순위가 높기때문에 오버라이딩. 
+        - `java -jar target/springboot2-0.0.1-SNAPSHOT.jar --spring.profiles.active=test`
+        
+### (7) 로깅 1부: 스프링 부트 기본 로거 설정
+
+- 로깅 퍼사드 VS 로거
+    - Commons Logging, SLF4j : 인터페이스
+    - JUL, Log4J2, Logback(SLF4j 구현체)
+- 스프링 5에 로거 관련 변경 사항
+    - <https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/overview.html#overview-logging>
+    - Spring-JCL
+    - Commons Logging -> SLF4j or Log4j2
+    - pom.xml에 exclusion 안해도 됨.
+    - 결국 스프링부트 실행시 찍히는 로그는 Logback을 사용한 것임. (Commons Logging -> SLF4j -> Logback 호출)
+- 스프링 부트 로깅
+    - 기본 포맷
+    - –debug (일부 핵심 라이브러리(코어 : 컨테이너, 하이버네이트, 스프링부트 등)만 디버깅 모드로)
+    - –trace (전부 다 디버깅 모드로)
+    - 컬러 출력: spring.output.ansi.enabled
+    - 파일 출력: logging.file 또는 logging.path
+    - 로그 레벨 조정: logging.level.패지키 = 로그 레벨

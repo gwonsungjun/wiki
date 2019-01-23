@@ -647,3 +647,41 @@ public class SampleRunner implements ApplicationRunner {
     - 컬러 출력: spring.output.ansi.enabled
     - 파일 출력: logging.file 또는 logging.path
     - 로그 레벨 조정: logging.level.패지키 = 로그 레벨
+
+### (8) 로깅 2부: 커스터마이징
+
+- <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html>
+
+#### 커스텀 로그 설정 파일 사용하기
+- Logback: logback-spring.xml
+    - logback.xml은 너무 일찍 로딩이 되기 때문에 Logback 추가기능(extension)을 사용할 수 없음. 
+- Log4J2: log4j2-spring.xml
+- JUL (비추): logging.properties
+- Logback extension
+    - 프로파일 <springProfile name=”프로파일”>
+    - Environment 프로퍼티 <springProperty>
+
+#### 로거를 Log4j2로 변경하기
+- <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html#howto-configure-log4j-for-logging>
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter</artifactId>
+	<exclusions>
+		<exclusion>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-log4j2</artifactId>
+</dependency>
+```
+

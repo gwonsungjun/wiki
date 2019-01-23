@@ -126,4 +126,4 @@
 
 <br/>
 
->참고문헌 : 컴퓨터 구조 및 설계, David A. Patterson, John L. Hennessy저, 2015. 문제가 될 시 삭제하겠습니다. :)
+>참고문헌 : 컴퓨터 구조 및 설계, David A. Patterson, John L. Hennessy저, 2015.

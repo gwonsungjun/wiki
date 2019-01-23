@@ -32,7 +32,7 @@
 ### Computer Structure(컴퓨터 구조)
 - [컴퓨터구조 기초 용어 정리](ComputerStructure/ComputerStructureBasic.md)
  
- ### Developer Capabilities - 개발자 역량 증진 자료(좋은 글 스크랩)
+### Developer Capabilities - 개발자 역량 증진 자료(좋은 글 스크랩)
 - [초보 웹 개발자를 위하여 - 정호영님의 글](Developer-Capabilities/For-starter-web-developers.md)
 
 ### Docker
@@ -44,8 +44,8 @@
 - [Git 사용법 : 혼자서 작업하기 ](/Git/Git/git-basic.md)
 - [GitLab Repository URL 변경](Git/GitLab/Rename-GitLab-url.md)
   
- ### Glossary of terms(용어 정리)
-- [자주 잊어버리는 용어 정리](GlossaryOfTerms/WholeCollection.md)
+ ### Glossary of Terms(용어 정리)
+- [자주 잊어버리는 용어 정리](Glossary-of-Terms/WholeCollection.md)
 
 ### Intellij
 - [intelliJ 가이드](Intellij/IntelliJ-guide.md)
@@ -106,9 +106,6 @@
 - [객체 지향 4대 특성](OOP/The_four_principles_of_object-oriented_Java.md)
 - [객체 지향 설계 5원칙](OOP/SOLID.md)
 - [객체지향 모델링의 이해, UML](OOP/UML-Basic.md)
-
-### Organize shortcuts - 단축키 정리
-- [Ubuntu desktop 단축키 정리](Organize-Shortcuts/Ubuntu-shortcuts.md)
  
 ### RDB/ MySQL
 
@@ -121,6 +118,10 @@
    
 ### React
 - [react 첫걸음 - ehrudxo님의 번역 글](React/React-FirstStep.md)
+
+### Shortcuts - 단축키 정리
+- [Ubuntu desktop 단축키 정리](Shortcuts/Ubuntu-shortcuts.md)
+- [Tmux 단축키 정리](Shortcuts/Tmux-shortcuts.md)
 
 ### Spring
 - [Spring Transaction](Spring/SpringTransaction.md)

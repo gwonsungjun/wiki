@@ -4,13 +4,16 @@
 - 하루 동안 학습한 내용이나 개발 관련 경험들을 간단히 기록(TIL, Today I Learned)
 - 궁극적으로는 나만의 개인 wiki 구축
 
-## 사용법
+## 사용법 1
 1. 해당 저장소를 로컬로 내려 받는다. `$ https://github.com/gwonsungjun/TIL.git`
 2. VIM으로 README.md 파일을 조회. `vim README.md`
 3. 찾고 싶은 키워드를 검색. `/{키워드}`
 4. 해당 라인의 파일명으로 커서를 옮긴 후 `g f`
 5. 내용을 확인 한 후에는 `<C-o>` (ctrl+o)를 입력하면 README 로 돌아갈 수 있다.
 
+## 사용법 2
+1. [GitHub TIL Repository](https://github.com/gwonsungjun/TIL)에서 단축키 `t`
+2. 찾고 싶은 키워드를 입력해서 검색  
 #
 
 ## List (A-Z)

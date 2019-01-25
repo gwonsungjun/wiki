@@ -701,10 +701,12 @@ public class SampleRunner implements ApplicationRunner {
 #### @SpringBootTest (통합테스트용)
 
 - @RunWith(SpringRunner.class)랑 같이 써야 함.
-- 빈 설정 파일은 설정을 안해주나? 알아서 찾습니다. (@SpringBootApplication)
+- 빈 설정 파일은 설정을 안해주나? 알아서 찾는다. (@SpringBootApplication)
 - webEnvironment
     - MOCK: mock servlet environment. 내장 톰캣 구동 안 함.
         - Default : `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)`
+        - 서블릿 컨테이너를 띄우지 않음. 서블릿을 Mocking 한 것이 뜬다.
+        - DispatcherServlet에 요청을 보내는 것과 비슷하게 실험은 할 수 있는데 목업이된 서블릿에 인터렉션을 하려면 MockMvc 사용 필수.
     
     ```java
     @RunWith(SpringRunner.class)

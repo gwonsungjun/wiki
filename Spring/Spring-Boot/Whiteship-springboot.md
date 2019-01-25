@@ -733,8 +733,7 @@ public class SampleRunner implements ApplicationRunner {
     ```java
     @RunWith(SpringRunner.class)
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-    @AutoConfigureMockMvc
-     public class SampleControllerTest {
+    public class SampleControllerTest {
     
         @Autowired
         TestRestTemplate testRestTemplate;
@@ -775,7 +774,6 @@ public class SampleRunner implements ApplicationRunner {
 ```java
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
 public class SampleControllerTest {
 
     @Autowired
@@ -834,6 +832,36 @@ public class SampleControllerTest {
 - **OutputCapture**
     - 로그를 비롯해 콘솔에 찍히는 모든걸 캡처.
     - 중간 중간에 로그를 찍고 해당 로그가 찍혔는지 테스크 할수있음.
+    
+    ```java
+    @RunWith(SpringRunner.class)
+    @WebMvcTest(SampleController.class)
+    public class MockMvcTest {
+    
+        @Rule
+        public OutputCapture outputCapture = new OutputCapture();
+    
+        @MockBean
+        SampleService mockSampleService;
+    
+        @Autowired
+        MockMvc mockMvc;
+    
+        @Test
+        public void hello() throws Exception {
+            when(mockSampleService.getName()).thenReturn("gwon");
+    
+            mockMvc.perform(get("/hello"))
+                    .andExpect(content().string("hello gwon"));
+    
+            assertThat(outputCapture.toString()).contains("holoman")
+                    .contains("skip");
+        }
+    
+    }
+
+    ```
+    
 - TestPropertyValues
 - TestRestTemplate
 - ConfigFileApplicationContextInitializer

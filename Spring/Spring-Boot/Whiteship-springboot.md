@@ -685,7 +685,7 @@ public class SampleRunner implements ApplicationRunner {
 </dependency>
 ```
 
-### (8) 테스트
+### (9) 테스트
 
 #### 시작은 일단 spring-boot-starter-test를 추가하는 것 부터
 - test 스콥으로 추가.
@@ -828,3 +828,10 @@ public class SampleControllerTest {
     - Repository만 등록
 - …
 
+### (10) 테스트 유틸
+- **OutputCapture**
+    - 로그를 비롯해 콘솔에 찍히는 모든걸 캡처.
+    - 중간 중간에 로그를 찍고 해당 로그가 찍혔는지 테스크 할수있음.
+- TestPropertyValues
+- TestRestTemplate
+- ConfigFileApplicationContextInitializer

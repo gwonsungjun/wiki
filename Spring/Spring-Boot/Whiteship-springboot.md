@@ -685,3 +685,146 @@ public class SampleRunner implements ApplicationRunner {
 </dependency>
 ```
 
+### (8) 테스트
+
+#### 시작은 일단 spring-boot-starter-test를 추가하는 것 부터
+- test 스콥으로 추가.
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+
+#### @SpringBootTest (통합테스트용)
+
+- @RunWith(SpringRunner.class)랑 같이 써야 함.
+- 빈 설정 파일은 설정을 안해주나? 알아서 찾습니다. (@SpringBootApplication)
+- webEnvironment
+    - MOCK: mock servlet environment. 내장 톰캣 구동 안 함.
+        - Default : `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)`
+    
+    ```java
+    @RunWith(SpringRunner.class)
+    @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+    @AutoConfigureMockMvc
+     public class SampleControllerTest {
+    
+        @Autowired
+        MockMvc mockMvc;
+    
+        @Test
+        public void hello() throws Exception {
+            mockMvc.perform(get("/hello"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string("hello sungjun"))
+                    .andDo(print());
+        }
+    
+    }
+    ```    
+    
+    - RANDON_PORT, DEFINED_PORT: 내장 톰캣 사용 함.
+    
+    ```java
+    @RunWith(SpringRunner.class)
+    @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+    @AutoConfigureMockMvc
+     public class SampleControllerTest {
+    
+        @Autowired
+        TestRestTemplate testRestTemplate;
+    
+        @MockBean
+        SampleService mockSampleService;
+    
+        @Test
+        public void hello() throws Exception {
+            when(mockSampleService.getName()).thenReturn("gwon");
+    
+            String result = testRestTemplate.getForObject("/hello", String.class);
+            assertThat(result).isEqualTo("hello gwon");
+        }
+    
+    }
+    ```
+    
+    - NONE: 서블릿 환경 제공 안 함.
+
+#### @MockBean
+- ApplicationContext에 들어있는 빈을 Mock으로 만든 객체로 교체 함.
+- 모든 @Test 마다 자동으로 리셋.
+
+#### @WebTestClient
+- Spring 5 부터 추가. async
+- TestRestTemplate은 sync
+    - TestRestTemplate 보다 유용하므로 사용 권장.
+- dependency 추가
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+```
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+public class SampleControllerTest {
+
+    @Autowired
+    WebTestClient webTestClient;
+
+    @MockBean
+    SampleService mockSampleService;
+
+    @Test
+    public void hello() throws Exception {
+        when(mockSampleService.getName()).thenReturn("gwon");
+
+        webTestClient.get().uri("/hello").exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class).isEqualTo("hello gwon");
+    }
+}
+```
+
+#### 슬라이스 테스트
+- 레이어 별로 잘라서 테스트하고 싶을 때
+    - @SpringBootTest는 모든 Bean을 등록
+- @JsonTest
+- @WebMvcTest
+    - Controller와 같은 Web과 관련된 Bean만 등록됨. @Service, @Repository X
+    
+    ```java
+    @RunWith(SpringRunner.class)
+    @WebMvcTest(SampleController.class)
+    public class MockMvcTest {
+    
+        @MockBean
+        SampleService mockSampleService;
+    
+        // @WebMvcTest 사용시 MockMvc 필수
+        @Autowired
+        MockMvc mockMvc;
+    
+        @Test
+        public void hello() throws Exception {
+            when(mockSampleService.getName()).thenReturn("gwon");
+    
+            mockMvc.perform(get("/hello"))
+                    .andExpect(content().string("hello gwon"));
+        }
+    
+    }
+    ```
+    
+- @WebFluxTest
+- @DataJpaTest
+    - Repository만 등록
+- …
+

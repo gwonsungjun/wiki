@@ -625,7 +625,7 @@ public class SampleRunner implements ApplicationRunner {
     - 추가할 프로파일 설정.
 - 프로파일용 프로퍼티
     - application-{profile}.properties
-        - application-prod.properties, application-prod.properties 생성 가능.
+        - application-test.properties, application-prod.properties 생성 가능.
         - 프로파일용 프로퍼티가 기본 application.properties 보다 우선순위가 높기때문에 오버라이딩됨. 
         - 실행 시 `java -jar target/springboot2-0.0.1-SNAPSHOT.jar --spring.profiles.active=test`
         

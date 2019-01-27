@@ -625,7 +625,7 @@ public class SampleRunner implements ApplicationRunner {
     - 추가할 프로파일 설정.
 - 프로파일용 프로퍼티
     - application-{profile}.properties
-        - application-prod.properties, application-prod.properties 생성 가능.
+        - application-test.properties, application-prod.properties 생성 가능.
         - 프로파일용 프로퍼티가 기본 application.properties 보다 우선순위가 높기때문에 오버라이딩됨. 
         - 실행 시 `java -jar target/springboot2-0.0.1-SNAPSHOT.jar --spring.profiles.active=test`
         
@@ -865,3 +865,19 @@ public class SampleControllerTest {
 - TestPropertyValues
 - TestRestTemplate
 - ConfigFileApplicationContextInitializer
+
+### (11) Spring-Boot Devtools
+
+- spring-boot-devtools 의존성 추가
+- 캐시 설정을 개발 환경에 맞게 변경.
+- 클래스패스에 있는 파일이 변경 될 때마다 자동으로 재시작.
+    - 직접 껐다 켜는거 (cold starts)보다 빠른다. 왜?
+    - 릴로딩 보다는 느리다. (JRebel 같은건 아님)
+    - 리스타트 하고 싶지 않은 리소스는? spring.devtools.restart.exclude
+    - 리스타트 기능 끄려면? spring.devtools.restart.enabled = false
+- 라이브 릴로드? 리스타트 했을 때 브라우저 자동 리프레시 하는 기능
+    - 브라우저 플러그인 설치해야 함.
+    - 라이브 릴로드 서버 끄려면? spring.devtools.liveload.enabled = false
+- 글로벌 설정
+    - ~/.spring-boot-devtools.properties (application.properties 보다 높은 우선순위 1순위)
+- 리모트 애플리케이션

@@ -901,3 +901,31 @@ public class SampleControllerTest {
     
 - 스프링 MVC 재정의
     - @Configuration + @EnableWebMvc
+    
+### (13) 스프링 웹 MVC 2부: HttpMessageConverters
+
+- <https://docs.spring.io/spring/docs/5.0.7.RELEASE/spring-framework-reference/web.html#mvc-config-message-converters>
+- HttpMessageConverters: 스프링 프레임웍에서 제공하는 인터페이스, 스프링 MVC의 일부분
+- HTTP 요청 본문을 객체로 변경하거나, 객체를 HTTP 응답 본문으로 변경할 때 사용 {“username”:”keesun”, “password”:”123”} <-> User
+    - @ReuqestBody
+    - @ResponseBody
+- 어떤 요청을 받았는지, 어떤 응답을 보내야하는지에 따라 사용하는 HttpMessageConverter가 달라짐.
+- @RestController : @ResponseBody 생략 가능
+
+
+### (14) 스프링 웹 MVC 3부: ViewResolve
+
+- ContentNegotiatiogViewResolver : viewResolver 중 하나, 들어오는 요청의 accept 헤더에 따라 응답이 달라진다.
+- 스프링 부트
+    - 뷰 리졸버 설정 제공
+    - HttpMessageConvertersAutoConfiguration
+- XML 메시지 컨버터 추가하기 (XML 컨버팅 필요시 추가해서 사용)
+
+```xml
+<dependency>
+   <groupId>com.fasterxml.jackson.dataformat</groupId>
+   <artifactId>jackson-dataformat-xml</artifactId>
+   <version>2.9.6</version>
+</dependency>
+```
+

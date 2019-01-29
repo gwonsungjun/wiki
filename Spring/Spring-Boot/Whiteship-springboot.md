@@ -929,3 +929,39 @@ public class SampleControllerTest {
 </dependency>
 ```
 
+### (15) 스프링 웹 MVC 4부: 정적 리소스 지원
+
+#### 정적 리소스 맵핑 “ /**”
+
+- 기본 리소스 위치
+    - classpath:/static
+    - classpath:/public
+    - classpath:/resources/
+    - classpath:/META-INF/resources
+    - 예) “/hello.html” => /static/hello.html
+        - [!] html 파일 수정 후 빌드를 다시 하면(command+F9) 화면 수정 됨.
+    - spring.mvc.static-path-pattern: 맵핑 설정 변경 가능
+        - http://localhost:8080/hello.html : 기본적으로는 루트부터("/") Mapping
+        - spring.mvc.static-path-pattern=/static/** : /static/hello.html로 요청 해야함.
+    - spring.mvc.static-locations: 리소스 찾을 위치 변경 가능
+        - 기본 리소스 위치를 다 안쓰게 되서 권장하지 않음.
+- Last-Modified 헤더를 보고 304 응답을 보냄.
+    - Request Header에 If-Modified-Since 시간과 Response Header의 Last-Modified (서버의 코드 수정) 시간을 비교해서 200 (변화가 있으면) 또는 304 응답을 보냄 
+    - 캐싱 동작. 응답이 빨라짐.  
+- ResourceHttpRequestHandler가 처리함.
+    - WebMvcConfigurer의 addRersourceHandlers(리소스 핸들러 추가)로 커스터마이징 할 수 있음
+        - 스프링부트가 기본적으로 제공하는 리소스 핸들러 기능을 유지하면서 커스텀한 걸 추가하는 방식.
+
+```java
+@Configuration
+public class webConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/m/**")
+                .addResourceLocations("classpath:/m/")
+                .setCachePeriod(20);
+    }
+}
+```
+

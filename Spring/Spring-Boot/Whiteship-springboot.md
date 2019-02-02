@@ -1052,3 +1052,27 @@ public class webConfig implements WebMvcConfigurer {
 </body>
 </html>
 ```
+
+### (19) 스프링 웹 MVC 8부: HtmlUnit
+
+- HtmlUnit : html을 단위테스트 하기위한 툴.
+- HTML 템플릿 뷰 테스트를 보다 전문적으로 하자. (html에 특화된 테스트 작성)
+    - http://htmlunit.sourceforge.net/
+    - http://htmlunit.sourceforge.net/gettingStarted.html
+    - 의존성 추가
+
+    ```xml
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>htmlunit-driver</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>net.sourceforge.htmlunit</groupId>
+        <artifactId>htmlunit</artifactId>
+        <scope>test</scope>
+    </dependency>
+    ```
+    
+    - @Autowire WebClient 
+        - MockMvc를 쓸 것인가? WebClient를 쓸 것인가? : 취향에 따라 선택

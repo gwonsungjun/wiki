@@ -1076,3 +1076,35 @@ public class webConfig implements WebMvcConfigurer {
     
     - @Autowire WebClient 
         - MockMvc를 쓸 것인가? WebClient를 쓸 것인가? : 취향에 따라 선택
+        
+### (20) 스프링 웹 MVC 9부: ExceptionHandler
+
+- 스프링 @MVC 예외 처리 방법
+    - @ControllerAdvice
+        - 전역적으로 사용하고 싶을 때 클래스를 따로 만들어서 애노테이션(@ControllerAdvice)을 선언 
+    - @ExceptionHandler
+    
+    ```java
+    @ExceptionHandler(SampleException.class)
+    public @ResponseBody AppError sampleError(SampleException e) {
+        AppError appError = new AppError();
+        appError.setMessage("error.app.key");
+        appError.setReason("IDK IDK IDK");
+        return appError;
+    }
+    ```
+    
+- 스프링 부트가 제공하는 기본 예외 처리기
+    - BasicErrorController
+        - HTML과 JSON 응답 지원
+    - 커스터마이징 방법
+        - ErrorController(interface) 구현 후 Bean으로 등록.
+        - 또는 BasicErrorController를 상속 받아서 사용하기.
+- 커스텀 에러 페이지
+    - (응답의) 상태 코드 값에 따라 에러 페이지 보여주기
+    - src/main/resources/static|template/error/ 밑에 html 파일 생성. 파일명은 아래와 같이 해야함.
+        - 404.html
+        - 5xx.html
+    - ErrorViewResolver 구현
+        - 동적인 페이지 Return 가능
+

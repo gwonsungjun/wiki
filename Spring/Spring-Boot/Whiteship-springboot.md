@@ -1144,4 +1144,30 @@ public class webConfig implements WebMvcConfigurer {
     - 클라이언트 쪽에서 링크 정보를 Rel 이름으로 찾을때 사용할 수 있는 XPath 확장 클래스
     - Bean으로 등록되어 있기 때문에 바로 사용 가능.
 
+### (22) 스프링 웹 MVC 11부: CORS
 
+- SOP과 CORS
+    - Single-Origin Policy
+    - Cross-Origin Resource Sharing
+        - SOP를 우회하기 위한 웹 브라우저가 지원하는 표준 기술
+    - Origin?
+        - URI 스키마 (http, https)
+        - hostname (whiteship.me, localhost)
+        - 포트 (8080, 18080)
+
+- 스프링 MVC @CrossOrigin (springboot는 Bean 설정 없이 바로 사용가능)
+    - <https://docs.spring.io/spring/docs/5.0.7.RELEASE/spring-framework-reference/web.html#mvc-cors>
+    - @Controller나 @RequestMapping에 추가하거나
+        - `@CrossOrigin(origins = "http://localhost:8081")`
+    - WebMvcConfigurer 사용해서 글로벌 설정
+    
+    ```java
+    @Configuration
+    public class WebConfig implements WebMvcConfigurer {
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/hello")
+                    .allowedOrigins("http://localhost:18080");
+        }
+    }
+    ```

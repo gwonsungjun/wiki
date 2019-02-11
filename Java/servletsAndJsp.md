@@ -5,17 +5,18 @@
 - 클라이언트의 데이터 수집 방법이 링크형태를 띄고 FTP 프로토콜 방식을 사용해서 데이터를 얻었다.
 - 이를 개선하고자 HTTP 프로토콜 방식이 등장하였다.
 
-### Web Application
+### JAVA Web Application
 - WAS에 설치(deploy)되어 동작하는 어플리케이션.
 - 자바 웹 어플리케이션에는 HTML, CSS, 이미지, 자바로 작성된 클래스(Servlet도 포함됨, package, 인터페이스 등), 각종 설정 파일 등이 포함된다.
 
 ### JAVA 웹 어플리케이션의 폴더 구조
 
 ![javawebappDirStr](/images/javawebappDirStr.PNG)
-- 반드시 WEB-INF 폴더가 존재 해야한다. [그림참조](https://www.edwith.org/boostcourse-web/lecture/16686/)
+- 반드시 WEB-INF 폴더가 존재 해야한다.(아래 배포 서술자(DD, Deployment Descriptor) == Web.xml이란? 참조
+) [그림참조](https://www.edwith.org/boostcourse-web/lecture/16686/)
 
 ### 서블릿이란?
-- Server+Applet으로 “Client의 요청을 처리하고 그 결과를 다시 Client에게 전송하는 Servlet Class의 구현 규칙을 지킨 자바 프로그램”.
+- Server+Applet으로 “Client의 요청을 처리하고 그 결과를 다시 Client에게 전송하는(동적인 처리) Servlet Class의 구현 규칙을 지킨 자바 프로그램”. 즉, WAS에 동작하는 JAVA 클래스
   - 자바프로그램이라고 정의했다면 당연히 JDK가 필요하며, 자바 API를 동작시키는 JVM이 필요하다.
   - Servlet은 Web Application 확장이 용이하고 플랫폼에 독립적이다.
   - HttpServlet 클래스를 상속받아야 한다.
@@ -38,7 +39,7 @@
 
 ### 컨테이너는 요청을 어떻게 다룰까?
 1. 사용자가 서블릿에 대한 링크를 클릭한다. web.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)
-2. 컨테이너는 들어온 요청이ㅁ 서블릿이라는 것을 간파하곤 다음 두 객체를 생성한다.
+2. 컨테이너는 들어온 요청이 서블릿이라는 것을 간파하곤 다음 두 객체를 생성한다.
   (1) HttpServletRequest
   (2) HttpServletResponse
 3. 컨테이너는 사용자가 날린 URL을 분석하여 어떤 서블릿에 대한 요청인지 알아낸다(DD == web.xml 참조) 그 다음 해당 서블릿 스레드를 생성하여 Request, Response 객체를 인자로 넘긴다.
@@ -69,7 +70,8 @@
 ![servletLifeCycle](/images/servletLifeCycle.png)[그림참조](https://showbang.github.io/typistShow/2017/01/11/%ED%8F%B4%EB%8D%94%ED%85%8C%EC%8A%A4%ED%8A%B8/)
 
 ### 정리해보면..
-```java
+
+```
 - 컨테이너는 서블릿 디폴트 생성자를 실행 (생성된 서블릿 인스턴스는 새로 생성없이 계속 사용), init() 실행 (최초에 한번 실행)
 - 클라이언트 요청
 - 컨테이너는 서블릿 스레드 생성 (요청당 하나의 스레드 생성)
@@ -123,13 +125,13 @@
 ### 배포 서술자(DD, Deployment Descriptor) == Web.xml이란?
 - ``톰캣의 실행환경``에 대한 정보를 담당하는 '환경설정' 파일
 - 각종 servlet의 설정과 servlet 매핑, 필터, 인코딩 등을 담당
-- 톰캣에 있는 모든 web applicweb.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)
+- 톰캣에 있는 모든 web application web.xml 파일의 설정들은 Web Application 시작시 메모리에 로딩됨. (수정을 할 경우 web application을 재시작 해야함.)
 - 각 application이 deploy될 때 각 application의 'WEB-INF/web.xml'(웹 어플리케이션의 모든 정보가 들어있다고 간주) Deployment Descriptor에 따라서 처리
   - 각 application 마다 설정시, web.xml은 파일을 복사해서 필요한 것만 적으면 된다
 - 모든 Web application은 반드시 하나의 web.xml 파일을 가져야 함
 - 위치 : `WEB-INF 폴더 아래`
 
-### Servelt 웹 서버 구동 순서
+### Servlet 웹 서버 구동 순서
 1. 웹 서버 구동에 필요한 포트 및 설정 정보를 인식.
   - `[톰캣폴더]/conf/server.xml`
 2. 모든 프로젝트에 공통적으로 적용되는 설정 정보 인식.
@@ -143,7 +145,7 @@
 6. 프로젝트 별로 적용되는 서블릿 파일을 인식. 설정에 따라 init()을 실행.
   - `[프로젝트이름]/WEB-INF/classes`
 
-### Servelt 웹 서버 종료 순서
+### Servlet 웹 서버 종료 순서
 1. 프로젝트별로 적용되는 서블릿 파일을 인식하고 destroy()를 실행하여 메모리를 해제.
   - `[프로젝트이름]/WEB-INF/classes`
 2. 프로젝트별로 환경 설정에 사용된 메모리를 해제.
@@ -154,7 +156,7 @@
 ### Links
 - [Head First Servlet & JSP](http://book.naver.com/bookdb/book_detail.nhn?bid=5902081)
 - [edwith, Full-Stack Web Developer servlet](https://www.edwith.org/boostcourse-web/lecture/16686/)
--  [Servlet 이란 무엇인가?](http://breath91.tistory.com/entry/Servlet-이란-무엇인가)
+- [Servlet 이란 무엇인가?](http://breath91.tistory.com/entry/Servlet-이란-무엇인가)
 - [Servlet이란](https://showbang.github.io/typistShow/2017/01/11/%ED%8F%B4%EB%8D%94%ED%85%8C%EC%8A%A4%ED%8A%B8/)
 - [web application 등장 배경 및 구동 원리와 tomcat설치 및 간단한 web app 프로그램 만들기.](http://ktk08.blogspot.com/2013/08/web-application-tomcat-web-app.html?m=1)
 - [웹 서버의 구동, 종료와 서블릿의 라이프 사이클](http://bloodygale.tistory.com/entry/Servlet-%EC%9B%B9-%EC%84%9C%EB%B2%84%EC%9D%98-%EA%B5%AC%EB%8F%99-%EC%A2%85%EB%A3%8C%EC%99%80-%EC%84%9C%EB%B8%94%EB%A6%BF%EC%9D%98-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4)

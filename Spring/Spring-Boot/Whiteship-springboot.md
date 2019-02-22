@@ -1171,3 +1171,117 @@ public class webConfig implements WebMvcConfigurer {
         }
     }
     ```
+
+### (23) 스프링 데이터 1부 : 소개
+
+#### SQL DB
+- 인메모리 데이터베이스 지원
+- DataSource 설정
+- DBCP 설정
+- JDBC 사용하기
+- 스프링 데이터 JPA 사용하기
+- jOOQ 사용하기
+- 데이터베이스 초기화
+- 데이터베이스 마이그레이션 툴 연동하기
+
+#### NoSQL	
+- Redis (Key/Value)
+- MongoDB (Document)
+- Neo4J (Graph)
+- Gemfire (IMDG)
+- Solr (Search)
+- Elasticsearch (Search & Analytics)
+- Cassandra
+- Couchbase
+- LDAP
+- InfluxDB
+
+
+## (24) 스프링 데이터 2부 : 인메모리 데이터베이스
+
+#### 지원하는 인-메모리 데이터베이스
+
+- H2 (추천, 콘솔 때문에…)
+- HSQL
+- Derby
+
+#### Spring-JDBC가 클래스패스에 있으면 자동 설정이 필요한 빈을 설정 해준다.
+
+- DataSource
+- JdbcTemplate
+- spring-boot-autoconfigure > spring.factories
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+- 바로 데이터베이스를 사용할 수 있게됨
+    - H2 의존성이 클래스 패스에 들어있고 아무런 데이터소스 설정을 하지 않으면 스프링 부트는 자동으로 인메모리 데이터베이스를 설정해준다.
+
+#### 인-메모리 데이터베이스 기본 연결 정보 확인하는 방법
+- URL: “testdb”
+- username: “sa”
+- password: “”
+- DataSourceProperties class에서 확인 가능하다.(기본 연결 정보)
+
+#### H2 콘솔 사용하는 방법
+- spring-boot-devtools를 추가하거나…
+- spring.h2.console.enabled=true 만 추가.
+- /h2-console로 접속 (이 path도 바꿀 수 있음)
+
+## (25) 스프링 데이터 3부: MySQL
+
+- Connection connection = dataSource.getConnection(), Connection을 만드는 과정이 짧지가 않음.
+- 따라서 Connection을 미리 여러 개 만들어 놓고 Application이 필요로 할 때마다 가져다 쓰는 개념.
+- 얼마나 만들어 놓을 것이냐? 얼마 동안 안 쓰면 없앨 것이냐? 최소한 몇 개를 유지할 것이냐? 등의 설정을 할 수 있음.
+- Application의 성능에 핵심적인 역할. 따라서 신중하게 선택해야 함.
+
+#### 지원하는 DBCP(DataBase Connection Pool)
+
+- HikariCP (기본)
+    - <https://github.com/brettwooldridge/HikariCP#frequently-used>
+        - 링크 간단 설명.
+            - autoCommit = true : sql을 실행할 때마다 commit이라고 명시를 안 해도 자동으로 그때그때 적용
+            - connectionTimeout : dbcp pool에서 connection 객체를 appplication으로 어느 기간 동안 전달을 못 하면 에러를 낼 것이냐
+            - maxiumPollSize : connection 객체를 몇 개를 유지할 것이냐, application이 connection 객체를 다 가져갔다고 해서 다 실행할 수 있는 건 아님. 동시에 일을 할 수 있는 connection들은 cpu core 개수와 똑같다.
+- Tomcat CP
+- Commons DBCP2
+
+#### DBCP 설정
+- spring.datasource.hikari.*
+    - `spring.datasource.hikari.maximum-pool-size=4`
+- spring.datasource.tomcat.*
+- spring.datasource.dbcp2.*
+
+#### MySQL 커넥터 의존성 추가
+
+```xml
+# datasource 구현체
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
+#### MySQL 추가 (도커 사용)
+
+- docker run -p 3306:3306 –name mysql_boot -e MYSQL_ROOT_PASSWORD=1 -e MYSQL_DATABASE=springboot -e MYSQL_USER=keesun -e MYSQL_PASSWORD=pass -d mysql
+- docker exec -i -t mysql_boot bash
+- mysql -u root -p
+
+#### MySQL용 Datasource 설정
+
+- spring.datasource.url=jdbc:mysql://localhost:3306/springboot?useSSL=false
+- spring.datasource.username=keesun
+- spring.datasource.password=pass
+
+#### MySQL 접속시 에러
+
+##### MySQL 5.* 최신 버전 사용할 때
+- 문제 : Sat Jul 21 11:17:59 PDT 2018 WARN: Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+- 해결 : jdbc:mysql:/localhost:3306/springboot?useSSL=false
+
+##### MySQL 8.* 최신 버전 사용할 때
+- 문제 : com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Public Key Retrieval is not allowed
+- 해결 : jdbc:mysql:/localhost:3306/springboot?useSSL=false&allowPublicKeyRetrieval=true
+
+#### MySQL 라이센스 (GPL) 주의
+- MySQL 대신 MariaDB 사용 검토
+- 소스 코드 공개 의무 여부 확인

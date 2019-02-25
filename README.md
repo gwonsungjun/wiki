@@ -19,18 +19,15 @@
 ## List (A-Z)
 
 ### Algorithm
-- [알고리즘 문제 해결 전략 정리](Algorithm/Algorithm_problem-solving_strategy.md)
 - [Big O Notation](Algorithm/BigO_notation.md)
 
 ### BlockChain
 - [EOS 개념 및 특징](BlockChain/EOS/EOS_Characteristics.md)
+- [Geth를 이용한 private network 구성](BlockChain/Private-network-using-geth.md)
 
 ### Book Review
 - [읽은 책 목록](Book-Review/books.md)
-- [x] [성공과 실패를 결정하는 1%의 컴퓨터 원리. 히사오 야자와. 성안당. 2004](Book-Review/Development/1%25-computer-principle-that-determines-success-and-failure.md)
-- [x] [인터랙티브 디벨로퍼(구글 엔지니어의 포트폴리오). 김종민. 한빛미디어. 2015](Book-Review/Development/Interactive-Developer.md)
-- [x] [이렇게 하면 나도 프로그램을 잘 만들 수 있다 C & JAVA 프로그래밍 입문. 김석현. 삼양애드. 2012](Book-Review/Development/This-way-I-can-make-a-good-program1.md)
-- [x] [스무살에 알았더라면 좋았을 것들. 티나 실리그. 엘로라도. 2010](Book-Review/Non-Development/What-would-have-been-nice-if-I'd-known-at-age-20.md)
+- [2019년 읽은 책 목록](Book-Review/2019/2019-Reading-list.md)
 
 ### Computer Structure(컴퓨터 구조)
 - [컴퓨터구조 기초 용어 정리](ComputerStructure/ComputerStructureBasic.md)

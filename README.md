@@ -10,7 +10,7 @@
 5. 내용을 확인 한 후에는 `<C-o>` (ctrl+o)를 입력하면 README 로 돌아갈 수 있다.
 
 ## 사용법 2
-1. [GitHub TIL Repository](https://github.com/gwonsungjun/TIL)에서 단축키 `t`
+1. [GitHub Wiki Repository](https://github.com/gwonsungjun/wiki)에서 단축키 `t`
 2. 찾고 싶은 키워드를 입력해서 검색  
 #
 

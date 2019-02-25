@@ -23,7 +23,6 @@
 
 ### BlockChain
 - [EOS 개념 및 특징](BlockChain/EOS/EOS_Characteristics.md)
-- [Geth를 이용한 private network 구성](BlockChain/Private-network-using-geth.md)
 
 ### Book Review
 - [읽은 책 목록](Book-Review/books.md)

@@ -2,30 +2,12 @@
 
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE) [![Blog](https://img.shields.io/badge/Blog-gwonsungjun.github.io-blue.svg)](https://gwonsungjun.github.io/) [![Email](https://img.shields.io/badge/Email-gwonsungjun-yellow.svg)](mailto:sungjunpizz@gmail.com)
 
-## 사용법 1
-1. 해당 저장소를 로컬로 내려 받는다. `$ https://github.com/gwonsungjun/TIL.git`
-2. VIM으로 README.md 파일을 조회. `vim README.md`
-3. 찾고 싶은 키워드를 검색. `/{키워드}`
-4. 해당 라인의 파일명으로 커서를 옮긴 후 `g f`
-5. 내용을 확인 한 후에는 `<C-o>` (ctrl+o)를 입력하면 README 로 돌아갈 수 있다.
-
-## 사용법 2
-1. [GitHub Wiki Repository](https://github.com/gwonsungjun/wiki)에서 단축키 `t`
-2. 찾고 싶은 키워드를 입력해서 검색  
-
-## 사용법 3
-1. 크롬 확장 프로그램 `sourcegraph` 설치
-2. [Repository](https://github.com/gwonsungjun/wiki) 메인에서 `View Repository`버튼을 클릭해서 찾고 싶은 키워드를 검색한다.
-#
-
-## List (A-Z)
-
 ### Algorithm
 - [Big O Notation](Algorithm/big_o_notation.md)
 
 ### Book Review
-- [읽은 책 목록](Book-Review/books.md)
-- [2019년 읽은 책 목록](Book-Review/2019/2019-Reading-list.md)
+- [읽은 책 목록](../wiki-private/Book-Review/books.md)
+- [2019년 읽은 책 목록](../wiki-private/Book-Review/2019/2019-Reading-list.md)
 
 ### Docker
 - [도커란 무엇인가 ?](/Docker/docker-basic.md)
@@ -99,18 +81,3 @@
 ### Web
 - [Web Browser Rendering](Web/browser-Rendering.md)
 - [웹서버와 WAS](Web/webServer-WAS.md)
-
-#
-
-## Writing Rule
-  - 문서 생성은 GFM (Github Flavored Markdown) 을 사용한다. (확장자 .md)
-  - 언어나 기술명 등으로 폴더 생성, 파일명은 영어로.
-  - README.md에 링크 추가.
-  - 커밋메세지에 신경 쓸 것.
-  - 해당 문서를 다시 봤을 때, 추가적인 검색의 비용이 들지 않도록 자세히 기록한다.
- 
-## Reference
-- [유림님 TIL](https://github.com/milooy/TIL#today-i-learned)
-- [규진님 TIL](https://github.com/iamkyu/TIL)
-- [규빈님 TIL](https://github.com/Gyubin/TIL)
-- [초보몽키님 TIL](https://wayhome25.github.io/)

@@ -5,10 +5,6 @@
 ### Algorithm
 - [Big O Notation](Algorithm/big_o_notation.md)
 
-### Book Review
-- [읽은 책 목록](../wiki-private/Book-Review/books.md)
-- [2019년 읽은 책 목록](../wiki-private/Book-Review/2019/2019-Reading-list.md)
-
 ### Docker
 - [도커란 무엇인가 ?](/Docker/docker-basic.md)
 - [도커 기본 명령어 정리](/Docker/docker-command.md)
